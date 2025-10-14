@@ -33,25 +33,3 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
-
-button {
-  display: inline-flex;
-  padding: 0.625rem 1rem;
-  justify-content: center;
-  align-items: center;
-  font-family: var(--font-family);
-  background: var(--color-primary-600);
-  font-size: 1em;
-  font-weight: 500;
-  color: white;
-  cursor: pointer;
-  border: none;
-  outline: none;
-}
-button:hover {
-  border-color: var(--color-primary-700);
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
