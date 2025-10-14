@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import Button from "./Button.jsx";
+import Button from "./components/Button/Button.jsx";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -12,6 +12,17 @@ function App() {
       <div className="card">
         <Button onClick={() => setCount((count) => count + 1)}>
           Count is {count}
+        </Button>
+
+        <Button
+          variant="primary || secondary || tertiary"
+          size="small || large"
+          icon="" //any name from Material Symbols Outlined pack: https://fonts.google.com/icons. Not case sensitive.
+          type="button || submit || reset"
+          disabled={false}
+          onClick={() => console.log("Clicked!")}
+        >
+          Just a simple string
         </Button>
       </div>
 

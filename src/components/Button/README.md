@@ -74,3 +74,21 @@ The `children` prop is not designed to contain anything else than a simple text 
   Add events
 </Button>
 ```
+
+## TL;DR: All attributes in overview
+
+Here are all possible options, including some native HTML button options. If an attribute is not filled out, it will default to the first attribute. In the case of `onClick` the button will do nothing.
+
+```jsx
+<Button
+  variant="primary || secondary || tertiary"
+  size="small || large"
+  icon="" //any name from Material Symbols Outlined pack: https://fonts.google.com/icons. Not case sensitive.
+  type="button || submit || reset"
+  disabled={false || true}
+  onClick={() => console.log("Clicked!")}
+  name="name of button when used in a form"
+>
+  Just a simple string
+</Button>
+```
