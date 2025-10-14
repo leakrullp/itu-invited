@@ -15,7 +15,7 @@ This is a reusable **React Button** component that supports:
 The component defaults to the variant `primary` and the size `large`. It will have no icon unless specified. It will also have no native HTML button props unless specified.
 
 ```jsx
-import Button from "./Button";
+import Button from "./components/Button/Button.jsx";
 
 export default function Example() {
   return (

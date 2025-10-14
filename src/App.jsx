@@ -13,17 +13,6 @@ function App() {
         <Button onClick={() => setCount((count) => count + 1)}>
           Count is {count}
         </Button>
-
-        <Button
-          variant="primary || secondary || tertiary"
-          size="small || large"
-          icon="" //any name from Material Symbols Outlined pack: https://fonts.google.com/icons. Not case sensitive.
-          type="button || submit || reset"
-          disabled={false}
-          onClick={() => console.log("Clicked!")}
-        >
-          Just a simple string
-        </Button>
       </div>
 
       <h3>Large buttons</h3>
