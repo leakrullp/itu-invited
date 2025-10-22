@@ -65,7 +65,17 @@ body {
   z-index: 1000; /* ligger ovenpå alt andet indhold */
 }
 
-.Navbar .AccountButton{
+.Navbar .AccountButton {
   border-radius: 50%;
-  background-color: #E2E7F4;
+  background-color: #e2e7f4;
+  width: 50px; 
+  height: 50px;
+}
+
+.Navbar .AccountButton:hover {
+  color: #ffffff !important;
+  background-color: var(--color-primary-400) !important;
+  border-radius: 50%;
+  width: 50px; 
+  height: 50px;
 }

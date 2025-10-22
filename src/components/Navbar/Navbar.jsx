@@ -20,8 +20,10 @@ function Navbar() {
             Favorites
           </Button>
         </li>
-        <li className="AccountButton">
-          <Button variant="tertiary">LP</Button>
+        <li>
+          <Button className="AccountButton" variant="tertiary">
+            LP
+          </Button>
         </li>
         <li>
           <Button variant="tertiary">Account</Button>
