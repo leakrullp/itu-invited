@@ -1,5 +1,5 @@
 import React from "react";
-import { FaHeart } from "react-icons/fa";
+import Button from "../Button/Button.jsx";
 
 function Navbar() {
   return (
@@ -12,7 +12,7 @@ function Navbar() {
         <li>My events</li>
         <li>Create events</li>
         <li>
-          <FaHeart color="#814684" />
+        <Button variant="tertiary" icon="bookmark">Favorites</Button>
         </li>
         <li>Profil</li>
       </ul>
