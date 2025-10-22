@@ -5,9 +5,9 @@ body {
   margin: 0; /* fjerner standard margin */
   padding: 0; /* fjerner standard padding */
   height: 100%; /* sørger for fuld højde */
-  background-color: #ffffff; /* din ønskede baggrundsfarve */
+  background-color: var(--color-neutral-50); /* din ønskede baggrundsfarve */
   font-family: "Funnel Sans", sans-serif; /* bruger Funnel Sans font */
-  background-color: #ffffff; /* basisfarve */
+  
 }
 
 .Navbar {
@@ -29,6 +29,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 0px;
   z-index: 1000;
+  background-color: #ffffff;
 }
 
 .Navbar ul {
@@ -63,6 +64,7 @@ body {
   font-weight: bold;
   text-align: center;
   z-index: 1000; /* ligger ovenpå alt andet indhold */
+  
 }
 
 .Navbar .AccountButton {
@@ -79,3 +81,46 @@ body {
   width: 50px; 
   height: 50px;
 }
+
+.Card{
+  width: 272px;
+  height: 368;
+  color: black;
+  border: 1px solid #ccc;
+  padding: 16px;
+  background-color: #ffffff;
+}
+.Card .Image{
+  border-radius: 10px;
+  width: 272px;
+  height: 368;
+}
+
+.Card .Organisation{
+  color: #3F51B5;
+}
+
+.Card .Date{
+font-weight: 400;
+}
+.Card .Time{
+  font-weight: 400;
+  opacity: 0.7;
+}
+.Card .Tags{
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+.container {
+  display: flex;          /* Brug flexbox */
+  flex-wrap: wrap;        /* Tillad kort at gå ned på ny linje */
+  gap: 20px;              /* Afstand mellem kortene */
+  justify-content: flex-start; /* Start fra venstre */
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-top: 65px;
+}
+
+
+
