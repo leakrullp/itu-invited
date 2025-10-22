@@ -1,10 +1,5 @@
 import React from "react";
 
-
 export default function Filter() {
-  return (
-    <div className="FilterBox">
-      Filter
-    </div>
-  );
+  return <div className="FilterBox">Filter</div>;
 }
