@@ -64,3 +64,8 @@ body {
   text-align: center;
   z-index: 1000; /* ligger ovenpå alt andet indhold */
 }
+
+.Navbar .AccountButton{
+  border-radius: 50%;
+  background-color: #E2E7F4;
+}
