@@ -26,7 +26,7 @@ function Navbar() {
           </Button>
         </li>
         <li>
-          <Button variant="tertiary">Account</Button>
+          <Button variant="tertiary">Account@itu.dk</Button>
         </li>
       </ul>
     </nav>
