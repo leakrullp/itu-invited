@@ -1,4 +1,4 @@
-# TopicTag component
+# StatusTag component
 
 This component supports four fixed variants; `posted`, `draft`, `archived`, and `error`.
 This component is hardcoded to display the right text label, icon, and color depending on the chosen variant.
