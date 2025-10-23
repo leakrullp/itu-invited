@@ -1,9 +1,12 @@
+// Summary: Entry point of the React app. It renders the main App component inside React.StrictMode for development checks.
+
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
-import "./components/tokens.css";
 import App from "./App.jsx";
+import "./components/tokens.css";
+import "./index.css";
 
+// Create the root element and render the App component inside StrictMode
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <App />
