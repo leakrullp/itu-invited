@@ -9,16 +9,22 @@ import data from "./assets/Data/Data.js";
 export default function App() {
   // Map through data and create an Entry component for each data object
   const cards = data.map((card) => <Entry key={card.img} {...card} />);
+  const totalEvents = data.length; //Count how many events exist
+
 
   return (
     <>
-      {/* Navbar at the top of the page */}
       <Navbar />
 
-      {/* Main container displaying all event cards */}
-      <main className="container">{cards}</main>
+      {/* Event counter */}
+      <div className="event-count">
+        <h2>Events ({totalEvents})</h2>
+      </div>
 
-      {/* Filter component at the bottom */}
+      <main className="container">
+        {cards}
+      </main>
+
       <Filter />
     </>
   );
