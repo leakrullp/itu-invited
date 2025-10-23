@@ -1,6 +1,6 @@
 /* Summary: Styles for the right-side filter box. */
 
-@import "../../tokens.css";
+@import "../tokens.css";
 
 .FilterBox {
   position: fixed;

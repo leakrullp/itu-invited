@@ -1,6 +1,8 @@
 /* Summary: Global layout and typography setup for the whole app. */
 
-@import "../components/tokens.css";
+@import "./components/tokens.css";
+
+
 
 html,
 body {

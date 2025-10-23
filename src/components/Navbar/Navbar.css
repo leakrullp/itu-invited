@@ -1,6 +1,6 @@
 /* Summary: Styles for the navigation bar using token colors and spacing. */
 
-@import "../../tokens.css";
+@import "../tokens.css";
 
 .Navbar {
   display: flex;

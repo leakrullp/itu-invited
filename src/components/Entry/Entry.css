@@ -1,6 +1,6 @@
 /* Summary: Event card layout with typography and color tokens. */
 
-@import "../../tokens.css";
+@import "../tokens.css";
 
 .Card {
   width: 272px;
