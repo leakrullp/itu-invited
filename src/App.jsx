@@ -11,7 +11,6 @@ export default function App() {
   const cards = data.map((card) => <Entry key={card.img} {...card} />);
   const totalEvents = data.length; //Count how many events exist
 
-
   return (
     <>
       <Navbar />
@@ -21,9 +20,7 @@ export default function App() {
         <h2>Events ({totalEvents})</h2>
       </div>
 
-      <main className="container">
-        {cards}
-      </main>
+      <main className="container">{cards}</main>
 
       <Filter />
     </>
