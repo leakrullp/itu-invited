@@ -9,18 +9,22 @@ export default function Entry(props) {
       {/* Event image */}
       <img src={props.img} alt={props.name} className="Image" />
 
-      {/* Organization name */}
-      <h2 className="Organisation">{props.organisation}</h2>
+      <div className="AllText">
+        {/* Organization name */}
+        <h2 className="Organisation">{props.organisation}</h2>
 
-      {/* Event headline */}
-      <h2 className="Headline">{props.headline}</h2>
+        {/* Event headline */}
+        <h2 className="Headline">{props.headline}</h2>
 
-      {/* Date and time details */}
-      <h2 className="Date">{props.date}</h2>
-      <h2 className="Time">{props.time}</h2>
+        {/* Date and time details */}
+        <div className="DateTime">
+          <h2 className="Date">{props.date}</h2>
+          <h2 className="Time">{props.time}</h2>
+        </div>
 
-      {/* Event tags */}
-      <h2 className="Tags">{props.tags}</h2>
+        {/* Event tags */}
+        <h2 className="Tags">{props.tags}</h2>
+      </div>
     </article>
   );
 }
