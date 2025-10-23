@@ -1,14 +1,15 @@
-@import "../tokens.css";
-
 /* Main card container */
 .Card {
   width: 272px;
-  height: 368px;
+  min-height: 368px;
+  height: auto;
   color: var(--color-neutral-900);
   border: 1px solid var(--color-neutral-100);
   background-color: var(--color-neutral-0);
   font-family: var(--font-family); /* Ensures Funnel Sans is applied */
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
 }
 
 /* Event image at the top of the card */
@@ -60,20 +61,27 @@
   font-size: 12px;
 }
 
+.Card .bottom-btn-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto; /* 🧲 pushes the button group to the bottom */
+  padding-top: 1rem;
+}
+
 /* Tag styling (e.g., category or topic label) */
 .Card .Tags {
-  font-weight: 400;
-  opacity: 0.7;
-  background-color: var(--color-neutral-50);
-  border-radius: 10px;
-  margin-bottom: 0;
-  font-size: 16px;
-  width: auto;
-  display: inline-block; /* Background fits text width */
-  padding: 2px 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  width: 100%;
 }
 
 /* Wrapper for all text content inside the card */
 .Card .AllText {
-  padding: 8px; /* Moves text inward from card edges */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* allows this area to expand as needed */
+  padding: 8px;
 }

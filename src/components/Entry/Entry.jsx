@@ -2,6 +2,8 @@
 
 import React from "react";
 import "./Entry.css";
+import TopicTag from "../TopicTag/TopicTag.jsx";
+import Button from "../Button/Button.jsx";
 
 export default function Entry(props) {
   return (
@@ -23,7 +25,18 @@ export default function Entry(props) {
         </div>
 
         {/* Event tags */}
-        <h2 className="Tags">{props.tags}</h2>
+        <div className="Tags">
+          {props.tags.map((tag, index) => (
+            <TopicTag key={index} text={tag} variant="read" />
+          ))}
+        </div>
+
+        <div className="bottom-btn-group">
+          <Button variant="tertiary" icon="bookmark"></Button>
+          <Button variant="secondary" size="small">
+            Go to sign up
+          </Button>
+        </div>
       </div>
     </article>
   );
