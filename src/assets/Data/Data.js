@@ -6,273 +6,273 @@ const data = [
     headline: "Card1",
     date: "22/12/2025",
     time: "20:00 - 21:00",
-    tags: "Ethical hacking"
+    tags: ["Ethical hacking"]
  },
  { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking"]
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking"]
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking"]
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking"]
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking"]
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking"]
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking"]
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking"]
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking"]
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking"]
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking"]
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking"]
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking", "MFA", "Python"] 
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking", "MFA", "Python"] 
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking", "MFA", "Python"] 
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking"]
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking"]
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking"]
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking", "MFA", "Python"] 
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking", "MFA", "Python"] 
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking", "MFA", "Python"] 
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking"]
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking"]
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking", "MFA", "Python"] 
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking", "MFA", "Python"] 
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking", "MFA", "Python"] 
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking", "MFA", "Python"] 
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking", "MFA", "Python"] 
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking", "MFA", "Python"] 
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking", "MFA", "Python"] 
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking"]
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking"]
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking"]
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking", "MFA", "Python"] 
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking", "MFA", "Python"] 
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking", "MFA", "Python"] 
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking", "MFA", "Python"] 
 },
 { img: card1, 
   organisation: "ITU Underground",
   headline: "Card1",
   date: "22/12/2025",
   time: "20:00 - 21:00",
-  tags: "Ethical hacking"
+  tags: ["Ethical hacking", "MFA", "Python"] 
 },
 
 

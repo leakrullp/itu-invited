@@ -23,7 +23,13 @@ export default function Entry(props) {
         </div>
 
         {/* Event tags */}
-        <h2 className="Tags">{props.tags}</h2>
+        <div className="Tags">
+  {props.tags.map((tag, index) => (
+    <span key={index} className="Tag">
+      {tag}
+    </span>
+  ))}
+</div>
       </div>
     </article>
   );
