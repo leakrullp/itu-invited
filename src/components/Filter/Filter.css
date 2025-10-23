@@ -1,7 +1,5 @@
 /* Summary: Styles for the right-side filter box. */
 
-@import "../tokens.css";
-
 .FilterBox {
   position: fixed;
   top: 100px;

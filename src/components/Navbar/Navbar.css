@@ -1,7 +1,5 @@
 /* Summary: Styles for the navigation bar using token colors and spacing. */
 
-@import "../tokens.css";
-
 .Navbar {
   display: flex;
   justify-content: space-between;
