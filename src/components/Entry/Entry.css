@@ -5,9 +5,10 @@
   width: 272px;
   height: 368px;
   color: var(--color-neutral-900);
-  border: 1px solid var(--color-neutral-300);
+  border: 1px solid var(--color-neutral-100);
   background-color: var(--color-neutral-0);
   font-family: var(--font-family); /* Ensures Funnel Sans is applied */
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Event image at the top of the card */
