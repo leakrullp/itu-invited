@@ -1,6 +1,4 @@
 // Summary: Renders a single event card with information like organization, headline, date, time, and tags.
-
-import React from "react";
 import "./Entry.css";
 import TopicTag from "../TopicTag/TopicTag.jsx";
 import Button from "../Button/Button.jsx";
