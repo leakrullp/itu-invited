@@ -1,6 +1,7 @@
 // Summary: Renders a single event card with information like organization, headline, date, time, and tags.
 
 import React from "react";
+import "./Entry.css";
 
 export default function Entry(props) {
   return (

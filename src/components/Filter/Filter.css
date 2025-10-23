@@ -1,0 +1,17 @@
+/* Summary: Styles for the right-side filter box. */
+
+@import "../../tokens.css";
+
+.FilterBox {
+  position: fixed;
+  top: 100px;
+  right: 0;
+  width: 288px;
+  height: 100vh;
+  background-color: var(--color-neutral-0);
+  border: 2px solid var(--color-primary-600);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: var(--color-primary-600);
+  font-weight: bold;
+  text-align: center;
+}

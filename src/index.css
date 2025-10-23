@@ -1,126 +1,23 @@
-@import url("https://fonts.googleapis.com/css2?family=Funnel+Sans:opsz,wght@9..144,200;9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&display=swap");
+/* Summary: Global layout and typography setup for the whole app. */
+
+@import "../components/tokens.css";
 
 html,
 body {
-  margin: 0; /* fjerner standard margin */
-  padding: 0; /* fjerner standard padding */
-  height: 100%; /* sørger for fuld højde */
-  background-color: var(--color-neutral-50); /* din ønskede baggrundsfarve */
-  font-family: "Funnel Sans", sans-serif; /* bruger Funnel Sans font */
-  
-}
-
-.Navbar {
-  font-family: "Funnel Sans", sans-serif;
-  display: flex; /* gør navbar til flex container */
-  justify-content: space-between; /* fordeler plads mellem elementer */
-  align-items: center; /* centrerer lodret */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: sticky;
-  top: 0;
-  width: 100%;
-  height: 96px;
-  color: var(--color-primary-600);
-  font-family: "Funnel Sans", sans-serif;
-  font-weight: bold;
-  font-size: 1.5rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 0px;
-  z-index: 1000;
-  background-color: #ffffff;
-}
-
-.Navbar ul {
-  display: flex; /* gør listen horisontal */
-  gap: 0px; /* mellemrum mellem elementerne */
-  list-style: none; /* fjerner punkttegn */
   margin: 0;
   padding: 0;
-  overflow-x: auto;
+  height: 100%;
+  background-color: var(--color-neutral-50);
+  font-family: var(--font-family);
 }
 
-.Navbar li {
-  margin-right: 20px; /* margin mellem listeelementer */
-}
-
-.Navbar h1 {
-  margin-left: 20px; /* margin til venstre for titlen */
-}
-
-.FilterBox {
-  position: fixed; /* altid på skærmen */
-  top: 100px; /* afstand fra toppen (juster efter behov) */
-  right: 0px; /* afstand fra højre kant */
-  width: 288px; /* bredde på boksen */
-  height: 100vh; /* højde på boksen */
-  padding: 0px;
-  background-color: #ffffff;
-  border: 2px solid var(--color-primary-600);
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  color: var(--color-primary-600);
-  font-weight: bold;
-  text-align: center;
-  z-index: 1000; /* ligger ovenpå alt andet indhold */
-  
-}
-
-.Navbar .AccountButton {
-  border-radius: 50%;
-  background-color: #e2e7f4;
-  width: 50px; 
-  height: 50px;
-}
-
-.Navbar .AccountButton:hover {
-  color: #ffffff !important;
-  background-color: var(--color-primary-400) !important;
-  border-radius: 50%;
-  width: 50px; 
-  height: 50px;
-}
-
-.Card{
-  width: 272px;
-  height: 368;
-  color: black;
-  border: 1px solid #ccc;
-  padding: 16px;
-  background-color: #ffffff;
-}
-.Card .Image{
-  border-radius: 10px;
-  width: 272px;
-  height: 368;
-}
-
-.Card .Organisation{
-  color: #3F51B5;
-}
-
-.Card .Date{
-font-weight: 400;
-}
-.Card .Time{
-  font-weight: 400;
-  opacity: 0.7;
-}
-.Card .Tags{
-  font-weight: 400;
-  opacity: 0.7;
-}
-
+/* Main container for Entry cards */
 .container {
-  display: flex;          /* Brug flexbox */
-  flex-wrap: wrap;        /* Tillad kort at gå ned på ny linje */
-  gap: 20px;              /* Afstand mellem kortene */
-  justify-content: flex-start; /* Start fra venstre */
-  margin-left: 150px;
-  margin-right: 150px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+  margin-left: 100px;
+  margin-right: 388px;
   margin-top: 65px;
 }
-
-
-

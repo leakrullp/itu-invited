@@ -2,6 +2,7 @@
 
 import React from "react";
 import Button from "../Button/Button.jsx";
+import "./Navbar.css";
 
 function Navbar() {
   return (
