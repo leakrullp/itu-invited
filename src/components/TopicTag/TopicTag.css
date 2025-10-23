@@ -1,0 +1,49 @@
+.topic-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: var(--font-family);
+  font-size: 0.875rem; /* matches StatusTag & small button */
+  font-weight: 400;
+  line-height: 1.285rem;
+  border-radius: 9999px;
+  padding: 0.25rem 0.625rem;
+  box-sizing: border-box;
+  white-space: nowrap;
+  cursor: default;
+  background-color: var(--color-neutral-50);
+  color: var(--color-neutral-800);
+  border: none;
+}
+
+/* Read-only */
+.topic-tag--read {
+  cursor: default;
+}
+
+/* Edit variant */
+.topic-tag--edit {
+  cursor: pointer;
+  background-color: var(--color-neutral-50);
+  transition: background-color 0.15s ease;
+}
+
+.topic-tag--edit:hover {
+  background-color: var(--color-neutral-100);
+}
+
+/* Icon styling */
+.topic-tag__icon {
+  font-size: var(--icon-size-small);
+  color: var(--color-neutral-600);
+}
+
+.topic-tag--edit:hover .topic-tag__icon {
+  color: var(--color-neutral-800);
+}
+
+/* Disabled state (for read-only buttons) */
+.topic-tag:disabled {
+  pointer-events: none;
+  opacity: 1;
+}
