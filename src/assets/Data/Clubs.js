@@ -1,0 +1,46 @@
+const clubs = [
+  { name: "Analog", type: "engage" },
+  { name: "Campus Cup", type: "engage" },
+  { name: "DAK", type: "engage" },
+  { name: "DIM Union", type: "engage" },
+  { name: "InclusivIT", type: "engage" },
+  { name: "PhD Club", type: "engage" },
+  { name: "Que(e)ries", type: "engage" },
+  { name: "ScrollBar", type: "engage" },
+  { name: "Student Council", type: "engage" },
+  { name: "SustainIT", type: "engage" },
+  { name: "Vera", type: "engage" },
+
+  { name: "ClimbIT", type: "sports" },
+  { name: "FloatIT", type: "sports" },
+  { name: "ITU Active", type: "sports" },
+  { name: "ITU Basketball", type: "sports" },
+  { name: "ITU Dance", type: "sports" },
+  { name: "ITU FC", type: "sports" },
+  { name: "ITU Padel", type: "sports" },
+  { name: "RunIT", type: "sports" },
+  { name: "TrekIT", type: "sports" },
+
+  { name: "Capture IT", type: "hobbies" },
+  { name: "CommIT Con", type: "hobbies" },
+  { name: "Connect", type: "hobbies" },
+  { name: "ITU Rooks", type: "hobbies" },
+  { name: "ITUnited", type: "hobbies" },
+  { name: "KnitIT", type: "hobbies" },
+  { name: "Node", type: "hobbies" },
+  { name: "WineIT", type: "hobbies" },
+
+  { name: "ITU Lan", type: "gaming" },
+  { name: "gameDevCorner", type: "gaming" },
+  { name: "lowscore", type: "gaming" },
+
+  { name: "AITU", type: "code" },
+  { name: "ITUnderground", type: "code" },
+  { name: "Lille Kat", type: "code" },
+  { name: "Pokerbot Battle", type: "code" },
+  { name: "Python Study Group", type: "code" },
+  { name: "RoyalHacks", type: "code" },
+  { name: "localhost", type: "code" },
+];
+
+export default clubs;
