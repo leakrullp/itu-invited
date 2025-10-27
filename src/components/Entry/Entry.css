@@ -1,0 +1,87 @@
+/* Main card container */
+.Card {
+  width: 272px;
+  min-height: 368px;
+  height: auto;
+  color: var(--color-neutral-900);
+  border: 1px solid var(--color-neutral-100);
+  background-color: var(--color-neutral-0);
+  font-family: var(--font-family); /* Ensures Funnel Sans is applied */
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Event image at the top of the card */
+.Card .Image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block; /* Removes bottom whitespace */
+}
+
+/* Organization name styling */
+.Card .Organisation {
+  color: var(--color-primary-600);
+  margin-top: 8px;
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+/* Headline styling */
+.Card .Headline {
+  font-size: 20px;
+  margin-bottom: 2px;
+  margin-top: 4px;
+}
+
+/* Date styling */
+.Card .Date {
+  font-weight: 400;
+  margin-top: 0;
+  margin-bottom: 0;
+  opacity: 0.8;
+}
+
+/* Time styling */
+.Card .Time {
+  font-weight: 400;
+  opacity: 0.6;
+  margin-top: 0;
+  margin-bottom: 0;
+  right: 0; /* Not used unless positioned absolutely */
+}
+
+/* Date + Time wrapper for horizontal alignment */
+.Card .DateTime {
+  display: flex;
+  justify-content: space-between; /* Places date left and time right */
+  align-items: center;
+  width: 100%;
+  font-size: 12px;
+}
+
+.Card .bottom-btn-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto; /* 🧲 pushes the button group to the bottom */
+  padding-top: 1rem;
+}
+
+/* Tag styling (e.g., category or topic label) */
+.Card .Tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+/* Wrapper for all text content inside the card */
+.Card .AllText {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* allows this area to expand as needed */
+  padding: 8px;
+}

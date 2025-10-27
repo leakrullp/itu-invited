@@ -1,35 +1,36 @@
-:root {
-  font-family: var(--font-family);
-  line-height: 1.5;
-  font-weight: 400;
+/* Summary: Global layout and typography setup for the whole app. */
+@import "./components/tokens.css";
 
-  color: var(--color-neutral-800);
-  background-color: var(--color-neutral-50);
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
+html,
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
+  height: 100%;
+  background-color: var(--color-neutral-50);
+  font-family: var(--font-family);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Main container for Entry cards */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+  margin-left: 100px;
+  margin-right: 388px;
+  margin-top: 20px;
+}
+/* Event count styling */
+.event-count {
+  margin-left: 100px; /* aligns with cards */
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-family: var(--font-family);
+}
+
+.event-count h2 {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0;
+  opacity: 0.7;
 }

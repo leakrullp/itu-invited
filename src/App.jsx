@@ -1,103 +1,25 @@
-import { useState } from "react";
+// Summary: The main application component. It imports data and renders the Navbar, a list of Entry cards, and a Filter section.
 import "./App.css";
-import Button from "./components/Button/Button.jsx";
+import { Filter, Navbar, Entry } from "./components";
+import data from "./assets/Data/Data";
 
-function App() {
-  const [count, setCount] = useState(0);
+export default function App() {
+  // Map through data and create an Entry component for each data object
+  const cards = data.map((card) => <Entry key={card.img} {...card} />);
+  const totalEvents = data.length; //Count how many events exist
 
   return (
     <>
-      <h2>This button does stuff</h2>
+      <Navbar />
 
-      <div className="card">
-        <Button onClick={() => setCount((count) => count + 1)}>
-          Count is {count}
-        </Button>
+      {/* Event counter */}
+      <div className="event-count">
+        <h2>Events ({totalEvents})</h2>
       </div>
 
-      <h3>Large buttons</h3>
+      <main className="container">{cards}</main>
 
-      <div className="button-group">
-        <Button>Click me</Button>
-        <p>Primary button</p>
-      </div>
-
-      <div className="button-group">
-        <Button variant="secondary">Click me</Button>
-        <p>Secondary button</p>
-      </div>
-
-      <div className="button-group">
-        <Button variant="tertiary">Click me</Button>
-        <p>Tertiary button</p>
-      </div>
-
-      <div className="button-group">
-        <Button icon="bookmark">Click me</Button>
-        <p>Primary button + icon</p>
-      </div>
-
-      <div className="button-group">
-        <Button variant="secondary" icon="bookmark">
-          Click me
-        </Button>
-        <p>Secondary button + icon</p>
-      </div>
-
-      <div className="button-group">
-        <Button variant="tertiary" icon="bookmark">
-          Click me
-        </Button>
-        <p>Tertiary button + icon</p>
-      </div>
-
-      <h3>Small buttons</h3>
-
-      <div className="button-group">
-        <Button size="small">Click me</Button>
-        <p>Primary button</p>
-      </div>
-
-      <div className="button-group">
-        <Button size="small" variant="secondary">
-          Click me
-        </Button>
-        <p>Secondary button</p>
-      </div>
-
-      <div className="button-group">
-        <Button size="small" variant="tertiary">
-          Click me
-        </Button>
-        <p>Tertiary button</p>
-      </div>
-
-      <div className="button-group">
-        <Button size="small" icon="bookmark">
-          Click me
-        </Button>
-        <p>Primary button + icon</p>
-      </div>
-
-      <div className="button-group">
-        <Button size="small" variant="secondary" icon="bookmark">
-          Click me
-        </Button>
-        <p>Secondary button + icon</p>
-      </div>
-
-      <div className="button-group">
-        <Button size="small" variant="tertiary" icon="bookmark">
-          Click me
-        </Button>
-        <p>Tertiary button + icon</p>
-      </div>
-
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Filter />
     </>
   );
 }
-
-export default App;
