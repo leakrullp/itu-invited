@@ -10,7 +10,9 @@ function Navbar() {
     <nav className="Navbar">
       {/* App logo */}
       <h1>
-        <img src="./src/assets/LOGO.svg" alt="Logo" className="Logo" />
+        <Link to="/" className="logo-link">
+          <img src="./src/assets/LOGO.svg" alt="Logo" className="Logo" />
+        </Link>
       </h1>
 
       {/* Navigation buttons */}
@@ -42,9 +44,11 @@ function Navbar() {
             </Button>
           </Link>
         </li>
-        <li>
-          <Button variant="tertiary">Account@itu.dk</Button>
-        </li>
+        <Link to="/user">
+          <li>
+            <Button variant="tertiary">Account@itu.dk</Button>
+          </li>
+        </Link>
       </ul>
     </nav>
   );
