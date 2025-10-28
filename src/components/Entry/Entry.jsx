@@ -30,7 +30,11 @@ export default function Entry(props) {
         </div>
 
         <div className="bottom-btn-group">
-          <Button variant="tertiary" icon="bookmark"></Button>
+          <Button
+            variant={props.favorited ? "primary" : "tertiary"}
+            icon="bookmark"
+          />
+
           <Button variant="secondary" size="small">
             Go to sign up
           </Button>
