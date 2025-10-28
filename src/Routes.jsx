@@ -16,7 +16,10 @@ export const AppRoutes = () => {
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/myevents" element={<Myevents />} />
         <Route path="/user" element={<User />} />
-        <Route path="*" element={<h1>Page Not Found</h1>} />
+        <Route
+          path="*"
+          element={<h1>Page Not Found, try to reload the page</h1>}
+        />
       </Routes>
     </Router>
   );
