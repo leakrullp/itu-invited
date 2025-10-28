@@ -17,7 +17,7 @@ const data = [
     date: "12/11/2025",
     time: "16:00 - 18:00",
     tags: ["React", "Frontend"],
-    favorited: true,
+    favorited: false,
   },
   {
     img: card1,

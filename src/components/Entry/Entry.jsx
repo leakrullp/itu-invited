@@ -2,8 +2,11 @@
 import "./Entry.css";
 import TopicTag from "../TopicTag/TopicTag.jsx";
 import Button from "../Button/Button.jsx";
+import { useState } from "react";
 
 export default function Entry(props) {
+  const [isFavorited, setIsFavorited] = useState(props.favorited);
+
   return (
     <article className="Card">
       {/* Event image */}
@@ -31,8 +34,9 @@ export default function Entry(props) {
 
         <div className="bottom-btn-group">
           <Button
-            variant={props.favorited ? "primary" : "tertiary"}
+            variant={isFavorited ? "primary" : "tertiary"}
             icon="bookmark"
+            onClick={() => setIsFavorited(!isFavorited)}
           />
 
           <Button variant="secondary" size="small">
