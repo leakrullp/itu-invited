@@ -2,6 +2,7 @@ import card1 from "./a21b3a02a85d1a651bc7d1e7611e9b09_1760529683_640.jpeg";
 
 const data = [
   {
+    id: 1,
     img: card1,
     organisation: "ITU Underground",
     headline: "Ethical Hacking Basics",
@@ -10,6 +11,7 @@ const data = [
     tags: ["Ethical hacking", "Python", "MFA"],
   },
   {
+    id: 2,
     img: card1,
     organisation: "ITU Dev Club",
     headline: "Intro to React",
@@ -18,6 +20,7 @@ const data = [
     tags: ["React", "Frontend"],
   },
   {
+    id: 3,
     img: card1,
     organisation: "ITU AI Society",
     headline: "AI Ethics Workshop",
@@ -26,6 +29,7 @@ const data = [
     tags: ["AI", "Ethics"],
   },
   {
+    id: 4,
     img: card1,
     organisation: "DesignLab",
     headline: "UX Fundamentals",
@@ -34,6 +38,7 @@ const data = [
     tags: ["UX", "Design"],
   },
   {
+    id: 5,
     img: card1,
     organisation: "ITU Data Club",
     headline: "Data Visualization Night",
@@ -42,6 +47,7 @@ const data = [
     tags: ["Data", "Visualization", "Python"],
   },
   {
+    id: 6,
     img: card1,
     organisation: "ITU Underground",
     headline: "Advanced Cybersecurity",
@@ -50,6 +56,7 @@ const data = [
     tags: ["Ethical hacking", "MFA", "Security"],
   },
   {
+    id: 7,
     img: card1,
     organisation: "ITU GameLab",
     headline: "Game Jam Weekend",
@@ -58,6 +65,7 @@ const data = [
     tags: ["Game Dev", "Collaboration"],
   },
   {
+    id: 8,
     img: card1,
     organisation: "ITU Cloud Society",
     headline: "Deploy with AWS",
@@ -66,6 +74,7 @@ const data = [
     tags: ["AWS", "Cloud", "DevOps"],
   },
   {
+    id: 9,
     img: card1,
     organisation: "ITU AI Society",
     headline: "Intro to Neural Networks",
@@ -74,6 +83,7 @@ const data = [
     tags: ["AI", "Machine Learning", "Python"],
   },
   {
+    id: 10,
     img: card1,
     organisation: "ITU Innovation",
     headline: "Startup Pitch Night",
@@ -82,6 +92,7 @@ const data = [
     tags: ["Entrepreneurship", "Networking"],
   },
   {
+    id: 11,
     img: card1,
     organisation: "ITU DesignLab",
     headline: "Design for Developers",
@@ -90,6 +101,7 @@ const data = [
     tags: ["Design", "CSS"],
   },
   {
+    id: 12,
     img: card1,
     organisation: "ITU Underground",
     headline: "Network Defense Crash Course",
@@ -98,6 +110,7 @@ const data = [
     tags: ["Networking", "Ethical hacking"],
   },
   {
+    id: 13,
     img: card1,
     organisation: "ITU Blockchain Hub",
     headline: "Web3 and the Future",
@@ -106,6 +119,7 @@ const data = [
     tags: ["Blockchain", "Web3", "Innovation"],
   },
   {
+    id: 14,
     img: card1,
     organisation: "ITU Women in Tech",
     headline: "MFA Security Essentials",
@@ -114,6 +128,7 @@ const data = [
     tags: ["MFA", "Security"],
   },
   {
+    id: 15,
     img: card1,
     organisation: "ITU Data Club",
     headline: "Python for Data Analysis",
@@ -122,6 +137,7 @@ const data = [
     tags: ["Python", "Data Science"],
   },
   {
+    id: 16,
     img: card1,
     organisation: "ITU AI Society",
     headline: "Machine Learning Basics",
@@ -130,6 +146,7 @@ const data = [
     tags: ["AI", "Python"],
   },
   {
+    id: 17,
     img: card1,
     organisation: "ITU Underground",
     headline: "Penetration Testing 101",
@@ -138,6 +155,7 @@ const data = [
     tags: ["Ethical hacking", "Security"],
   },
   {
+    id: 18,
     img: card1,
     organisation: "ITU Cloud Society",
     headline: "Docker for Developers",
@@ -146,6 +164,7 @@ const data = [
     tags: ["Docker", "DevOps"],
   },
   {
+    id: 19,
     img: card1,
     organisation: "ITU Innovation",
     headline: "Build Your Portfolio",
@@ -154,6 +173,7 @@ const data = [
     tags: ["Career", "Portfolio"],
   },
   {
+    id: 20,
     img: card1,
     organisation: "ITU Underground",
     headline: "Holiday Hacking Challenge",
@@ -162,5 +182,9 @@ const data = [
     tags: ["Ethical hacking", "Python", "MFA"],
   },
 ];
+
+
+// Depending on how we recive data
+// const dataid = data.map((item, index) => ({ id: index + 1, ...item }));
 
 export default data;
