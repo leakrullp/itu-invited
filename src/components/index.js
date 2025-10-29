@@ -2,6 +2,7 @@
 export { default as Button } from "./Button/Button";
 export { default as StatusTag } from "./StatusTag/StatusTag";
 export { default as TopicTag } from "./TopicTag/TopicTag";
+export { default as InputField } from "./Input/InputField";
 
 // Layouts (components that contain other components)
 export { default as Entry } from "./Entry/Entry";

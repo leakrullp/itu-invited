@@ -3,6 +3,7 @@
 // Summary: Dropdown filter for student organizations.
 
 import React from "react";
+import InputField from "../Input/InputField";
 import "./Filter.css";
 
 export default function Filter({ onFilterChange }) {
@@ -50,6 +51,8 @@ export default function Filter({ onFilterChange }) {
         <option value="RoyalHacks">RoyalHacks</option>
         <option value="localhost">localhost</option>
       </select>
+
+      <InputField label="example" placeholder="Write sth here" />
 
       <h2 className="Keywords">Keywords</h2>
       <h3 className="Input">Input</h3>
