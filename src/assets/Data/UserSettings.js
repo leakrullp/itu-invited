@@ -4,7 +4,7 @@ const UserSettings = [
     name: "J.D. Vance",
     role: "Admin",
     picture: "src/assets/Data/profile_pic_JD_Vance.png",
-    organisation: "ITU_Underground",
+    organisation: "ITUnderground",
     mail: "JDV@itu.dk",
   },
 ];

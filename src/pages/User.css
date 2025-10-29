@@ -1,0 +1,23 @@
+h1 {
+  color: var(--color-primary-700);
+}
+
+h2 {
+  color: var(--color-primary-500);
+}
+
+h3 {
+  color: var(--color-primary-300);
+}
+
+/* Used for multiple text type in same line f.x. Name: Jane Doe */
+.user-info-line {
+  display: flex;
+  align-items: center; /* vertically center text */
+  gap: 0.5rem; /* small space between items */
+}
+
+.user-info-line h3,
+.user-info-line p {
+  margin: 0; /* remove default margins */
+}
