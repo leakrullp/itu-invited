@@ -3,7 +3,7 @@
   margin: 3rem auto;
   padding: 2rem;
   background-color: var(--color-neutral-0);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
   font-family: var(--font-family);
 }
 
@@ -154,7 +154,7 @@
   background-color: white;
   color: var(--color-neutral-900);
   padding: 1rem 1.5rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
   font-weight: 500;
   animation: fadeInOut 3s ease forwards;
   z-index: 1000;

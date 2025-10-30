@@ -85,3 +85,8 @@
   flex-grow: 1; /* allows this area to expand as needed */
   padding: 8px;
 }
+
+.Card:hover {
+  transform: translateY(-1px);
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
