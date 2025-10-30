@@ -1,24 +1,23 @@
 .input-field {
   display: flex;
+  width: 100%;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 24px;
   font-family: var(--font-family);
-  color: var(--color-neutral-900);
+  color: var(--color-neutral-800);
 }
 
 .input-label {
-  font-size: 14px;
-  font-weight: 700;
+  font-weight: 500;
+  text-align: left;
+  color: var(--color-neutral-700);
 }
 
-/* Shell */
 .input-wrapper {
   display: flex;
   align-items: center;
   border: 1px solid var(--color-neutral-100);
   background: var(--color-neutral-0);
-  border-radius: 4px;
   padding: 12px 14px;
   transition: box-shadow 120ms ease, border-color 120ms ease;
 }
@@ -30,7 +29,7 @@
 
 .input-wrapper.is-invalid {
   border-color: var(--color-error);
-  box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.15);
+  box-shadow: 0 0 0 3px var(--color-error-bg);
 }
 
 .is-disabled .input-wrapper {
@@ -38,28 +37,36 @@
   color: var(--color-neutral-500);
 }
 
-/* Field */
 .input-el {
   flex: 1;
   min-width: 0;
   border: 0;
   outline: 0;
   font: inherit;
+  font-weight: 400;
   color: inherit;
   background: transparent;
 }
 
 textarea.input-el {
-  min-height: 96px; /* textarea ignores icons */
+  min-height: 96px;
   resize: vertical;
 }
 
-/* Remove native arrow for select; we’ll use right icon instead if desired */
 select.input-el {
   appearance: none;
+  -webkit-appearance: none; /* Safari / Chrome */
+  -moz-appearance: none; /* Firefox */
+  border: none;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  outline: none;
+  width: 100%;
+  padding: 0;
+  cursor: pointer;
 }
 
-/* Icons (Material Symbols) */
 .icon {
   font-size: var(--icon-size-large);
   color: var(--color-neutral-600);
@@ -74,7 +81,6 @@ select.input-el {
   margin-left: 8px;
 }
 
-/* Keep comfortable padding when icons are present */
 .has-left .input-el {
   padding-left: 0;
 }
@@ -83,7 +89,40 @@ select.input-el {
 }
 
 .helper.error {
-  margin-top: 6px;
   font-size: 12px;
   color: var(--color-error);
+  text-align: left;
+}
+
+.tag-input-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  min-height: 3rem;
+  cursor: text;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tag-input {
+  flex: 1;
+  min-width: 100px;
+  border: none;
+  outline: none;
+  resize: none;
+  font: inherit;
+  padding: 0.25rem 0;
+  line-height: 1.4;
+  background: transparent;
+}
+
+.tag-input::-webkit-resizer {
+  display: none;
 }
