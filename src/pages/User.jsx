@@ -10,36 +10,38 @@ export const User = () => {
 
   return (
     <>
-      <h1>User settings</h1>
-      <div>
-        <h2>{currentUser.name}</h2>
-        <img
-          src={currentUser.picture}
-          alt={currentUser.name}
-          style={{
-            width: "100px",
-            height: "100px",
-            borderRadius: "55%",
-            objectFit: "cover",
-          }}
-        />
-        <div className="user-info-line">
-          <h3>Role:</h3>
-          <p>{currentUser.role}</p>
-        </div>
+      <user-container>
+        <h1>User settings</h1>
+        <div className="user-container">
+          <h2>{currentUser.name}</h2>
+          <img
+            src={currentUser.picture}
+            alt={currentUser.name}
+            style={{
+              width: "100px",
+              height: "100px",
+              borderRadius: "55%",
+              objectFit: "cover",
+            }}
+          />
+          <div className="user-info-line">
+            <h3>Role:</h3>
+            <p>{currentUser.role}</p>
+          </div>
 
-        <div className="user-info-line">
-          <h3>Organization:</h3>
-          <p>{currentUser.organisation}</p>
-        </div>
+          <div className="user-info-line">
+            <h3>Organization:</h3>
+            <p>{currentUser.organisation}</p>
+          </div>
 
-        <div className="user-info-line">
-          <h3>Email:</h3>
-          <p>{currentUser.mail}</p>
+          <div className="user-info-line">
+            <h3>Email:</h3>
+            <p>{currentUser.mail}</p>
+          </div>
         </div>
-      </div>
-      {/*Edit button */}
-      <Button>Edit</Button>
+        {/*Edit button */}
+        <Button>Edit</Button>
+      </user-container>
     </>
   );
 };
