@@ -1,5 +1,3 @@
-// Summary: Navigation bar that includes logo and multiple action buttons using the Button component.
-
 import React from "react";
 import Button from "../Button/Button.jsx";
 import "./Navbar.css";
