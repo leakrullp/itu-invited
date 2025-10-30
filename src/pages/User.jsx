@@ -19,7 +19,7 @@ export const User = () => {
           style={{
             width: "100px",
             height: "100px",
-            borderRadius: "50%",
+            borderRadius: "55%",
             objectFit: "cover",
           }}
         />
@@ -38,7 +38,7 @@ export const User = () => {
           <p>{currentUser.mail}</p>
         </div>
       </div>
-
+      {/*Edit button */}
       <Button>Edit</Button>
     </>
   );

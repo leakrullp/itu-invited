@@ -37,10 +37,15 @@ function Navbar() {
           </Link>
         </li>
 
+        {/* User profile pic */}
         <li>
           <Link to="/user">
             <Button className="AccountButton" variant="tertiary">
-              LP
+              <img
+                src={"src/assets/Data/profile_pic_JD_Vance.png"}
+                alt="Profile"
+                className="profile-pic"
+              />
             </Button>
           </Link>
         </li>
