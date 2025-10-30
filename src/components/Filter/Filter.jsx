@@ -2,61 +2,84 @@
 
 // Summary: Dropdown filter for student organizations.
 
-import React from "react";
-import InputField from "../Input/InputField";
+import { useState } from "react";
+import Button from "../Button/Button";
+import {
+  InputField,
+  SelectField,
+  DateField,
+  TimeField,
+  TextAreaField,
+  TagInputField,
+} from "../Input/Input";
 import "./Filter.css";
+import clubs from "../../assets/Data/Clubs.js";
 
 export default function Filter({ onFilterChange }) {
+  const [selectedClub, setSelectedClub] = useState("");
+  const [keywords, setKeywords] = useState([]);
+
   return (
-    <div className="FilterBox">
-      <h3>Filter by Student Organization</h3>
-      <select onChange={onFilterChange}>
-        <option value="None selected">None selected</option>
-        <option value="Analog">Analog</option>
-        <option value="Campus Cup">Campus Cup</option>
-        <option value="DAK">DAK</option>
-        <option value="DIM Union">DIM Union</option>
-        <option value="InclusivIT">InclusivIT</option>
-        <option value="PhD Club">PhD Club</option>
-        <option value="Que(e)ries">Que(e)ries</option>
-        <option value="ScrollBar">ScrollBar</option>
-        <option value="Student Council">Student Council</option>
-        <option value="SustainIT">SustainIT</option>
-        <option value="Vera">Vera</option>
-        <option value="ClimbIT">ClimbIT</option>
-        <option value="FloatIT">FloatIT</option>
-        <option value="ITU Active">ITU Active</option>
-        <option value="ITU Basketball">ITU Basketball</option>
-        <option value="ITU Dance">ITU Dance</option>
-        <option value="ITU FC">ITU FC</option>
-        <option value="ITU Padel">ITU Padel</option>
-        <option value="RunIT">RunIT</option>
-        <option value="TrekIT">TrekIT</option>
-        <option value="Capture IT">Capture IT</option>
-        <option value="CommIT Con">CommIT Con</option>
-        <option value="Connect">Connect</option>
-        <option value="ITU Rooks">ITU Rooks</option>
-        <option value="ITUnited">ITUnited</option>
-        <option value="KnitIT">KnitIT</option>
-        <option value="Node">Node</option>
-        <option value="WineIT">WineIT</option>
-        <option value="ITU LAN">ITU LAN</option>
-        <option value="gameDevCorner">gameDevCorner</option>
-        <option value="lowscore">lowscore</option>
-        <option value="AITU">AITU</option>
-        <option value="ITUnderground">ITUnderground</option>
-        <option value="Lille Kat">Lille Kat</option>
-        <option value="Pokerbot Battle">Pokerbot Battle</option>
-        <option value="Python Study Group">Python Study Group</option>
-        <option value="RoyalHacks">RoyalHacks</option>
-        <option value="localhost">localhost</option>
-      </select>
+    <aside className="FilterBox">
+      <div className="sidebar-section">
+        <div className="title-section">
+          <h3>Filters</h3>
+          <br />
+          <Button size="small" variant="secondary">
+            Reset filters
+          </Button>
+        </div>
+      </div>
 
-      <InputField label="example" placeholder="Write sth here" />
+      <div className="sidebar-section">
+        <h4>Organizers</h4>
+        <br />
+        <SelectField
+          label="Select club"
+          placeholder="None selected"
+          options={clubs}
+          value={selectedClub}
+          onChange={(e) => setSelectedClub(e.target.value)}
+        />
+      </div>
 
-      <h2 className="Keywords">Keywords</h2>
-      <h3 className="Input">Input</h3>
-      <h3 className="Add">Add from most popular</h3>
-    </div>
+      <div className="sidebar-section">
+        <h4>Keywords</h4>
+        <br />
+        <TagInputField
+          label="Enter topics"
+          value={keywords}
+          onChange={setKeywords}
+        />
+        <br />
+        <h4>Add from most popular</h4>
+        <div className="button-group">
+          <Button size="small" icon="add" variant="secondary">
+            Free (170)
+          </Button>
+          <Button size="small" icon="add" variant="secondary">
+            ITU (97)
+          </Button>
+          <Button size="small" icon="add" variant="secondary">
+            Research project (45)
+          </Button>
+          <Button size="small" icon="add" variant="secondary">
+            Career (150)
+          </Button>
+          <Button size="small" icon="add" variant="secondary">
+            Awesome (168)
+          </Button>
+          <Button size="small" icon="add" variant="secondary">
+            Social (70)
+          </Button>
+          <Button size="small" icon="add" variant="secondary">
+            Sports (68)
+          </Button>
+          <Button size="small" icon="add" variant="secondary">
+            Career (43)
+          </Button>
+        </div>
+      </div>
+    </aside>
   );
 }

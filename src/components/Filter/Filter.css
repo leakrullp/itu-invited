@@ -7,14 +7,48 @@
   width: 288px;
   height: 100vh;
   background-color: var(--color-neutral-0);
-  border: 2px solid var(--color-neutral-100);
-  box-shadow: 0 4px 8px var(--color-neutral-100);
   color: var(--color-neutral-600);
   font-weight: bold;
-  text-align: center;
+  border: 2px solid var(--color-neutral-100);
 }
 
-.FilterBox select {
+.title-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-section h3,
+.sidebar-section h4 {
+  text-align: left;
+  margin: 0px;
+  padding: 0px;
+}
+
+.sidebar-section h3 {
+  font-weight: 600;
+  color: var(--color-neutral-800);
+}
+
+.sidebar-section h4 {
+  font-weight: 600;
+  color: var(--color-neutral-700);
+}
+
+.sidebar-section {
+  padding: 1rem;
+  border-bottom: 2px solid var(--color-neutral-100);
+}
+
+.sidebar-section .button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+select {
   width: 80%;
   padding: 8px;
   border: 1px solid var(--color-neutral-100);
@@ -26,7 +60,7 @@
 }
 
 /* When hovering */
-.FilterBox select:hover {
+select:hover {
   border-color: var(--color-neutral-500);
 }
 
