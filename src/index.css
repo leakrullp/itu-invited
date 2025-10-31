@@ -1,4 +1,4 @@
-/* Summary: Global layout and typography setup for the whole app. */
+/* Global layout and typography setup for the whole app. */
 @import "./components/tokens.css";
 
 html,
@@ -10,7 +10,6 @@ body {
   font-family: var(--font-family);
 }
 
-/* Main container for Entry cards */
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -20,9 +19,9 @@ body {
   margin-right: 388px;
   margin-top: 20px;
 }
-/* Event count styling */
+
 .event-count {
-  margin-left: 100px; /* aligns with cards */
+  margin-left: 100px; 
   margin-top: 20px;
   margin-bottom: 20px;
   font-family: var(--font-family);

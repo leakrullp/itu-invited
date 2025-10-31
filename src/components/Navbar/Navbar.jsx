@@ -1,5 +1,3 @@
-// Summary: Navigation bar that includes logo and multiple action buttons using the Button component.
-
 import React from "react";
 import { Link } from "react-router-dom";
 import Button from "../Button/Button.jsx";

@@ -1,5 +1,3 @@
-/* Summary: Styles for the navigation bar using token colors and spacing. */
-
 .Navbar {
   display: flex;
   justify-content: space-between;
@@ -34,7 +32,6 @@
   margin-left: 20px;
 }
 
-/* Circular account button */
 .Navbar .AccountButton {
   border-radius: 50%;
   background-color: var(--color-primary-100);
@@ -42,7 +39,6 @@
   height: 50px;
 }
 
-/* Hover effect */
 .Navbar .AccountButton:hover {
   color: var(--color-neutral-0) !important;
   background-color: var(--color-primary-400) !important;
