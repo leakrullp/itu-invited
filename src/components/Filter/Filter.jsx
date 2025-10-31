@@ -34,6 +34,17 @@ export default function Filter({ onFilterChange }) {
       <div className="sidebar-section">
         <h4>Organizers</h4>
         <br />
+        <div className="title-section">
+          <label>
+            <input type="checkbox" name="myCheckbox" />
+            ITU-driven
+          </label>
+          <label>
+            <input type="checkbox" name="myCheckbox" />
+            Student-driven
+          </label>
+        </div>
+        <br />
         <SelectField
           label="Select club"
           placeholder="None selected"

@@ -18,6 +18,10 @@
   align-items: center;
 }
 
+.title-section input {
+  transform: scale(1.4);
+}
+
 .sidebar-section h3,
 .sidebar-section h4 {
   text-align: left;
