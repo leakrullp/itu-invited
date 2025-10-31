@@ -8,8 +8,7 @@ export default function App() {
 
   return (
     <>
-      <Navbar />
-
+      {/* Event counter */}
       <div className="event-count">
         <h2>Events ({totalEvents})</h2>
       </div>

@@ -8,6 +8,7 @@ const data = [
     date: "10/11/2025",
     time: "17:00 - 19:00",
     tags: ["Ethical hacking", "Python", "MFA"],
+    favorited: false,
   },
   {
     img: card1,
@@ -16,6 +17,7 @@ const data = [
     date: "12/11/2025",
     time: "16:00 - 18:00",
     tags: ["React", "Frontend"],
+    favorited: false,
   },
   {
     img: card1,
@@ -24,6 +26,7 @@ const data = [
     date: "15/11/2025",
     time: "14:00 - 16:00",
     tags: ["AI", "Ethics"],
+    favorited: false,
   },
   {
     img: card1,
@@ -32,6 +35,7 @@ const data = [
     date: "18/11/2025",
     time: "09:00 - 12:00",
     tags: ["UX", "Design", "Design Thinking", "Gestalt Laws"],
+    favorited: false,
   },
   {
     img: card1,
@@ -40,6 +44,7 @@ const data = [
     date: "20/11/2025",
     time: "18:00 - 20:30",
     tags: ["Data", "Visualization", "Python"],
+    favorited: false,
   },
   {
     img: card1,
@@ -48,6 +53,7 @@ const data = [
     date: "22/11/2025",
     time: "19:00 - 21:00",
     tags: ["Ethical hacking", "MFA", "Security"],
+    favorited: false,
   },
   {
     img: card1,
@@ -56,6 +62,7 @@ const data = [
     date: "25/11/2025",
     time: "09:00 - 09:00",
     tags: ["Game Dev", "Collaboration"],
+    favorited: false,
   },
   {
     img: card1,
@@ -64,6 +71,7 @@ const data = [
     date: "27/11/2025",
     time: "13:00 - 15:00",
     tags: ["AWS", "Cloud", "DevOps"],
+    favorited: false,
   },
   {
     img: card1,
@@ -72,6 +80,7 @@ const data = [
     date: "29/11/2025",
     time: "15:00 - 17:00",
     tags: ["AI", "Machine Learning", "Python"],
+    favorited: false,
   },
   {
     img: card1,
@@ -80,6 +89,7 @@ const data = [
     date: "01/12/2025",
     time: "18:00 - 21:00",
     tags: ["Entrepreneurship", "Networking"],
+    favorited: false,
   },
   {
     img: card1,
@@ -88,6 +98,7 @@ const data = [
     date: "03/12/2025",
     time: "10:00 - 12:00",
     tags: ["Design", "CSS"],
+    favorited: false,
   },
   {
     img: card1,
@@ -96,6 +107,7 @@ const data = [
     date: "05/12/2025",
     time: "16:00 - 18:00",
     tags: ["Networking", "Ethical hacking"],
+    favorited: false,
   },
   {
     img: card1,
@@ -104,6 +116,7 @@ const data = [
     date: "07/12/2025",
     time: "17:00 - 19:00",
     tags: ["Blockchain", "Web3", "Innovation"],
+    favorited: false,
   },
   {
     img: card1,
@@ -112,6 +125,7 @@ const data = [
     date: "09/12/2025",
     time: "17:30 - 19:00",
     tags: ["MFA", "Security"],
+    favorited: false,
   },
   {
     img: card1,
@@ -120,6 +134,7 @@ const data = [
     date: "11/12/2025",
     time: "15:00 - 17:30",
     tags: ["Python", "Data Science"],
+    favorited: false,
   },
   {
     img: card1,
@@ -128,6 +143,7 @@ const data = [
     date: "13/12/2025",
     time: "13:00 - 15:00",
     tags: ["AI", "Python"],
+    favorited: false,
   },
   {
     img: card1,
@@ -136,6 +152,7 @@ const data = [
     date: "15/12/2025",
     time: "16:00 - 18:00",
     tags: ["Ethical hacking", "Security"],
+    favorited: false,
   },
   {
     img: card1,
@@ -144,6 +161,7 @@ const data = [
     date: "17/12/2025",
     time: "14:00 - 16:00",
     tags: ["Docker", "DevOps"],
+    favorited: false,
   },
   {
     img: card1,
@@ -152,6 +170,7 @@ const data = [
     date: "19/12/2025",
     time: "11:00 - 13:00",
     tags: ["Career", "Portfolio"],
+    favorited: false,
   },
   {
     img: card1,
@@ -160,6 +179,7 @@ const data = [
     date: "22/12/2025",
     time: "20:00 - 21:00",
     tags: ["Ethical hacking", "Python", "MFA"],
+    favorited: false,
   },
 ];
 
