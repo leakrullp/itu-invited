@@ -1,7 +1,3 @@
-// Summary: Placeholder component for future event filtering functionality.
-
-// Summary: Dropdown filter for student organizations.
-
 import React from "react";
 import "./Filter.css";
 
