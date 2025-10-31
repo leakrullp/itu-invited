@@ -3,7 +3,7 @@
   align-items: center;
   gap: 0.25rem;
   font-family: var(--font-family);
-  font-size: 0.875rem; /* same as small button */
+  font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.285rem;
   border-radius: 9999px;

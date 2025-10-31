@@ -17,9 +17,7 @@ body {
   justify-content: flex-start;
   align-items: flex-start;
 
-  width: calc(
-    100vw - 288px - 80px
-  ); /* full width - sidebar - left/right padding (2×40px) */
+  width: calc(100vw - 288px - 80px);
   margin: 20px auto;
 }
 

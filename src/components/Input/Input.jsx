@@ -84,12 +84,10 @@ function SelectField({
           onChange={onChange}
           disabled={disabled}
         >
-          {/* Placeholder */}
           <option value="" disabled>
             {placeholder}
           </option>
 
-          {/* Render both grouped and flat options */}
           {options.map((option) =>
             typeof option === "string" ? (
               <option key={option} value={option}>
@@ -107,7 +105,6 @@ function SelectField({
           )}
         </select>
 
-        {/* Custom right icon */}
         <span
           className="material-symbols-outlined icon right"
           aria-hidden="true"
@@ -148,10 +145,6 @@ function DateField({
           onChange={onChange}
           disabled={disabled}
         />
-
-        {/* <span className="material-symbols-outlined icon right" aria-hidden>
-          calendar_month
-        </span> */}
       </div>
 
       {invalid && <div className="helper error">Something’s not right.</div>}
@@ -186,10 +179,6 @@ function TimeField({
           onChange={onChange}
           disabled={disabled}
         />
-
-        {/* <span className="material-symbols-outlined icon right" aria-hidden>
-          nest_clock_farsight_analog
-        </span> */}
       </div>
 
       {invalid && <div className="helper error">Something’s not right.</div>}

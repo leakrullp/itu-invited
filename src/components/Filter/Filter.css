@@ -61,7 +61,6 @@ select {
   background-color: var(--color-neutral-0);
 }
 
-/* When hovering */
 select:hover {
   border-color: var(--color-neutral-500);
 }

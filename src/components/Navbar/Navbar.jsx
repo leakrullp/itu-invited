@@ -6,14 +6,12 @@ import "./Navbar.css";
 function Navbar() {
   return (
     <nav className="Navbar">
-      {/* App logo */}
       <h1>
         <Link to="/" className="logo-link">
           <img src="./src/assets/LOGO.svg" alt="Logo" className="Logo" />
         </Link>
       </h1>
 
-      {/* Navigation buttons */}
       <ul className="nav-links">
         <li>
           <Link to="/myevents">
@@ -35,7 +33,6 @@ function Navbar() {
           </Link>
         </li>
 
-        {/* User profile pic */}
         <li>
           <Link to="/user">
             <Button className="AccountButton" variant="tertiary">

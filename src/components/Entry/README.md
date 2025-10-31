@@ -17,7 +17,7 @@ The `Entry` component is designed to receive event data as props and display it 
 
 ```jsx
 import Entry from "./components/Entry/Entry";
-import card1 from "./assets/card1.jpg"; // Example import for the image
+import card1 from "./assets/card1.jpg";
 
 const data = [
   {
@@ -81,7 +81,6 @@ import { Entry } from "./components";
 import data from "./assets/Data/Data";
 
 export default function App() {
-  // Map through data and create an Entry component for each data object
   const cards = data.map((card) => <Entry key={card.img} {...card} />);
 
   return (

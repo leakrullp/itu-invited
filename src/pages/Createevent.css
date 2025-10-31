@@ -14,8 +14,6 @@
   margin-bottom: 1.5rem;
 }
 
-/* Thumbnail part */
-
 .thumbnail-upload {
   border: 2px dashed var(--color-neutral-200);
   padding: 2rem;
@@ -24,8 +22,6 @@
   transition: background-color 0.2s ease;
   margin-bottom: 1.5rem;
 }
-
-/* Title part */
 
 .title-container {
   display: flex;
@@ -55,7 +51,6 @@
 .title-input::placeholder {
   color: var(--color-neutral-400);
 }
-/* Date part */
 
 .date-container {
   display: flex;
@@ -94,8 +89,6 @@
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* Description part */
-
 .description-container {
   display: flex;
   flex-direction: column;
@@ -120,7 +113,6 @@
   color: var(--color-neutral-400);
 }
 
-/* Attach files part */
 .attachfiles-container {
   display: flex;
   align-items: center;
@@ -139,7 +131,6 @@
   margin: 0;
 }
 
-/* Create event buttons */
 .button-group {
   display: flex;
   justify-content: flex-end;

@@ -1,21 +1,10 @@
-// Summary: Placeholder component for future event filtering functionality.
-
-// Summary: Dropdown filter for student organizations.
-
 import { useState } from "react";
 import Button from "../Button/Button";
-import {
-  InputField,
-  SelectField,
-  DateField,
-  TimeField,
-  TextAreaField,
-  TagInputField,
-} from "../Input/Input";
+import { SelectField, TagInputField } from "../Input/Input";
 import "./Filter.css";
 import clubs from "../../assets/Data/Clubs.js";
 
-export default function Filter({ onFilterChange }) {
+export default function Filter() {
   const [selectedClub, setSelectedClub] = useState("");
   const [keywords, setKeywords] = useState([]);
 
