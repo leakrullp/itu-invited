@@ -11,8 +11,8 @@ export const User = () => {
   return (
     <>
       <user-container>
-        <h1>User settings</h1>
         <div className="user-container">
+          <h1>User settings</h1>
           <h2>{currentUser.name}</h2>
           <img
             src={currentUser.picture}
@@ -24,16 +24,15 @@ export const User = () => {
               objectFit: "cover",
             }}
           />
+          <h3></h3> {/*random empty line to make more space */}
           <div className="user-info-line">
             <h3>Role:</h3>
             <p>{currentUser.role}</p>
           </div>
-
           <div className="user-info-line">
             <h3>Organization:</h3>
             <p>{currentUser.organisation}</p>
           </div>
-
           <div className="user-info-line">
             <h3>Email:</h3>
             <p>{currentUser.mail}</p>

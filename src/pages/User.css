@@ -29,4 +29,5 @@ h3 {
   justify-content: center; /* centers vertically if height is enough */
   min-height: 80vh; /* ensures some vertical centering */
   text-align: center;
+  line-height: 1.8;
 }
