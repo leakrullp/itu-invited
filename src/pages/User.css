@@ -17,9 +17,9 @@
   gap: 0.5rem; /* small space between items */
 }
 .user-info-line h3,
-/* .user-info-line p {
+.user-info-line p {
   margin: 0; /* remove default margins */
-} */
+}
 
 /* Centers everything vertically and horizontally */
 .user-container {
