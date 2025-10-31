@@ -1,12 +1,12 @@
-h1 {
+.user-container h1 {
   color: var(--color-primary-700);
 }
 
-h2 {
+.user-container h2 {
   color: var(--color-primary-500);
 }
 
-h3 {
+.user-container h3 {
   color: var(--color-primary-300);
 }
 
@@ -17,9 +17,9 @@ h3 {
   gap: 0.5rem; /* small space between items */
 }
 .user-info-line h3,
-.user-info-line p {
+/* .user-info-line p {
   margin: 0; /* remove default margins */
-}
+} */
 
 /* Centers everything vertically and horizontally */
 .user-container {
