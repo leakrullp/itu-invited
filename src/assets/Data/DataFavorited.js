@@ -9,6 +9,7 @@ const dataFavorited = [
     time: "17:00 - 19:00",
     tags: ["Ethical hacking", "Python", "MFA"],
     favorited: true,
+    overAllCtategory: "student-driven",
   },
   {
     img: card1,

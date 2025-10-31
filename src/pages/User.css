@@ -1,0 +1,33 @@
+.user-container h1 {
+  color: var(--color-primary-700);
+}
+
+.user-container h2 {
+  color: var(--color-primary-500);
+}
+
+.user-container h3 {
+  color: var(--color-primary-300);
+}
+
+/* Used for multiple text type in same line f.x. Name: Jane Doe */
+.user-info-line {
+  display: flex;
+  align-items: center; /* vertically center text */
+  gap: 0.5rem; /* small space between items */
+}
+.user-info-line h3,
+/* .user-info-line p {
+  margin: 0; /* remove default margins */
+} */
+
+/* Centers everything vertically and horizontally */
+.user-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centers horizontally */
+  justify-content: center; /* centers vertically if height is enough */
+  min-height: 80vh; /* ensures some vertical centering */
+  text-align: center;
+  line-height: 1.8;
+}
