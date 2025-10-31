@@ -2,6 +2,7 @@ import card1 from "./a21b3a02a85d1a651bc7d1e7611e9b09_1760529683_640.jpeg";
 
 const data = [
   {
+    id: 1,
     img: card1,
     organisation: "ITU Underground",
     headline: "Ethical Hacking Basics",
@@ -11,6 +12,7 @@ const data = [
     favorited: false,
   },
   {
+    id: 2,
     img: card1,
     organisation: "ITU Dev Club",
     headline: "Intro to React",
@@ -20,6 +22,7 @@ const data = [
     favorited: false,
   },
   {
+    id: 3,
     img: card1,
     organisation: "ITU AI Society",
     headline: "AI Ethics Workshop",
@@ -29,6 +32,7 @@ const data = [
     favorited: false,
   },
   {
+    id: 4,
     img: card1,
     organisation: "DesignLab",
     headline: "UX Fundamentals",
@@ -38,6 +42,7 @@ const data = [
     favorited: false,
   },
   {
+    id: 5,
     img: card1,
     organisation: "ITU Data Club",
     headline: "Data Visualization Night",
@@ -47,6 +52,7 @@ const data = [
     favorited: false,
   },
   {
+    id: 6,
     img: card1,
     organisation: "ITU Underground",
     headline: "Advanced Cybersecurity",
@@ -56,6 +62,7 @@ const data = [
     favorited: false,
   },
   {
+    id: 7,
     img: card1,
     organisation: "ITU GameLab",
     headline: "Game Jam Weekend",
@@ -65,6 +72,7 @@ const data = [
     favorited: false,
   },
   {
+    id: 8,
     img: card1,
     organisation: "ITU Cloud Society",
     headline: "Deploy with AWS",
@@ -74,6 +82,7 @@ const data = [
     favorited: false,
   },
   {
+    id: 9,
     img: card1,
     organisation: "ITU AI Society",
     headline: "Intro to Neural Networks",
@@ -83,6 +92,7 @@ const data = [
     favorited: false,
   },
   {
+    id: 10,
     img: card1,
     organisation: "ITU Innovation",
     headline: "Startup Pitch Night",
@@ -92,6 +102,7 @@ const data = [
     favorited: false,
   },
   {
+    id: 11,
     img: card1,
     organisation: "ITU DesignLab",
     headline: "Design for Developers",
@@ -101,6 +112,7 @@ const data = [
     favorited: false,
   },
   {
+    id: 12,
     img: card1,
     organisation: "ITU Underground",
     headline: "Network Defense Crash Course",
@@ -110,6 +122,7 @@ const data = [
     favorited: false,
   },
   {
+    id: 13,
     img: card1,
     organisation: "ITU Blockchain Hub",
     headline: "Web3 and the Future",
@@ -119,6 +132,7 @@ const data = [
     favorited: false,
   },
   {
+    id: 14,
     img: card1,
     organisation: "ITU Women in Tech",
     headline: "MFA Security Essentials",
@@ -128,6 +142,7 @@ const data = [
     favorited: false,
   },
   {
+    id: 15,
     img: card1,
     organisation: "ITU Data Club",
     headline: "Python for Data Analysis",
@@ -137,6 +152,7 @@ const data = [
     favorited: false,
   },
   {
+    id: 16,
     img: card1,
     organisation: "ITU AI Society",
     headline: "Machine Learning Basics",
@@ -146,6 +162,7 @@ const data = [
     favorited: false,
   },
   {
+    id: 17,
     img: card1,
     organisation: "ITU Underground",
     headline: "Penetration Testing 101",
@@ -155,6 +172,7 @@ const data = [
     favorited: false,
   },
   {
+    id: 18,
     img: card1,
     organisation: "ITU Cloud Society",
     headline: "Docker for Developers",
@@ -164,6 +182,7 @@ const data = [
     favorited: false,
   },
   {
+    id: 19,
     img: card1,
     organisation: "ITU Innovation",
     headline: "Build Your Portfolio",
@@ -173,6 +192,7 @@ const data = [
     favorited: false,
   },
   {
+    id: 20,
     img: card1,
     organisation: "ITU Underground",
     headline: "Holiday Hacking Challenge",
@@ -182,5 +202,11 @@ const data = [
     favorited: false,
   },
 ];
+
+
+// Depending on how we recive data 
+//IDEAS IS NOT FINISHED
+//const storeUnmappedDataIds = data.map((item, index).includes ({id:}) ?  => ({ id: index + 1, ...item }));
+//const storedDataIds = data.map((item, index) => ({ id: index + 1, ...item }));
 
 export default data;
