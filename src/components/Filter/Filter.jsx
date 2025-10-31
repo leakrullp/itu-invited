@@ -35,14 +35,10 @@ export default function Filter({ onFilterChange }) {
         <h4>Organizers</h4>
         <br />
         <div className="title-section">
-          <label>
-            <input type="checkbox" name="myCheckbox" />
-            ITU-driven
-          </label>
-          <label>
-            <input type="checkbox" name="myCheckbox" />
-            Student-driven
-          </label>
+          <input type="checkbox" name="myCheckbox" />
+          <label>ITU-driven</label>
+          <input type="checkbox" name="myCheckbox" />
+          <label>Student-driven</label>
         </div>
         <br />
         <SelectField
