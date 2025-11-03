@@ -1,10 +1,10 @@
 import { useState } from "react";
-import Button from "../Button/Button";
-import { SelectField, TagInputField } from "../Input/Input";
-import "./Filter.css";
+import Button from "../Button/Button.jsx";
+import { SelectField, TagInputField } from "../Input/Input.jsx";
+import "./FilterSidebar.css";
 import clubs from "../../assets/Data/Clubs.js";
 
-export default function Filter() {
+export default function FilterSidebar() {
   const [selectedClub, setSelectedClub] = useState("");
   const [keywords, setKeywords] = useState([]);
 

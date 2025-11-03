@@ -12,6 +12,6 @@ export {
 } from "./Input/Input";
 
 // Layouts (components that contain other components)
-export { default as Entry } from "./Entry/Entry";
-export { default as Filter } from "./Filter/Filter";
+export { default as EventCard } from "./EventCard/EventCard";
+export { default as FilterSidebar } from "./FilterSidebar/FilterSidebar";
 export { default as Navbar } from "./Navbar/Navbar";

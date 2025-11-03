@@ -1,9 +1,9 @@
 import "./App.css";
-import { Filter, Entry } from "./components";
+import { FilterSidebar, EventCard } from "./components";
 import data from "./assets/Data/Data";
 
 export default function App() {
-  const cards = data.map((card) => <Entry key={card.img} {...card} />);
+  const cards = data.map((card) => <EventCard key={card.img} {...card} />);
   const totalEvents = data.length;
 
   return (
@@ -14,7 +14,7 @@ export default function App() {
 
       <main className="container">{cards}</main>
 
-      <Filter />
+      <FilterSidebar />
     </>
   );
 }

@@ -1,4 +1,4 @@
-# Entry Component
+# EventCard Component
 
 This is a component hat renders a single event card with key event information:
 
@@ -13,10 +13,10 @@ All the props are **required** to have a value. In theory you are free to have e
 
 ## Basic usage
 
-The `Entry` component is designed to receive event data as props and display it consistently within your UI. You wouldn't actually hardcode the data like below
+The `EventCard` component is designed to receive event data as props and display it consistently within your UI. You wouldn't actually hardcode the data like below
 
 ```jsx
-import Entry from "./components/Entry/Entry";
+import EventCard from "./components/EventCard/EventCard";
 import card1 from "./assets/card1.jpg";
 
 const data = [
@@ -32,7 +32,7 @@ const data = [
 
 export default function Example() {
   return (
-    <Entry
+    <EventCard
       img={data[0].img}
       organisation={data[0].organisation}
       headline={data[0].headline}
@@ -77,11 +77,11 @@ You can easily map through `data` if you want to render multiple entries at once
 
 ```jsx
 import "./App.css";
-import { Entry } from "./components";
+import { EventCard } from "./components";
 import data from "./assets/Data/Data";
 
 export default function App() {
-  const cards = data.map((card) => <Entry key={card.img} {...card} />);
+  const cards = data.map((card) => <EventCard key={card.img} {...card} />);
 
   return (
     <>
