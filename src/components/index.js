@@ -9,7 +9,7 @@ export {
   TimeField,
   TextAreaField,
   TagInputField,
-} from "./Input/Input";
+} from "./Input/MasterInput.js";
 
 // Layouts (components that contain other components)
 export { default as EventCard } from "./EventCard/EventCard";
