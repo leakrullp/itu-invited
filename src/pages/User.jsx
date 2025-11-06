@@ -1,3 +1,5 @@
+import React from "react";
+
 import "./User.css";
 import { Button } from "../components";
 import UserSettings from "../assets/Data/UserSettings";
