@@ -1,0 +1,44 @@
+.status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: var(--font-family);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.285rem;
+  border-radius: 9999px;
+  padding: 0.25rem 0.625rem;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.status-tag .material-symbols-outlined {
+  font-size: var(--icon-size-small);
+  font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 24;
+}
+
+/* === Variants === */
+
+/* Posted */
+.status-tag--posted {
+  background-color: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+/* Draft */
+.status-tag--draft {
+  background-color: var(--color-warning-bg);
+  color: var(--color-warning);
+}
+
+/* Archived */
+.status-tag--archived {
+  background-color: var(--color-primary-100);
+  color: var(--color-primary-600);
+}
+
+/* Error */
+.status-tag--error {
+  background-color: var(--color-error-bg);
+  color: var(--color-error);
+}

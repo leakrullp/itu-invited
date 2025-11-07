@@ -27,9 +27,13 @@
   --color-neutral-0: rgba(255, 255, 255, 1);
 
   /* Semantic colors */
-  --color-error: #f71a45;
-  --color-success: #00c66b;
-  --color-warning: #ecb000;
+
+  --color-error: #800000;
+  --color-error-bg: #ffdbdb;
+  --color-success: #00804f;
+  --color-success-bg: #dbffe4;
+  --color-warning: #996100;
+  --color-warning-bg: #fff2ca;
 
   /* Typography */
   --font-family: "Funnel Sans", system-ui, sans-serif;

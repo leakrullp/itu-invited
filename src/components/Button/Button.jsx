@@ -1,10 +1,10 @@
 import "./Button.css";
 
 export default function Button({
-  variant = "primary", // "primary" | "secondary" | "tertiary"
-  size = "large", // "small" | "large"
-  icon, // string for Material Symbol name (optional)
-  children, // button text
+  variant = "primary",
+  size = "large",
+  icon,
+  children,
   ...props
 }) {
   const classes = [
