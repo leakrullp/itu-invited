@@ -1,13 +1,16 @@
 // Summary: Renders a single event card with information like organization, headline, date, time, and tags.
-import React from "react";
+import { useState } from "react";
 
 import "./EventCard.css";
 import TopicTag from "../TopicTag/TopicTag.jsx";
 import Button from "../Button/Button.jsx";
-import { useState } from "react";
 
 export default function EventCard(props) {
   const [isFavorited, setIsFavorited] = useState(props.favorited);
+
+  const maxVisibleTags = 4;
+  const visibleTags = props.tags.slice(0, maxVisibleTags);
+  const hiddenCount = props.tags.length - visibleTags.length;
 
   return (
     <article className="Card">
@@ -24,9 +27,12 @@ export default function EventCard(props) {
         </div>
 
         <div className="Tags">
-          {props.tags.map((tag, index) => (
-            <TopicTag key={index} text={tag} variant="read" />
+          {visibleTags.map((tag, i) => (
+            <TopicTag key={i} text={tag} variant="read" />
           ))}
+          {hiddenCount > 0 && (
+            <TopicTag text={`+${hiddenCount}`} variant="read" />
+          )}
         </div>
 
         <div className="bottom-btn-group">

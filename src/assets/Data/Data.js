@@ -38,7 +38,14 @@ const data = [
     headline: "UX Fundamentals",
     date: "18/11/2025",
     time: "09:00 - 12:00",
-    tags: ["UX", "Design", "Design Thinking", "Gestalt Laws"],
+    tags: [
+      "UX",
+      "Design",
+      "Design Thinking",
+      "Gestalt Laws",
+      "Figma",
+      "Drawing skills",
+    ],
     favorited: false,
   },
   {
@@ -203,8 +210,7 @@ const data = [
   },
 ];
 
-
-// Depending on how we recive data 
+// Depending on how we recive data
 //IDEAS IS NOT FINISHED
 //const storeUnmappedDataIds = data.map((item, index).includes ({id:}) ?  => ({ id: index + 1, ...item }));
 //const storedDataIds = data.map((item, index) => ({ id: index + 1, ...item }));
