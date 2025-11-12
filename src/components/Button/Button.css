@@ -1,4 +1,3 @@
-/* Base button */
 button {
   display: inline-flex;
   align-items: center;
@@ -15,7 +14,6 @@ button {
   border: 2px solid transparent;
 }
 
-/* Sizes */
 .btn--large {
   padding: 0.625rem 1rem;
   font-size: 1rem;
@@ -28,7 +26,6 @@ button {
   line-height: 1.285rem;
 }
 
-/* Icon alignment */
 .btn--large .material-symbols-outlined {
   font-size: var(--icon-size-large);
 }
@@ -37,9 +34,6 @@ button {
   font-size: var(--icon-size-small);
 }
 
-/* ========== Variants ========== */
-
-/* Primary (filled) */
 .btn--primary {
   background-color: var(--color-primary-600);
   color: var(--color-neutral-0);
@@ -53,7 +47,6 @@ button {
   background-color: var(--color-primary-800);
 }
 
-/* Secondary (outlined) */
 .btn--secondary {
   background-color: transparent;
   color: var(--color-primary-600);
@@ -68,7 +61,6 @@ button {
   background-color: var(--color-primary-200);
 }
 
-/* Tertiary (text only) */
 .btn--tertiary {
   background-color: transparent;
   border-color: transparent;
@@ -87,13 +79,11 @@ button {
   outline: none;
 }
 
-/* Disabled */
 .btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
-/* Material Symbols styling inherited from tokens */
 .material-symbols-outlined {
   color: inherit;
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;

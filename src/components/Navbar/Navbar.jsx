@@ -1,38 +1,54 @@
-// Summary: Navigation bar that includes logo and multiple action buttons using the Button component.
-
 import React from "react";
+import { Link } from "react-router-dom";
 import Button from "../Button/Button.jsx";
 import "./Navbar.css";
 
 function Navbar() {
   return (
     <nav className="Navbar">
-      {/* App logo */}
       <h1>
-        <img src="./src/assets/LOGO.svg" alt="Logo" className="Logo" />
+        <Link to="/" className="logo-link">
+          <img src="./src/assets/LOGO.svg" alt="Logo" className="Logo" />
+        </Link>
       </h1>
 
-      {/* Navigation buttons */}
       <ul className="nav-links">
         <li>
-          <Button variant="tertiary">My events</Button>
+          <Link to="/myevents">
+            <Button variant="tertiary">My events</Button>
+          </Link>
         </li>
+
         <li>
-          <Button variant="primary"> + Create events </Button>
+          <Link to="/createevent">
+            <Button variant="primary"> + Create events </Button>
+          </Link>
         </li>
+
         <li>
-          <Button variant="tertiary" icon="bookmark">
-            Favorites
-          </Button>
+          <Link to="/favorites">
+            <Button variant="tertiary" icon="bookmark">
+              Favorites
+            </Button>
+          </Link>
         </li>
+
         <li>
-          <Button className="AccountButton" variant="tertiary">
-            LP
-          </Button>
+          <Link to="/user">
+            <Button className="AccountButton" variant="tertiary">
+              <img
+                src={"src/assets/Data/profile_pic_JD_Vance.png"}
+                alt="Profile"
+                className="profile-pic"
+              />
+            </Button>
+          </Link>
         </li>
-        <li>
-          <Button variant="tertiary">Account@itu.dk</Button>
-        </li>
+        <Link to="/user">
+          <li>
+            <Button variant="tertiary">Account@itu.dk</Button>
+          </li>
+        </Link>
       </ul>
     </nav>
   );
