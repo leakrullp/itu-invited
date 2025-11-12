@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import Button from "../Button/Button.jsx";
 import { SelectField, TagInputField } from "../Input/Input.jsx";

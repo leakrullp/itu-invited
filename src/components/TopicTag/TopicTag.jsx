@@ -1,4 +1,3 @@
-import React from "react";
 import "./TopicTag.css";
 
 export default function TopicTag({ text, variant = "read", onClick }) {

@@ -1,5 +1,4 @@
 import "./Button.css";
-import React from "react";
 
 export default function Button({
   variant = "primary",

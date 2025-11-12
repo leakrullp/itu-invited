@@ -1,4 +1,3 @@
-import React from "react";
 import "./StatusTag.css";
 
 export default function TopicTag({ variant }) {
