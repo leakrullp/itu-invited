@@ -1,8 +1,8 @@
 .Navbar {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   position: sticky;
+  align-items: center;
   z-index: 10; /* to make NavBar appear above other elements */
   top: 0;
   width: 100%;
@@ -21,6 +21,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  align-items: center;
 }
 
 .Navbar li {
