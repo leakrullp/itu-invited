@@ -21,7 +21,7 @@
   justify-content: center; /* centers horizontally */
 }
 
-.Logo {
+.logo {
   height: 48px;
   display: block; /* optional: removes extra inline spacing */
 }

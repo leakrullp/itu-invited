@@ -7,7 +7,7 @@ function Navbar({ loggedIn, setLoggedIn }) {
     <nav className="Navbar">
       <h1>
         <Link to="/" className="logo-link">
-          <img src="./src/assets/NEW_LOGO.svg" alt="Logo" className="Logo" />
+          <img src="./src/assets/NEW_LOGO.svg" alt="Logo" className="logo" />
         </Link>
       </h1>
 
