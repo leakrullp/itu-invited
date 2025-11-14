@@ -47,18 +47,9 @@ function Navbar({ loggedIn, setLoggedIn }) {
             <Button
               variant="tertiary"
               onClick={() => setLoggedIn((prev) => !prev)}
+              icon={loggedIn ? "Logout" : "Login"}
             >
-              {loggedIn ? (
-                <>
-                  <span className="material-symbols-outlined">logout </span>
-                  Log out
-                </>
-              ) : (
-                <>
-                  <span className="material-symbols-outlined">login </span>
-                  Log in
-                </>
-              )}
+              {loggedIn ? "Log out" : "Log in"}
             </Button>
           </Link>
         </li>
