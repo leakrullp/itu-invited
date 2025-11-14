@@ -1,17 +1,19 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Createevent } from "./pages/Createevent.jsx";
 import { Favorites } from "./pages/Favorites.jsx";
 import { Myevents } from "./pages/Myevents.jsx";
 import { User } from "./pages/User.jsx";
-import App from "./App.jsx"; // front page
+import App from "./App.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import { useState } from "react";
 import { LogIn } from "./pages/LogIn.jsx";
+import Parse from "./parseConfig.js";
 
 export const AppRoutes = () => {
   const [loggedIn, setLoggedIn] = useState(true);
   return (
-    <Router>
+    <BrowserRouter>
       <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       <Routes>
         <Route path="/" element={<App />} />
@@ -28,6 +30,6 @@ export const AppRoutes = () => {
           element={<h1>Page Not Found, try to reload the page</h1>}
         />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 };
