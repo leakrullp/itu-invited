@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Button from "../Button/Button.jsx";
 import "./Navbar.css";
 
-function Navbar() {
+function Navbar({ loggedIn, setLoggedIn }) {
   return (
     <nav className="Navbar">
       <h1>
@@ -43,12 +43,26 @@ function Navbar() {
               />
             </Button>
           </Link>
+
+          <Link to="/login">
+            <Button
+              variant="tertiary"
+              onClick={() => setLoggedIn((prev) => !prev)}
+            >
+              {loggedIn ? (
+                <>
+                  <span className="material-symbols-outlined">logout </span>
+                  Log out
+                </>
+              ) : (
+                <>
+                  <span className="material-symbols-outlined">login </span>
+                  Log in
+                </>
+              )}
+            </Button>
+          </Link>
         </li>
-        <Link to="/user">
-          <li>
-            <Button variant="tertiary">Account@itu.dk</Button>
-          </li>
-        </Link>
       </ul>
     </nav>
   );
