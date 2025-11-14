@@ -32,14 +32,14 @@
   margin-left: 20px;
 }
 
-.Navbar .AccountButton {
+.Navbar .account-pic {
   border-radius: 50%;
   width: 50px;
   height: 50px;
   padding: 0px;
 }
 
-.Navbar .AccountButton:hover {
+.Navbar .account-pic:hover {
   color: var(--color-neutral-0) !important;
   background-color: var(--color-primary-400) !important;
 }

@@ -20,7 +20,9 @@ function Navbar({ loggedIn, setLoggedIn }) {
 
         <li>
           <Link to="/createevent">
-            <Button variant="primary"> + Create events </Button>
+            <Button variant="primary" icon="add">
+              Create events
+            </Button>
           </Link>
         </li>
 
@@ -34,16 +36,16 @@ function Navbar({ loggedIn, setLoggedIn }) {
 
         <li>
           <Link to="/user">
-            <Button className="AccountButton" variant="tertiary">
+            <div className="account-pic">
               <img
                 src={"src/assets/Data/profile_pic_JD_Vance.png"}
                 alt="Profile"
                 className="profile-pic"
               />
-            </Button>
+            </div>
           </Link>
-          </li>
-          <li>
+        </li>
+        <li>
           <Link to="/login">
             <Button
               variant="tertiary"
@@ -53,7 +55,6 @@ function Navbar({ loggedIn, setLoggedIn }) {
               {loggedIn ? "Log out" : "Log in"}
             </Button>
           </Link>
-          
         </li>
       </ul>
     </nav>
