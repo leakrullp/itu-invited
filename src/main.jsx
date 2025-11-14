@@ -1,10 +1,13 @@
+import React from "react";
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import ReactDOM from "react-dom";
 import { AppRoutes } from "./Routes.jsx";
 import "./index.css";
+import Parse from "./parseConfig.js";
 
-createRoot(document.getElementById("root")).render(
+ReactDOM.render(
   <StrictMode>
     <AppRoutes />
-  </StrictMode>
+  </StrictMode>,
+  document.getElementById("root")
 );
