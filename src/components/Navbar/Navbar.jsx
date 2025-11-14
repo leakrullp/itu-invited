@@ -42,7 +42,8 @@ function Navbar({ loggedIn, setLoggedIn }) {
               />
             </Button>
           </Link>
-
+          </li>
+          <li>
           <Link to="/login">
             <Button
               variant="tertiary"
@@ -52,6 +53,7 @@ function Navbar({ loggedIn, setLoggedIn }) {
               {loggedIn ? "Log out" : "Log in"}
             </Button>
           </Link>
+          
         </li>
       </ul>
     </nav>
