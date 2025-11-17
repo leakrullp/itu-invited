@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
-import { FilterSidebar, EventCard } from "../components";
-import "../index.css"; /* temp-fix as Favorites.jsx doesn't have corresponding css */
-import Parse from "parse"; // use your configured Parse instance
+import { FilterSidebar, EventCard } from "../../components/index.js";
+import "../../index.css"; /* temp-fix as Favorites.jsx doesn't have corresponding css */
+import Parse from "parse"; // use our configured Parse instance
+import initializeAllParse from "../../parseConfig.js";
 
 export const Favorites = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    initializeAllParse();
+
     const fetchEvents = async () => {
       try {
         // Define your Parse class and query
-        const Event = Parse.Object.extend("Event");
-        const query = new Parse.Query(Event);
+        const query = new Parse.Query("Event");
 
         // Retrieve all Event objects
         const results = await query.find();
@@ -20,7 +22,9 @@ export const Favorites = () => {
         console.log(`Fetched ${results.length} events from Back4App`);
 
         // Example: log just the first column, e.g., "title"
-        results.forEach((event) => console.log(event.get("title")));
+        results.forEach((event) =>
+          console.log("Title was fetched:" + event.get("title"))
+        );
 
         // Convert Parse objects to plain JS for React rendering if needed
         const parsedEvents = results.map((event) => ({

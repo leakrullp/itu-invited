@@ -1,14 +1,12 @@
-import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Createevent } from "./pages/Createevent.jsx";
-import { Favorites } from "./pages/Favorites.jsx";
-import { Myevents } from "./pages/Myevents.jsx";
-import { User } from "./pages/User.jsx";
+import { CreateEvent } from "./pages/CreateEvent/CreateEvent.jsx";
+import { Favorites } from "./pages/Favorites/Favorites.jsx";
+import { MyEvents } from "./pages/MyEvents/MyEvents.jsx";
+import { User } from "./pages/User/User.jsx";
 import App from "./App.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import { useState } from "react";
-import { LogIn } from "./pages/LogIn.jsx";
-import Parse from "./parseConfig.js";
+import { LogIn } from "./pages/Login/Login.jsx";
 
 export const AppRoutes = () => {
   const [loggedIn, setLoggedIn] = useState(true);
@@ -17,9 +15,9 @@ export const AppRoutes = () => {
       <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/createevent" element={<Createevent />} />
+        <Route path="/createevent" element={<CreateEvent />} />
         <Route path="/favorites" element={<Favorites />} />
-        <Route path="/myevents" element={<Myevents />} />
+        <Route path="/myevents" element={<MyEvents />} />
         <Route path="/user" element={<User />} />
         <Route
           path="/login"
