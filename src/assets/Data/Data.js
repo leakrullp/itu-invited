@@ -31,7 +31,8 @@ const data = [
     tags: ["AI", "Ethics"],
     favorited: false,
   },
-  {
+]
+  /*{
     id: 4,
     img: card1,
     organisation: "DesignLab",
@@ -216,3 +217,4 @@ const data = [
 //const storedDataIds = data.map((item, index) => ({ id: index + 1, ...item }));
 
 export default data;
+*/
