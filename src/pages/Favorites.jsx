@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FilterSidebar, EventCard } from "../components";
 import "../index.css"; /* temp-fix as Favorites.jsx doesn't have corresponding css */
-import Parse from "../parseConfig.js"; // ✅ use your configured Parse instance
+import Parse from "parse"; // use your configured Parse instance
 
 export const Favorites = () => {
   const [events, setEvents] = useState([]);

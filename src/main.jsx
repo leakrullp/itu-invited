@@ -1,9 +1,10 @@
-import React from "react";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import { AppRoutes } from "./Routes.jsx";
 import "./index.css";
-import Parse from "./parseConfig.js";
+import initializeAllParse from "./parseConfig.js";
+
+initializeAllParse();
 
 ReactDOM.render(
   <StrictMode>
