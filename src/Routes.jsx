@@ -10,6 +10,7 @@ import { LogIn } from "./pages/Login/Login.jsx";
 
 export const AppRoutes = () => {
   const [loggedIn, setLoggedIn] = useState(true);
+
   return (
     <BrowserRouter>
       <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />

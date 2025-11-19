@@ -9,7 +9,7 @@ export default function FilterSidebar() {
   const [keywords, setKeywords] = useState([]);
 
   return (
-    <aside className="FilterBox">
+    <aside className="filters">
       <div className="sidebar-section">
         <div className="title-section">
           <h3>Filters</h3>

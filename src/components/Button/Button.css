@@ -10,7 +10,8 @@
   border: none;
   outline: none;
   box-sizing: border-box;
-  border: 2px solid transparent;
+  border: 1.5px solid transparent;
+  border-radius: 2px;
 }
 
 .btn--large {
@@ -49,7 +50,7 @@
 .btn--secondary {
   background-color: transparent;
   color: var(--color-primary-600);
-  border: 2px solid var(--color-primary-600);
+  border-color: var(--color-primary-600);
 }
 
 .btn--secondary:hover {
