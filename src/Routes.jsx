@@ -3,7 +3,7 @@ import { CreateEvent } from "./pages/CreateEvent/CreateEvent.jsx";
 import { Favorites } from "./pages/Favorites/Favorites.jsx";
 import { MyEvents } from "./pages/MyEvents/MyEvents.jsx";
 import { User } from "./pages/User/User.jsx";
-import App from "./App.jsx";
+import FrontPage from "./FrontPage.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import { useState } from "react";
 import { LogIn } from "./pages/Login/Login.jsx";
@@ -14,7 +14,7 @@ export const AppRoutes = () => {
     <BrowserRouter>
       <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       <Routes>
-        <Route path="/" element={<App />} />
+        <Route path="/" element={<FrontPage />} />
         <Route path="/createevent" element={<CreateEvent />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/myevents" element={<MyEvents />} />
