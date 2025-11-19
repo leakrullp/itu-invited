@@ -5,6 +5,7 @@ import TitleInput from "../../components/Input/TitleInput.jsx";
 import DatetimeInput from "../../components/Input/DatetimeInput.jsx";
 import DescriptionInputField from "../../components/Input/DescriptionInputField.jsx";
 import TagsInputDropdown from "../../components/Input/TagsInputDropdown.jsx";
+import SignupLink from "../../components/Input/SignupLink.jsx";
 
 import "./CreateEvent.css";
 import Parse from "parse"; // use our configured Parse instance
@@ -36,6 +37,8 @@ export const CreateEvent = () => {
         <DatetimeInput />
         <DescriptionInputField />
         <TagsInputDropdown />
+        <SignupLink />
+        {/*Todo: create signupLink tekst felt string*/}
         {/*Buttons to determine what to do with input values*/}
         <div className="button-group">
           <Button variant="tertiary" size="large">

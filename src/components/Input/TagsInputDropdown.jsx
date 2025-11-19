@@ -30,8 +30,6 @@ export default function TagsInputDropdown() {
 
   return (
     <div className="title-container">
-      <strong>TagsInputDropdown:</strong>
-
       <SelectField //create SelectionField for tags allowing for multiselection
         label="Select Tags"
         placeholder="None selected"

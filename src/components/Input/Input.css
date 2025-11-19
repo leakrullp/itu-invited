@@ -126,3 +126,9 @@ select.input-el {
 .tag-input::-webkit-resizer {
   display: none;
 }
+
+.timestamp-label {
+  /* font for Date & Time sub headers when creating event */
+  font-size: 0.8rem;
+  opacity: 0.8;
+}

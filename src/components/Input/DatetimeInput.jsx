@@ -12,11 +12,17 @@ export default function DatetimeInput() {
       </label>
 
       <div className="datetime-inputs">
-        <input id="date" type="date" className="date-input" />
-
-        <div className="time-range">
+        <div className="start-timestamp">
+          <span className="timestamp-label">Starts</span>
+          <br />
+          <input id="date" type="date" className="date-input" />
           <input id="start-time" type="time" className="date-input" />
-          <span className="time-separator">–</span>
+        </div>
+
+        <div className="end-timestamp">
+          <span className="timestamp-label">Ends</span>
+          <br />
+          <input id="end-date" type="date" className="date-input" />
           <input id="end-time" type="time" className="date-input" />
         </div>
       </div>
