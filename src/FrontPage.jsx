@@ -62,17 +62,18 @@ export default function FrontPage() {
 
   return (
     <>
-      <div className="event-count">
-        <h2>Events ({events.length})</h2>
-      </div>
+      <section className="grid-container">
+        <div className="event-count">
+          <h2>Events ({events.length})</h2>
+        </div>
 
-      <div className="container">
         {events.map((event) => (
           <EventCard key={event.id} {...event} />
         ))}
-      </div>
-
-      <FilterSidebar />
+      </section>
+      <aside>
+        <FilterSidebar />
+      </aside>
     </>
   );
 }

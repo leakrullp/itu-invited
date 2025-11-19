@@ -1,11 +1,11 @@
-.Navbar {
+.navbar {
   display: flex;
   justify-content: space-between;
   position: sticky;
   align-items: center;
-  z-index: 10; /* to make NavBar appear above other elements */
+  z-index: 10;
   top: 0;
-  width: 100%;
+  width: 100vw;
   height: var(--navbar-height);
   color: var(--color-primary-600);
   background-color: var(--color-neutral-0);
@@ -17,16 +17,16 @@
 
 .logo-link {
   display: flex;
-  align-items: center; /* centers vertically */
-  justify-content: center; /* centers horizontally */
+  align-items: center;
+  justify-content: center;
 }
 
 .logo {
   height: 48px;
-  display: block; /* optional: removes extra inline spacing */
+  display: block;
 }
 
-.Navbar ul {
+.navbar ul {
   display: flex;
   gap: 0;
   list-style: none;
@@ -35,22 +35,22 @@
   align-items: center;
 }
 
-.Navbar li {
+.navbar li {
   margin-right: 20px;
 }
 
-.Navbar h1 {
+.navbar h1 {
   margin-left: 20px;
 }
 
-.Navbar .account-pic {
+.navbar .account-pic {
   border-radius: 50%;
   width: 50px;
   height: 50px;
   padding: 0px;
 }
 
-.Navbar .account-pic:hover {
+.navbar .account-pic:hover {
   color: var(--color-neutral-0) !important;
   background-color: var(--color-primary-400) !important;
 }

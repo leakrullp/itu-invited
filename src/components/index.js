@@ -10,6 +10,7 @@ export {
   TextAreaField,
   TagInputField,
 } from "./Input/MasterInput.js";
+export { default as FavoriteButton } from "./FavoriteButton/FavoriteButton";
 
 // Layouts (components that contain other components)
 export { default as EventCard } from "./EventCard/EventCard";

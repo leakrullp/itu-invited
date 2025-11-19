@@ -45,10 +45,11 @@
   --icon-color-white: var(--color-neutral-0);
 
   /* sizing */
+  --event-card-width: 278px;
   --navbar-height: 80px;
   --sidebar-width: 288px;
   --front-page-min-margin: 24px;
-  --grid-spacing: 12.5px;
+  --grid-spacing: 16px;
 }
 
 /* Material Symbols icons */

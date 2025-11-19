@@ -1,6 +1,6 @@
 import "./EventCard.css";
 import { useState } from "react";
-import { TopicTag, Button } from "../index";
+import { TopicTag, Button, FavoriteButton } from "../index";
 
 export default function EventCard({
   title,
@@ -88,11 +88,7 @@ export default function EventCard({
         </div>
 
         <div className="bottom-btn-group">
-          <Button
-            variant={isFavorited ? "primary" : "tertiary"}
-            icon="bookmark"
-            onClick={handleFavorite}
-          />
+          <FavoriteButton onClick={handleFavorite} />
 
           {signupLink && (
             <Button

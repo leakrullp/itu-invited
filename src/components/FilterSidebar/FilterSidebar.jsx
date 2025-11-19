@@ -1,7 +1,6 @@
-import { useState } from "react";
-import Button from "../Button/Button.jsx";
-import { SelectField, TagInputField } from "../Input/MasterInput.js";
 import "./FilterSidebar.css";
+import { useState } from "react";
+import { SelectField, TagInputField, Button } from "../index";
 import clubs from "../../assets/Data/Clubs.js";
 
 export default function FilterSidebar() {
