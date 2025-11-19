@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
-import TopicTag from "../TopicTag/TopicTag.jsx";
-import Button from "../../components/Button/Button.jsx";
 import "./Input.css";
 import Parse from "parse";
 import initializeAllParse from "../../parseConfig.js";
+import SelectField from "./SelectField.jsx";
 
 export default function TagsInputDropdown() {
+  // To retrieve and show tags from the database
   const [tagsList, setTagsList] = useState([]);
+
+  // To store what the user selects from the dropdown
+  const [selectedTags, setSelectedTags] = useState([]);
 
   useEffect(() => {
     // Initialize Parse if needed
@@ -27,8 +30,16 @@ export default function TagsInputDropdown() {
 
   return (
     <div className="title-container">
-      <strong>TagsInputDropdown: </strong>
-      {tagsList.join(", ")}
+      <strong>TagsInputDropdown:</strong>
+
+      <SelectField //create SelectionField for tags allowing for multiselection
+        label="Select Tags"
+        placeholder="None selected"
+        options={tagsList}
+        value={selectedTags}
+        onChange={setSelectedTags}
+        multiple={true}
+      />
     </div>
   );
 }
