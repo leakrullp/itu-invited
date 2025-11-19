@@ -27,7 +27,7 @@ export const CreateEvent = () => {
   const [thumbnailPicture, setThumbnailPicture] = useState(null);
 
   // when users clicks Post Now button
-  const handlePostNow = () => {
+  const handlePostNow = async () => {
     showPopup("Event posted!");
 
     // Initialize Parse (if needed)
@@ -37,32 +37,40 @@ export const CreateEvent = () => {
     const Event = Parse.Object.extend("Event");
     const newEvent = new Event();
 
-    // TEMP values (until inputs provide real values)
-    //newEvent.set("title", "Placeholder title");
-    //newEvent.set("description", "Placeholder description");
-    //newEvent.set("tags", []);
-    //newEvent.set("startTime", new Date());
-    //newEvent.set("endsAt", new Date());
-    //newEvent.set("signupLink", "");
-    newEvent.set("isPosted", false);
-    newEvent.set("startTime", "");
-    newEvent.set("endTime", "");
-    newEvent.set("title", "");
-    newEvent.set("description", "");
-    newEvent.set("orgID", "H0E3iRttqi");
-    newEvent.set("eventTag", "");
-    newEvent.set("signupLink", "");
-    if (thumbnailPicture) {
-      newEvent.set("eventPicID", thumbnailPicture); // FIXED
-    }
+    // Values sent if nothing from input is given
+    //  ------DO NOT DELETE FOR TESTING PURPOSES -----
+    newEvent.set("isPosted", true);
+    newEvent.set("startTime", new Date("2025-12-22T19:30"));
+    newEvent.set("endTime", new Date("2025-12-22T19:30"));
+    newEvent.set("title", "sent_from_frontEnd");
+    newEvent.set("description", "descriptionaroisblob");
+    const orgID = "5z1KbHqPBC"; //is present in DB
+    const Organization = Parse.Object.extend("Organization");
+    const orgObj = new Organization();
+    orgObj.id = orgID;
+    newEvent.set("orgID", orgObj);
+    const selectedTags = ["Fun", "Python"]; //are present in DB
+    const EventTag = Parse.Object.extend("EventTag");
+    const tagQuery = new Parse.Query(EventTag);
+    tagQuery.containedIn("term", selectedTags); //points to tag based on value in "term" column
+    const tagObjects = await tagQuery.find();
+    const relation = newEvent.relation("eventTag");
+    tagObjects.forEach((tagObj) => {
+      relation.add(tagObj);
+    }); //add relation for each tag in the list given to the db
+    newEvent.set("signupLink", "https://erdetfredag.dk/");
+    const Picture = Parse.Object.extend("Picture");
+    const picObj = new Picture();
+    picObj.id = "sQrZAOqBFz"; // is present in DB
+    newEvent.set("eventPicID", picObj);
 
     // Save to database
     newEvent.save().then(
       (savedObj) => {
-        console.log("Event saved with ID:", savedObj.id);
+        console.log("Event saved with ID:", savedObj.id); //delete when done testing
       },
       (error) => {
-        console.error("Error saving event:", error);
+        console.error("Error saving event:", error); //todo: make a popup
       }
     );
   };
