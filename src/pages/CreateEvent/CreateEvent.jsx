@@ -23,8 +23,48 @@ export const CreateEvent = () => {
     showPopup("Saved as draft. Go to 'My events'");
   };
 
+  //for uploading thumbnail photos
+  const [thumbnailPicture, setThumbnailPicture] = useState(null);
+
+  // when users clicks Post Now button
   const handlePostNow = () => {
     showPopup("Event posted!");
+
+    // Initialize Parse (if needed)
+    initializeAllParse();
+
+    // Create a new Event table row
+    const Event = Parse.Object.extend("Event");
+    const newEvent = new Event();
+
+    // TEMP values (until inputs provide real values)
+    //newEvent.set("title", "Placeholder title");
+    //newEvent.set("description", "Placeholder description");
+    //newEvent.set("tags", []);
+    //newEvent.set("startTime", new Date());
+    //newEvent.set("endsAt", new Date());
+    //newEvent.set("signupLink", "");
+    newEvent.set("isPosted", false);
+    newEvent.set("startTime", "");
+    newEvent.set("endTime", "");
+    newEvent.set("title", "");
+    newEvent.set("description", "");
+    newEvent.set("orgID", "H0E3iRttqi");
+    newEvent.set("eventTag", "");
+    newEvent.set("signupLink", "");
+    if (thumbnailPicture) {
+      newEvent.set("eventPicID", thumbnailPicture); // FIXED
+    }
+
+    // Save to database
+    newEvent.save().then(
+      (savedObj) => {
+        console.log("Event saved with ID:", savedObj.id);
+      },
+      (error) => {
+        console.error("Error saving event:", error);
+      }
+    );
   };
 
   return (
@@ -32,13 +72,14 @@ export const CreateEvent = () => {
       <main className="createevent-container">
         {/*Todo: change text to "Create an event for {logged in Organization}"*/}
         <h2 className="createevent-title">Create an event for ITUnderground</h2>
-        <ThumbnailInput />
+        <ThumbnailInput onThumbnailSaved={setThumbnailPicture} />
+
         <TitleInput />
         <DatetimeInput />
         <DescriptionInputField />
         <TagsInputDropdown />
         <SignupLink />
-        {/*Todo: create signupLink tekst felt string*/}
+
         {/*Buttons to determine what to do with input values*/}
         <div className="button-group">
           <Button variant="tertiary" size="large">
@@ -64,7 +105,8 @@ export const CreateEvent = () => {
             Post now
           </Button>
         </div>
-        {popupMessage && <div className="draft-popup">{popupMessage}</div>}{" "}
+
+        {popupMessage && <div className="draft-popup">{popupMessage}</div>}
         {/*only render popupMessage if it is not null*/}
       </main>
     </>
