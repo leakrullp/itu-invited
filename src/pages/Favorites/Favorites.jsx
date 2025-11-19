@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
 import { FilterSidebar, EventCard } from "../../components/index.js";
 import "../../index.css"; /* temp-fix as Favorites.jsx doesn't have corresponding css */
-import Parse from "parse"; // use our configured Parse instance
-import initializeAllParse from "../../parseConfig.js";
+import Parse from "parse";
 
 export const Favorites = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    initializeAllParse();
-
     const fetchEvents = async () => {
       try {
         // Define your Parse class and query

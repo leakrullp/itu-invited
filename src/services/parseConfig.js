@@ -1,6 +1,10 @@
 import Parse from "parse";
 
-function initializeAllParse() {
+let isInitalized = false;
+
+export default function initializeAllParse() {
+  if (isInitalized) return Parse;
+
   Parse.initialize(
     "YsjXEUYnz2m6YGZvzfqAtvsJFLcpge44m7kl7hDP",
     "gzXItqBZFqkyaObjF7WW1sa0DRTlKXgnwHbESIbu"
@@ -8,13 +12,13 @@ function initializeAllParse() {
 
   Parse.serverURL = "https://parseapi.back4app.com/";
 
-  // Prevent Parse from initializing LiveQuery
   try {
     Parse.CoreManager.set("LIVEQUERY_SERVER_URL", "");
-    Parse.LiveQuery.close(); // ensure it doesn't run
+    Parse.LiveQuery.close();
   } catch (e) {
     console.warn("LiveQuery disabled:", e.message);
   }
-}
 
-export default initializeAllParse;
+  isInitalized = true;
+  return Parse;
+}
