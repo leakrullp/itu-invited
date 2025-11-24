@@ -2,9 +2,11 @@ import { FilterSidebar, EventCard } from "./components";
 import { useEffect, useState } from "react";
 import "./index.css";
 import Parse from "parse";
+import DetailPage from "./pages/DetailPage/Detailpage";
 
 export default function FrontPage() {
   const [events, setEvents] = useState([]);
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => {
     async function loadEvents() {
@@ -68,11 +70,22 @@ export default function FrontPage() {
 
       <div className="container">
         {events.map((event) => (
-          <EventCard key={event.id} {...event} />
+          <EventCard
+            key={event.id}
+            {...event}
+            onClick={() => setSelectedEvent(event)}
+          />
         ))}
       </div>
 
       <FilterSidebar />
+
+      {selectedEvent && (
+        <DetailPage
+          event={selectedEvent}
+          onClose={() => setSelectedEvent(null)}
+        />
+      )}
     </>
   );
 }

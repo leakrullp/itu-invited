@@ -11,6 +11,7 @@ export default function EventCard({
   endTime,
   signupLink,
   favorited,
+  onClick,
 }) {
   const [isFavorited, setIsFavorited] = useState(favorited);
 
@@ -58,14 +59,15 @@ export default function EventCard({
   const visibleTags = tags.slice(0, MAX_VISIBLE_TAGS);
   const hiddenCount = tags.length - visibleTags.length;
 
-  function handleFavorite() {
+  function handleFavorite(e) {
     // TODO: save to user's favorites
+    e.stopPropagation(); //ensures DetailPage is not opening here
     console.log("Toggle favorite for", title);
     setIsFavorited(!isFavorited);
   }
 
   return (
-    <article className="card">
+    <article className="card" onClick={onClick}>
       <img src={img} alt={title} className="image" />
 
       <div className="all-text">
