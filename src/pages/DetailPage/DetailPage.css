@@ -1,0 +1,43 @@
+.detail-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.detail-card {
+  background: white;
+  padding: 24px;
+  width: 500px;
+  max-height: 80vh;
+  border-radius: 6px;
+  overflow-y: auto;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  background: none;
+  border: none;
+  padding: 2px;
+  cursor: pointer;
+  color: var(--color-neutral-600);
+}
+
+.close-btn:hover {
+  color: var(--color-neutral-900);
+}
+
+.detail-img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}

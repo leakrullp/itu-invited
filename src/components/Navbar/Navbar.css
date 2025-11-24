@@ -3,7 +3,7 @@
   justify-content: space-between;
   position: sticky;
   align-items: center;
-  z-index: 10;
+  z-index: 1; /* to make NavBar appear above other elements */
   top: 0;
   width: 100vw;
   height: var(--navbar-height);
