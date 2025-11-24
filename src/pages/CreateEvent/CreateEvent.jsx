@@ -1,6 +1,15 @@
 import { useState } from "react";
 import Button from "../../components/Button/Button.jsx";
+import ThumbnailInput from "../../components/Input/ThumbnailInput.jsx";
+import TitleInput from "../../components/Input/TitleInput.jsx";
+import DatetimeInput from "../../components/Input/DatetimeInput.jsx";
+import DescriptionInputField from "../../components/Input/DescriptionInputField.jsx";
+import TagsInputDropdown from "../../components/Input/TagsInputDropdown.jsx";
+import SignupLink from "../../components/Input/SignupLink.jsx";
 import "./CreateEvent.css";
+import Parse from "parse"; // use our configured Parse instance
+import initializeAllParse from "../../parseConfig.js";
+import { SaveEventToDB } from "./SaveEventToDB";
 
 export const CreateEvent = () => {
   const [popupMessage, setPopupMessage] = useState("");
@@ -14,68 +23,40 @@ export const CreateEvent = () => {
     showPopup("Saved as draft. Go to 'My events'");
   };
 
-  const handlePostNow = () => {
+  //for uploading thumbnail photos
+  const [thumbnailPicture, setThumbnailPicture] = useState(null);
+
+  // when users clicks Post Now button
+  const handlePostNow = async () => {
     showPopup("Event posted!");
+
+    // Initialize Parse (if needed)
+    initializeAllParse();
+
+    try {
+      // Call service WITHOUT sending eventData
+      const savedObj = await SaveEventToDB();
+      console.log("Event saved with ID:", savedObj.id); //delete when done testing
+    } catch (error) {
+      console.error("Error saving event:", error); //todo: make a popup
+    }
   };
 
   return (
     <>
       <main className="createevent-container">
+        {/*Todo: change text to "Create an event for {logged in Organization}"*/}
         <h2 className="createevent-title">Create an event for ITUnderground</h2>
 
-        <div className="thumbnail-upload">
-          <Button variant="tertiary" size="large" icon="image">
-            Upload thumbnail
-          </Button>
-        </div>
+        <ThumbnailInput onThumbnailSaved={setThumbnailPicture} />
 
-        <div className="title-container">
-          <label className="title-field">
-            <span>Title</span>
-          </label>
-          <input
-            id="title"
-            type="text"
-            placeholder="Title of your event"
-            className="title-input"
-          />
-        </div>
+        <TitleInput />
+        <DatetimeInput />
+        <DescriptionInputField />
+        <TagsInputDropdown />
+        <SignupLink />
 
-        <div className="date-container">
-          <label className="date-field">
-            <span>Date & Time</span>
-          </label>
-
-          <div className="datetime-inputs">
-            <input id="date" type="date" className="date-input" />
-
-            <div className="time-range">
-              <input id="start-time" type="time" className="date-input" />
-              <span className="time-separator">–</span>
-              <input id="end-time" type="time" className="date-input" />
-            </div>
-          </div>
-        </div>
-
-        <div className="description-container">
-          <label className="description-field">
-            <span>Description</span>
-          </label>
-          <textarea
-            id="description"
-            placeholder="Add your event description..."
-            className="description-input"
-            rows="4"
-          ></textarea>
-        </div>
-
-        <div className="attachfiles-container">
-          <Button variant="secondary" size="small" icon="attach_file">
-            Attach files
-          </Button>
-          <p className="file-count">0 files attached so far</p>
-        </div>
-
+        {/*Buttons to determine what to do with input values*/}
         <div className="button-group">
           <Button variant="tertiary" size="large">
             Cancel
@@ -102,6 +83,7 @@ export const CreateEvent = () => {
         </div>
 
         {popupMessage && <div className="draft-popup">{popupMessage}</div>}
+        {/*only render popupMessage if it is not null*/}
       </main>
     </>
   );
