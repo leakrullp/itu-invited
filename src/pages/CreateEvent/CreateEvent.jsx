@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Button from "../components/Button/Button.jsx";
-import "./Createevent.css";
+import Button from "../../components/Button/Button.jsx";
+import "./CreateEvent.css";
 
-export const Createevent = () => {
+export const CreateEvent = () => {
   const [popupMessage, setPopupMessage] = useState("");
 
   const showPopup = (message) => {
@@ -106,3 +106,5 @@ export const Createevent = () => {
     </>
   );
 };
+
+export default CreateEvent;

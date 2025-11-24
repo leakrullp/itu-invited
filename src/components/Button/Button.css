@@ -1,9 +1,8 @@
-button {
+.btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   height: auto;
-  align-self: center;
   gap: 0.5rem;
   font-family: var(--font-family);
   font-weight: 600;

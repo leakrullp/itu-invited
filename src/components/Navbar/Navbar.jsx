@@ -1,14 +1,13 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import Button from "../Button/Button.jsx";
 import "./Navbar.css";
 
-function Navbar() {
+function Navbar({ loggedIn, setLoggedIn }) {
   return (
     <nav className="Navbar">
       <h1>
         <Link to="/" className="logo-link">
-          <img src="./src/assets/LOGO.svg" alt="Logo" className="Logo" />
+          <img src="./src/assets/NEW_LOGO.svg" alt="Logo" className="logo" />
         </Link>
       </h1>
 
@@ -21,7 +20,9 @@ function Navbar() {
 
         <li>
           <Link to="/createevent">
-            <Button variant="primary"> + Create events </Button>
+            <Button variant="primary" icon="add">
+              Create events
+            </Button>
           </Link>
         </li>
 
@@ -35,20 +36,26 @@ function Navbar() {
 
         <li>
           <Link to="/user">
-            <Button className="AccountButton" variant="tertiary">
+            <div className="account-pic">
               <img
                 src={"src/assets/Data/profile_pic_JD_Vance.png"}
                 alt="Profile"
                 className="profile-pic"
               />
+            </div>
+          </Link>
+        </li>
+        <li>
+          <Link to="/login">
+            <Button
+              variant="tertiary"
+              onClick={() => setLoggedIn((prev) => !prev)}
+              icon={loggedIn ? "Logout" : "Login"}
+            >
+              {loggedIn ? "Log out" : "Log in"}
             </Button>
           </Link>
         </li>
-        <Link to="/user">
-          <li>
-            <Button variant="tertiary">Account@itu.dk</Button>
-          </li>
-        </Link>
       </ul>
     </nav>
   );

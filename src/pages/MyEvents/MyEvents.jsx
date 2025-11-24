@@ -1,9 +1,8 @@
-import Button from "../components/Button/Button.jsx";
-import StatusTag from "../components/StatusTag/StatusTag.jsx";
-import data from "../assets/Data/Data.js";
-import "./Myevents.css";
+import { Button, StatusTag } from "../../components/index.js";
+import data from "../../assets/Data/Data.js";
+import "./MyEvents.css";
 
-export const Myevents = () => {
+export const MyEvents = () => {
   const myEvents = data;
   const totalMyEvents = myEvents.length;
 

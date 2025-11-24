@@ -1,6 +1,8 @@
-import "./App.css";
 import { FilterSidebar, EventCard } from "./components";
 import data from "./assets/Data/Data";
+import "./index.css";
+import Parse from "parse";
+//check which parser your browser is using with this in the browser console Parse.CoreManager.get("VERSION") we want 5.3.0
 
 export default function App() {
   const cards = data.map((card) => <EventCard key={card.img} {...card} />);
