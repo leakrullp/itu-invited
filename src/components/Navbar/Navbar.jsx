@@ -4,7 +4,7 @@ import "./Navbar.css";
 
 function Navbar({ loggedIn, setLoggedIn }) {
   return (
-    <nav className="Navbar">
+    <nav className="navbar">
       <h1>
         <Link to="/" className="logo-link">
           <img src="./src/assets/NEW_LOGO.svg" alt="Logo" className="logo" />

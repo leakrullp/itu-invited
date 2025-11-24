@@ -43,6 +43,13 @@
   --icon-size-large: 1.5rem;
   --icon-color-primary: var(--color-primary-600);
   --icon-color-white: var(--color-neutral-0);
+
+  /* sizing */
+  --event-card-width: 278px;
+  --navbar-height: 80px;
+  --sidebar-width: 288px;
+  --front-page-min-margin: 24px;
+  --grid-spacing: 16px;
 }
 
 /* Material Symbols icons */

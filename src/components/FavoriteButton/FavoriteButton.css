@@ -1,0 +1,50 @@
+.favorite-button {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 0;
+  border-radius: 18px;
+  color: var(--color-primary-600);
+  transition: color 120ms ease, background-color 120ms ease;
+}
+
+.favorite-button .material-symbols-outlined {
+  font-size: 24px;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  transition: font-variation-settings 120ms ease, color 120ms ease;
+}
+
+/* Hover -> filled */
+.favorite-button:hover .material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  color: var(--color-primary-700);
+}
+
+.favorite-button:hover {
+  background-color: var(--color-primary-100);
+}
+
+/* Active -> darker */
+.favorite-button:active .material-symbols-outlined {
+  color: var(--color-primary-700);
+}
+
+/* Favorited state */
+.favorite-button.is-favorited .material-symbols-outlined {
+  font-variation-settings: "FILL" 1, "wght" 500, "GRAD" 0, "opsz" 24;
+  color: var(--color-primary-500);
+}
+
+/* Favorited hover */
+.favorite-button.is-favorited:hover .material-symbols-outlined {
+  color: var(--color-primary-600);
+}
+
+/* Favorited active */
+.favorite-button.is-favorited:active .material-symbols-outlined {
+  color: var(--color-primary-700);
+}
