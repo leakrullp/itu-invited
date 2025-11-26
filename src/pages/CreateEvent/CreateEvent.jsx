@@ -12,7 +12,8 @@ import { SaveEventToDB } from "./SaveEventToDB";
 export const CreateEvent = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [thumbnailPicture, setThumbnailPicture] = useState("");
+  const [thumbnailPicture, setThumbnailPicture] = useState(null);
+
 
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
