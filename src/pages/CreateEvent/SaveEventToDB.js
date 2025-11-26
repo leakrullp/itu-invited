@@ -26,9 +26,9 @@ export async function SaveEventToDB({
   tagQuery.containedIn("term", selectedTags);
   const tagObjects = await tagQuery.find();
 
-  const Picture = Parse.Object.extend("Picture");
-  const picObj = new Picture();
-  picObj.id = "sQrZAOqBFz";
+  //const Picture = Parse.Object.extend("Picture");
+  //const picObj = new Picture();
+  //picObj.id = "sQrZAOqBFz";
 
   const Event = Parse.Object.extend("Event");
   const newEvent = new Event();
@@ -39,7 +39,7 @@ export async function SaveEventToDB({
   newEvent.set("description", description);
   newEvent.set("signupLink", "https://erdetfredag.dk/");
   newEvent.set("orgID", orgObj);
-  newEvent.set("eventPicID", picObj);
+  newEvent.set("eventPicID", thumbnailPicture);
 
   // Set correct dates
   newEvent.set("startTime", startDateTime);
