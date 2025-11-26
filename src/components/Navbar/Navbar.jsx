@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Button from "../Button/Button.jsx";
+import { Button, UserInfo } from "../index";
 import "./Navbar.css";
 import Parse from "parse";
 
@@ -34,7 +34,6 @@ function Navbar({ currentUser, setCurrentUser }) {
             </Button>
           </Link>
         </li>
-
         <li>
           <Link to="/user">
             <div className="account-pic">
