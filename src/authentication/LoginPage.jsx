@@ -1,10 +1,10 @@
 import "./Login.css";
 import { UserLogin } from "./UserLogin";
 
-export default function LoginPage() {
+export default function LoginPage({ setCurrentUser }) {
   return (
     <div className="login-page">
-      <UserLogin />
+      <UserLogin setCurrentUser={setCurrentUser} />
     </div>
   );
 }
