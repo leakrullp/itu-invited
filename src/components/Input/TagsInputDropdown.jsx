@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import "./Input.css";
 import Parse from "parse";
-import initializeAllParse from "../../parseConfig.js";
 import SelectField from "./SelectField.jsx";
 
 export default function TagsInputDropdown() {
@@ -13,7 +12,6 @@ export default function TagsInputDropdown() {
 
   useEffect(() => {
     // Initialize Parse if needed
-    initializeAllParse();
 
     // Define class and query to EventTag table
     const Tags = Parse.Object.extend("EventTag");

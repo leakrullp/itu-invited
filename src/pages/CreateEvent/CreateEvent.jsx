@@ -7,8 +7,6 @@ import DescriptionInputField from "../../components/Input/DescriptionInputField.
 import TagsInputDropdown from "../../components/Input/TagsInputDropdown.jsx";
 import SignupLink from "../../components/Input/SignupLink.jsx";
 import "./CreateEvent.css";
-import Parse from "parse"; // use our configured Parse instance
-import initializeAllParse from "../../parseConfig.js";
 import { SaveEventToDB } from "./SaveEventToDB";
 
 export const CreateEvent = () => {
@@ -29,9 +27,6 @@ export const CreateEvent = () => {
   // when users clicks Post Now button
   const handlePostNow = async () => {
     showPopup("Event posted!");
-
-    // Initialize Parse (if needed)
-    initializeAllParse();
 
     try {
       // Call service WITHOUT sending eventData
