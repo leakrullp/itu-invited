@@ -1,50 +1,71 @@
-import { useRef, useState } from "react";
-import Button from "../../components/Button/Button.jsx";
+import { useState } from "react";
 import Parse from "parse";
+import Button from "../../components/Button/Button.jsx";
 import "./Input.css";
 
-export default function ThumbnailInput({ onThumbnailSaved }) {
-  const [uploading, setUploading] = useState(false);
-  const fileInputRef = useRef(null);
+export default function ShowPictures({ onSelect }) {
+  const [pictures, setPictures] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
 
-  async function handleFileChange(e) {
-    const file = e.target.files[0];
-    if (!file) return;
+  async function loadPictures() {
+    try {
+      const Picture = Parse.Object.extend("Picture");
+      const query = new Parse.Query(Picture);
 
-    setUploading(true);
+      const results = await query.find();
 
-    const parseFile = new Parse.File(file.name, file);
-    await parseFile.save();
+      const pictureObjects = results
+        .map((obj) => {
+          const file = obj.get("fileName");
+          if (!file) return null;
 
-    const Picture = Parse.Object.extend("Picture");
-    const pictureObj = new Picture();
-    pictureObj.set("file", parseFile);
+          return {
+            objectId: obj.id,
+            url: file.url(),
+            fullObj: obj,
+          };
+        })
+        .filter(Boolean);
 
-    const savedPicture = await pictureObj.save();
+      setPictures(pictureObjects);
+      setOpen(true);
+    } catch (err) {
+      console.error("Error loading pictures:", err);
+    }
+  }
 
-    setUploading(false);
-    onThumbnailSaved(savedPicture);
+  function handleSelect(pic) {
+    setSelectedId(pic.objectId);
+    onSelect(pic.fullObj);
   }
 
   return (
-    <div className="thumbnail-upload">
+    <div className="show-gallery-container">
       <Button
         variant="tertiary"
         size="large"
         icon="image"
-        disabled={uploading}
-        onClick={() => fileInputRef.current.click()} // ← trigger input
+        onClick={loadPictures}
       >
-        {uploading ? "Uploading..." : "Upload thumbnail"}
+        Choose thumbnail picture
       </Button>
 
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept="image/*"
-        onChange={handleFileChange}
-        style={{ display: "none" }}
-      />
+      {open && (
+        <div className="gallery-grid">
+          {pictures.map((pic) => (
+            <img
+              key={pic.objectId}
+              src={pic.url}
+              alt=""
+              className={`gallery-image ${
+                selectedId === pic.objectId ? "selected" : ""
+              }`}
+              onClick={() => handleSelect(pic)}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
