@@ -29,7 +29,11 @@ export default function ShowPictures({ onSelect }) {
         .filter(Boolean);
 
       setPictures(pictureObjects);
-      setOpen(true);
+      if (!open) {
+        setOpen(true);
+      } else {
+        setOpen(false);
+      }
     } catch (err) {
       console.error("Error loading pictures:", err);
     }
