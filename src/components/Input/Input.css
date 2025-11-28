@@ -137,3 +137,29 @@ select.input-el {
   font-size: 0.8rem;
   opacity: 0.8;
 }
+
+/* ThumbnailInput: Container */
+.show-gallery-container {
+  margin-top: 10px;
+}
+
+/*ThumbnailInput: Grid layout for where thumbnails are placed */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 8px; /* important that matches border-radius for .gallery-image */
+}
+
+/*ThumbnailInput: Each thumbnail*/
+.gallery-image {
+  width: 100%;
+  border-radius: 8px;
+  cursor: pointer; /* how does cursor look when hovering */
+  border: 3px solid transparent; /* space between thumbnails */
+}
+
+/*ThumbnailInput: Highlight selected image */
+.gallery-image.selected {
+  border: 4px solid #4caf50; /* todo Change to match ITUInvited AESTHETICS */
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.4); /* todo Change to match ITUInvited AESTHETICS */
+}
