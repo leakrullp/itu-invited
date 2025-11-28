@@ -1,8 +1,25 @@
 import { useState } from "react";
 import Button from "../../components/Button/Button.jsx";
+import ThumbnailInput from "../../components/Input/ThumbnailInput.jsx";
+import TitleInput from "../../components/Input/TitleInput.jsx";
+import DatetimeInput from "../../components/Input/DatetimeInput.jsx";
+import DescriptionInputField from "../../components/Input/DescriptionInputField.jsx";
+import TagsInputDropdown from "../../components/Input/TagsInputDropdown.jsx";
+import SignupLink from "../../components/Input/SignupLink.jsx";
 import "./CreateEvent.css";
+import { SaveEventToDB } from "./SaveEventToDB";
 
 export const CreateEvent = () => {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  //const [thumbnailPicture, setThumbnailPicture] = useState(null);
+  const [selectedPicture, setSelectedPicture] = useState(null);
+
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
+
   const [popupMessage, setPopupMessage] = useState("");
 
   const showPopup = (message) => {
@@ -14,96 +31,74 @@ export const CreateEvent = () => {
     showPopup("Saved as draft. Go to 'My events'");
   };
 
-  const handlePostNow = () => {
-    showPopup("Event posted!");
+  const handlePostNow = async () => {
+    try {
+      const savedObj = await SaveEventToDB({
+        title,
+        description,
+        startTime,
+        endTime,
+        startDate,
+        endDate,
+        selectedPicture,
+      });
+
+      console.log("Event saved with ID:", savedObj.id);
+      showPopup("Event posted for all to see!");
+    } catch (error) {
+      console.error("Error saving event:", error);
+    }
   };
 
   return (
-    <>
-      <main className="createevent-container">
-        <h2 className="createevent-title">Create an event for ITUnderground</h2>
-
-        <div className="thumbnail-upload">
-          <Button variant="tertiary" size="large" icon="image">
-            Upload thumbnail
-          </Button>
-        </div>
-
-        <div className="title-container">
-          <label className="title-field">
-            <span>Title</span>
-          </label>
-          <input
-            id="title"
-            type="text"
-            placeholder="Title of your event"
-            className="title-input"
-          />
-        </div>
-
-        <div className="date-container">
-          <label className="date-field">
-            <span>Date & Time</span>
-          </label>
-
-          <div className="datetime-inputs">
-            <input id="date" type="date" className="date-input" />
-
-            <div className="time-range">
-              <input id="start-time" type="time" className="date-input" />
-              <span className="time-separator">–</span>
-              <input id="end-time" type="time" className="date-input" />
-            </div>
-          </div>
-        </div>
-
-        <div className="description-container">
-          <label className="description-field">
-            <span>Description</span>
-          </label>
-          <textarea
-            id="description"
-            placeholder="Add your event description..."
-            className="description-input"
-            rows="4"
-          ></textarea>
-        </div>
-
-        <div className="attachfiles-container">
-          <Button variant="secondary" size="small" icon="attach_file">
-            Attach files
-          </Button>
-          <p className="file-count">0 files attached so far</p>
-        </div>
-
-        <div className="button-group">
-          <Button variant="tertiary" size="large">
-            Cancel
-          </Button>
-          <Button
-            variant="secondary"
-            size="large"
-            icon="draft"
-            onClick={handleSaveDraft}
-          >
-            Save draft
-          </Button>
-          <Button variant="secondary" size="large" icon="calendar_month">
-            Schedule post
-          </Button>
-          <Button
-            variant="primary"
-            size="large"
-            icon="send"
-            onClick={handlePostNow}
-          >
-            Post now
-          </Button>
-        </div>
-
-        {popupMessage && <div className="draft-popup">{popupMessage}</div>}
-      </main>
-    </>
+    <main className="createevent-container">
+      <h2 className="createevent-title">Create an event for ITUnderground</h2>
+      {/*<ThumbnailInput onThumbnailSaved={setThumbnailPicture} />*/}
+      <ThumbnailInput onSelect={(pic) => setSelectedPicture(pic)} />
+      {/*<ThumbnailInput />*/}
+      <TitleInput title={title} setTitle={setTitle} />
+      <DatetimeInput
+        startTime={startTime}
+        setStartTime={setStartTime}
+        endTime={endTime}
+        setEndTime={setEndTime}
+        startDate={startDate}
+        setStartDate={setStartDate}
+        endDate={endDate}
+        setEndDate={setEndDate}
+      />
+      <DescriptionInputField
+        description={description}
+        setDescription={setDescription}
+      />
+      <TagsInputDropdown />
+      <SignupLink />
+      <div className="button-group">
+        <Button variant="tertiary" size="large">
+          Cancel
+        </Button>
+        <Button
+          variant="secondary"
+          size="large"
+          icon="draft"
+          onClick={handleSaveDraft}
+        >
+          Save draft
+        </Button>
+        <Button variant="secondary" size="large" icon="calendar_month">
+          Schedule post
+        </Button>
+        <Button
+          variant="primary"
+          size="large"
+          icon="send"
+          onClick={handlePostNow}
+        >
+          Post now
+        </Button>
+      </div>
+      {popupMessage && <div className="draft-popup">{popupMessage}</div>}
+    </main>
   );
 };
 
