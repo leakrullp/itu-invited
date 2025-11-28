@@ -1,14 +1,14 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom";
-import { AppRoutes } from "./Routes.jsx";
 import "./index.css";
 import initializeAllParse from "./services/parseConfig.js";
+import AuthenticationGate from "./AuthenticationGate.jsx";
 
 initializeAllParse();
 
 ReactDOM.render(
   <StrictMode>
-    <AppRoutes />
+    <AuthenticationGate />
   </StrictMode>,
   document.getElementById("root")
 );

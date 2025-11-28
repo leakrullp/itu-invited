@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import Button from "../Button/Button.jsx";
 import "./Navbar.css";
+import Parse from "parse";
 
-function Navbar({ loggedIn, setLoggedIn }) {
+function Navbar({ currentUser, setCurrentUser }) {
   return (
     <nav className="navbar">
       <h1>
@@ -45,16 +46,20 @@ function Navbar({ loggedIn, setLoggedIn }) {
             </div>
           </Link>
         </li>
+
         <li>
-          <Link to="/login">
-            <Button
-              variant="tertiary"
-              onClick={() => setLoggedIn((prev) => !prev)}
-              icon={loggedIn ? "Logout" : "Login"}
-            >
-              {loggedIn ? "Log out" : "Log in"}
-            </Button>
-          </Link>
+          <Button
+            variant="tertiary"
+            icon={currentUser ? "Logout" : "Login"}
+            onClick={async () => {
+              if (currentUser) {
+                await Parse.User.logOut();
+                setCurrentUser(null);
+              }
+            }}
+          >
+            {currentUser ? "Log out" : "Log in"}
+          </Button>
         </li>
       </ul>
     </nav>
