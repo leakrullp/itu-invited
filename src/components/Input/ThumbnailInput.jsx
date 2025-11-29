@@ -1,75 +1,63 @@
-import { useState } from "react";
-import Parse from "parse";
+import { useRef, useState, useEffect } from "react";
 import Button from "../../components/Button/Button.jsx";
+import Parse from "parse";
 import "./Input.css";
 
-export default function ShowPictures({ onSelect }) {
-  const [pictures, setPictures] = useState([]);
-  const [open, setOpen] = useState(false);
-  const [selectedId, setSelectedId] = useState(null);
+export default function ThumbnailInput({ onThumbnailSaved }) {
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef(null);
+  const isMounted = useRef(true);
 
-  async function loadPictures() {
+  useEffect(() => {
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
+
+  async function handleFileChange(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setUploading(true);
+
     try {
+      const parseFile = new Parse.File("thumbnail.png", file, "image/png");
+      await parseFile.save();
+
       const Picture = Parse.Object.extend("Picture");
-      const query = new Parse.Query(Picture);
+      const pictureObj = new Picture();
+      pictureObj.set("fileName", parseFile);
+      const savedPicture = await pictureObj.save();
 
-      const results = await query.find();
-
-      const pictureObjects = results
-        .map((obj) => {
-          const file = obj.get("fileName");
-          if (!file) return null;
-
-          return {
-            objectId: obj.id,
-            url: file.url(),
-            fullObj: obj,
-          };
-        })
-        .filter(Boolean);
-
-      setPictures(pictureObjects);
-      if (!open) {
-        setOpen(true);
-      } else {
-        setOpen(false);
+      if (isMounted.current) {
+        onThumbnailSaved(savedPicture);
+        setUploading(false);
       }
     } catch (err) {
-      console.error("Error loading pictures:", err);
+      if (isMounted.current) setUploading(false);
+      console.error(err);
     }
   }
 
-  function handleSelect(pic) {
-    setSelectedId(pic.objectId);
-    onSelect(pic.fullObj);
-  }
-
   return (
-    <div className="show-gallery-container">
+    <div className="thumbnail-upload">
       <Button
         variant="tertiary"
         size="large"
         icon="image"
-        onClick={loadPictures}
+        disabled={uploading}
+        onClick={() => fileInputRef.current.click()}
       >
-        Choose thumbnail picture
+        {uploading ? "Uploading..." : "Upload thumbnail"}
       </Button>
 
-      {open && (
-        <div className="gallery-grid">
-          {pictures.map((pic) => (
-            <img
-              key={pic.objectId}
-              src={pic.url}
-              alt=""
-              className={`gallery-image ${
-                selectedId === pic.objectId ? "selected" : ""
-              }`}
-              onClick={() => handleSelect(pic)}
-            />
-          ))}
-        </div>
-      )}
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        onChange={handleFileChange}
+        style={{ display: "none" }}
+      />
     </div>
   );
 }

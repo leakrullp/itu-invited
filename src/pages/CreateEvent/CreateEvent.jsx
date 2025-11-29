@@ -12,8 +12,8 @@ import { SaveEventToDB } from "./SaveEventToDB";
 export const CreateEvent = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  //const [thumbnailPicture, setThumbnailPicture] = useState(null);
-  const [selectedPicture, setSelectedPicture] = useState(null);
+  const [thumbnailPicture, setThumbnailPicture] = useState(null);
+
 
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -40,23 +40,27 @@ export const CreateEvent = () => {
         endTime,
         startDate,
         endDate,
-        selectedPicture,
+        thumbnailPicture,
+
       });
 
       console.log("Event saved with ID:", savedObj.id);
-      showPopup("Event posted for all to see!");
+      showPopup("Event posted!");
+
     } catch (error) {
       console.error("Error saving event:", error);
+      showPopup("An error occurred while posting.");
     }
   };
 
   return (
     <main className="createevent-container">
       <h2 className="createevent-title">Create an event for ITUnderground</h2>
-      {/*<ThumbnailInput onThumbnailSaved={setThumbnailPicture} />*/}
-      <ThumbnailInput onSelect={(pic) => setSelectedPicture(pic)} />
-      {/*<ThumbnailInput />*/}
+
+      <ThumbnailInput onThumbnailSaved={setThumbnailPicture} />
+
       <TitleInput title={title} setTitle={setTitle} />
+
       <DatetimeInput
         startTime={startTime}
         setStartTime={setStartTime}
@@ -67,38 +71,31 @@ export const CreateEvent = () => {
         endDate={endDate}
         setEndDate={setEndDate}
       />
+
       <DescriptionInputField
         description={description}
         setDescription={setDescription}
       />
+
       <TagsInputDropdown />
       <SignupLink />
+
       <div className="button-group">
-        <Button variant="tertiary" size="large">
-          Cancel
-        </Button>
-        <Button
-          variant="secondary"
-          size="large"
-          icon="draft"
-          onClick={handleSaveDraft}
-        >
+        <Button variant="tertiary" size="large">Cancel</Button>
+        <Button variant="secondary" size="large" icon="draft" onClick={handleSaveDraft}>
           Save draft
         </Button>
         <Button variant="secondary" size="large" icon="calendar_month">
           Schedule post
         </Button>
-        <Button
-          variant="primary"
-          size="large"
-          icon="send"
-          onClick={handlePostNow}
-        >
+        <Button variant="primary" size="large" icon="send" onClick={handlePostNow}>
           Post now
         </Button>
       </div>
+
       {popupMessage && <div className="draft-popup">{popupMessage}</div>}
     </main>
+    
   );
 };
 
