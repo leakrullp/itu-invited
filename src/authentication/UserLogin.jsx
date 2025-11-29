@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Parse from "parse";
 import "./Login.css";
 import { Button } from "../components/index";
@@ -8,27 +8,34 @@ export const UserLogin = ({ setCurrentUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    doUserLogin();
-  };
+  const isMounted = useRef(true);
+
+  useEffect(() => {
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
 
   const doUserLogin = async () => {
     try {
       const user = await Parse.User.logIn(username, password);
 
+      if (!isMounted.current) return;
+
       alert(`Welcome ${user.get("username")}`);
-
       setCurrentUser(user);
-
       setUsername("");
       setPassword("");
-
-      return true;
     } catch (error) {
-      alert(`Error! ${error.message}`);
-      return false;
+      if (isMounted.current) {
+        alert(`Error! ${error.message}`);
+      }
     }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    doUserLogin();
   };
 
   return (
