@@ -61,8 +61,10 @@ export const UserLogin = ({ setCurrentUser }) => {
             rightIcon="visibility_off"
             placeholder="Password"
           />
-
+          <br/>
+          <br/>
           <Button>Login</Button>
+          <Button className = "SignUp">Sign up</Button>
         </form>
       </div>
     </div>
