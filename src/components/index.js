@@ -11,6 +11,7 @@ export {
   TagInputField,
 } from "./Input/MasterInput.js";
 export { default as FavoriteButton } from "./FavoriteButton/FavoriteButton";
+export { default as UserInfo } from "./UserInfo/UserInfo";
 
 // Layouts (components that contain other components)
 export { default as EventCard } from "./EventCard/EventCard";

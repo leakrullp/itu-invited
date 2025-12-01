@@ -33,13 +33,6 @@ export const User = () => {
           </div>
         </div>
         <Button>Edit</Button>
-        <Button
-          onClick={alert("Whoops I need fixing")}
-          variant="secondary"
-          icon="logout"
-        >
-          Log out
-        </Button>
       </user-container>
     </>
   );
