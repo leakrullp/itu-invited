@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import Button from "../../components/Button/Button.jsx";
+import { Button } from "../index";
 import Parse from "parse";
 import "./Input.css";
 
@@ -40,7 +40,7 @@ export default function ThumbnailInput({ onThumbnailSaved }) {
   }
 
   return (
-    <div className="thumbnail-upload">
+    <>
       <Button
         variant="tertiary"
         size="large"
@@ -58,6 +58,6 @@ export default function ThumbnailInput({ onThumbnailSaved }) {
         onChange={handleFileChange}
         style={{ display: "none" }}
       />
-    </div>
+    </>
   );
 }

@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import Parse from "parse";
 import "./Login.css";
-import { Button } from "../components/index";
-import * as C from "../components/Input/MasterInput";
+import * as C from "../components";
 
 export const UserLogin = ({ setCurrentUser }) => {
   const [username, setUsername] = useState("");
@@ -61,10 +60,10 @@ export const UserLogin = ({ setCurrentUser }) => {
             rightIcon="visibility_off"
             placeholder="Password"
           />
-          <br/>
-          <br/>
-          <Button>Login</Button>
-          <Button className = "SignUp">Sign up</Button>
+          <br />
+          <br />
+          <C.Button>Login</C.Button>
+          <C.Button className="SignUp">Sign up</C.Button>
         </form>
       </div>
     </div>

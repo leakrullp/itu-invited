@@ -1,9 +1,8 @@
 import { Button, StatusTag } from "../../components/index.js";
-import data from "../../assets/Data/Data.js";
 import "./MyEvents.css";
 
 export const MyEvents = () => {
-  const myEvents = data;
+  const myEvents = null;
   const totalMyEvents = myEvents.length;
 
   return (
