@@ -5,6 +5,10 @@
   background-color: var(--color-neutral-0);
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
   font-family: var(--font-family);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: 4px;
 }
 
 .createevent-title {

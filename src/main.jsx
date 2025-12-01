@@ -2,7 +2,7 @@ import { StrictMode, useState } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import initializeAllParse from "./services/parseConfig.js";
-import AuthenticationGate from "./AuthenticationGate.jsx";
+import AuthenticationGate from "./authentication/AuthenticationGate.jsx";
 
 initializeAllParse();
 

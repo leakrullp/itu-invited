@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Parse from "parse";
-import LoginPage from "./authentication/LoginPage.jsx";
-import { AppRoutes } from "./Routes.jsx";
+import LoginPage from "./LoginPage.jsx";
+import { AppRoutes } from "../Routes.jsx";
 
 export default function AuthenticationGate() {
   const [currentUser, setCurrentUser] = useState(null);

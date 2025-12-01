@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { Button, UserInfo } from "../index";
+import { Button } from "../index";
 import "./Navbar.css";
 import Parse from "parse";
 
-function Navbar({ currentUser, setCurrentUser }) {
+export default function Navbar({ currentUser, setCurrentUser }) {
   return (
     <nav className="navbar">
       <h1>
@@ -70,5 +70,3 @@ function Navbar({ currentUser, setCurrentUser }) {
     </nav>
   );
 }
-
-export default Navbar;

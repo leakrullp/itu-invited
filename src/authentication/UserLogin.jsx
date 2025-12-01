@@ -1,34 +1,40 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Parse from "parse";
 import "./Login.css";
-import { Button } from "../components/index";
-import * as C from "../components/Input/MasterInput";
+import * as C from "../components";
 
 export const UserLogin = ({ setCurrentUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    doUserLogin();
-  };
+  const isMounted = useRef(true);
+
+  useEffect(() => {
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
 
   const doUserLogin = async () => {
     try {
       const user = await Parse.User.logIn(username, password);
 
+      if (!isMounted.current) return;
+
       alert(`Welcome ${user.get("username")}`);
-
       setCurrentUser(user);
-
       setUsername("");
       setPassword("");
-
-      return true;
     } catch (error) {
-      alert(`Error! ${error.message}`);
-      return false;
+      if (isMounted.current) {
+        alert(`Error! ${error.message}`);
+      }
     }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    doUserLogin();
   };
 
   return (
@@ -54,8 +60,10 @@ export const UserLogin = ({ setCurrentUser }) => {
             rightIcon="visibility_off"
             placeholder="Password"
           />
-
-          <Button>Login</Button>
+          <br />
+          <br />
+          <C.Button>Login</C.Button>
+          <C.Button className="SignUp">Sign up</C.Button>
         </form>
       </div>
     </div>
