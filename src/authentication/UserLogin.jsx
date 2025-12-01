@@ -63,7 +63,7 @@ export const UserLogin = ({ setCurrentUser }) => {
           <br />
           <br />
           <C.Button>Login</C.Button>
-          <C.Button className="SignUp">Sign up</C.Button>
+          <C.Button variant="secondary">Sign up</C.Button>
         </form>
       </div>
     </div>
