@@ -33,16 +33,3 @@
   width: 100%;
   column-gap: 16px;
 }
-
-.form-wrapper form .SignUp {
-  background-color: transparent;
-  color: var(--color-primary-600);
-  border-color: var(--color-primary-600);
-  padding: 0.625rem 1rem;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-.form-wrapper form .SignUp:hover {
-  background-color: var(--color-primary-100);
-}

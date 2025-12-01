@@ -14,12 +14,6 @@ export default function Navbar({ currentUser, setCurrentUser }) {
 
       <ul className="nav-links">
         <li>
-          <Link to="/user">
-            <UserInfo currentUser={currentUser} />
-          </Link>
-        </li>
-
-        <li>
           <Link to="/myevents">
             <Button variant="tertiary">My events</Button>
           </Link>
@@ -40,6 +34,7 @@ export default function Navbar({ currentUser, setCurrentUser }) {
             </Button>
           </Link>
         </li>
+
         <li>
           <Link to="/user">
             <div className="account-pic">
