@@ -17,7 +17,7 @@ export default function FrontPage() {
         const query = new Parse.Query(Event);
 
         //how we fetch the rows of the foreign keys
-        query.ascending("startDate");
+        query.ascending("startDate", "startTime");
         query.include("orgID");
         query.include("eventPicID");
         
