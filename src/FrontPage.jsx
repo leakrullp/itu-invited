@@ -20,7 +20,6 @@ export default function FrontPage() {
         query.ascending("startDate", "startTime");
         query.include("orgID");
         query.include("eventPicID");
-        
 
         const results = await query.find();
 
@@ -74,6 +73,7 @@ export default function FrontPage() {
         {events.map((event) => (
           <EventCard
             key={event.id}
+            id={event.id}
             {...event}
             onClick={() => setSelectedEvent(event)}
           />

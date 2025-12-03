@@ -80,6 +80,9 @@ export const Favorites = () => {
             id={event.id}
             {...event}
             onClick={() => setSelectedEvent(event)}
+            onRemove={(id) =>
+              setEvents((prev) => prev.filter((e) => e.id !== id))
+            }
           />
         ))}
       </section>

@@ -15,7 +15,6 @@
 .favorite-button .material-symbols-outlined {
   font-size: 24px;
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-  transition: font-variation-settings 120ms ease, color 120ms ease;
 }
 
 /* Hover -> filled */

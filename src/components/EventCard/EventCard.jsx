@@ -16,22 +16,25 @@ export default function EventCard({
   endTime,
   signupLink,
   onClick,
-  eventObject,
+  onRemove,
 }) {
   // const [isFavorited, setIsFavorited] = useState(favorited);
   const { favorites, setFavorite } = useFavoriteUIState();
   const isFavorited = favorites[id] ?? false;
 
-  // Backend + UI toggle logic
   async function handleFavorite() {
     if (!id) return console.error("Missing event ID");
 
-    console.log("Favorite clicked for:", id);
+    console.log("You added this to favorites:", id, title);
 
     try {
-      const newState = await toggleFavorite(id); // only pass ID
-      console.log("toggleFavorite returned:", newState);
+      const newState = await toggleFavorite(id); // backend toggle
       setFavorite(id, newState); // update global UI
+
+      if (!newState && onRemove) {
+        // remove from parent immediately
+        onRemove(id);
+      }
     } catch (err) {
       console.error("Favorite error:", err);
     }
