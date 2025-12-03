@@ -1,58 +1,89 @@
 import { useEffect, useState } from "react";
-import { FilterSidebar, EventCard } from "../../components/index.js";
-import "../../index.css"; /* temp-fix as Favorites.jsx doesn't have corresponding css */
 import Parse from "parse";
+
+import { FilterSidebar, EventCard } from "../../components";
+import "../../index.css";
+import DetailPage from "../DetailPage/Detailpage";
+import { getUserFavorites } from "./FavoriteService";
 
 export const Favorites = () => {
   const [events, setEvents] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => {
-    const fetchEvents = async () => {
+    async function loadFavorites() {
       try {
-        // Define your Parse class and query
-        const query = new Parse.Query("Event");
+        const favs = await getUserFavorites();
 
-        // Retrieve all Event objects
-        const results = await query.find();
+        // Map UserFavorite -> Event -> formattedJSON (same as FrontPage)
+        const formattedJSON = await Promise.all(
+          favs.map(async (favObj) => {
+            const eventObj = favObj.get("eventID");
 
-        console.log(`Fetched ${results.length} events from Back4App`);
+            // Fetch pointers (orgID, eventPicID)
+            const org = eventObj.get("orgID");
+            const pic = eventObj.get("eventPicID");
 
-        // Example: log just the first column, e.g., "title"
-        results.forEach((event) =>
-          console.log("Title was fetched:" + event.get("title"))
+            // Fetch relation tags
+            let tags = [];
+            const tagRelation = eventObj.relation("eventTag");
+            if (tagRelation) {
+              tags = (await tagRelation.query().find()).map((tag) =>
+                tag.get("term")
+              );
+            }
+
+            return {
+              id: eventObj.id,
+              title: eventObj.get("title"),
+              description: eventObj.get("description"),
+              startTime: eventObj.get("startTime"),
+              endTime: eventObj.get("endTime"),
+              signupLink: eventObj.get("signupLink"),
+              organisation: org?.get("orgName") ?? "unknown organisation",
+              img:
+                pic?.get("fileName")?.url() ??
+                "src/assets/thumbnail-default.png",
+              tags,
+            };
+          })
         );
 
-        // Convert Parse objects to plain JS for React rendering if needed
-        const parsedEvents = results.map((event) => ({
-          id: event.id,
-          ...event.attributes,
-        }));
-
-        setEvents(parsedEvents);
+        setEvents(formattedJSON);
       } catch (error) {
-        console.error("Error fetching events:", error);
-      } finally {
-        setLoading(false);
+        console.error("Error loading favorites:", error);
       }
-    };
+    }
 
-    fetchEvents();
+    loadFavorites();
   }, []);
-
-  if (loading) return <h2>Loading events...</h2>;
-
-  // Optionally: filter only favorited events if that property exists in Parse
-  const favoritedEvents = events.filter((event) => event.favorited);
-
-  const cardsFavorited = favoritedEvents.map((card) => (
-    <EventCard key={card.id} {...card} />
-  ));
 
   return (
     <>
-      <main className="container">{cardsFavorited}</main>
-      <FilterSidebar />
+      <section className="grid-container">
+        <div className="event-count">
+          <h2>Favorites ({events.length})</h2>
+        </div>
+
+        {events.map((event) => (
+          <EventCard
+            key={event.id}
+            {...event}
+            onClick={() => setSelectedEvent(event)}
+          />
+        ))}
+      </section>
+
+      <aside>
+        <FilterSidebar />
+      </aside>
+
+      {selectedEvent && (
+        <DetailPage
+          event={selectedEvent}
+          onClose={() => setSelectedEvent(null)}
+        />
+      )}
     </>
   );
 };
