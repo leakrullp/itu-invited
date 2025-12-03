@@ -1,6 +1,8 @@
 import "./EventCard.css";
 import { useState } from "react";
 import { TopicTag, Button, FavoriteButton } from "../index";
+import { getUserFavorites, toggleFavorite } from "../../pages/Favorites/FavoriteService";
+
 
 export default function EventCard({
   title,
@@ -12,6 +14,7 @@ export default function EventCard({
   signupLink,
   favorited,
   onClick,
+  eventObject,
 }) {
   const [isFavorited, setIsFavorited] = useState(favorited);
 
@@ -59,11 +62,19 @@ export default function EventCard({
   const visibleTags = tags.slice(0, MAX_VISIBLE_TAGS);
   const hiddenCount = tags.length - visibleTags.length;
 
-  function handleFavorite(e) {
-    // TODO: save to user's favorites
+  async function handleFavorite(e) {
     e.stopPropagation(); //ensures DetailPage is not opening here
     console.log("Toggle favorite for", title);
-    setIsFavorited(!isFavorited);
+    if (!eventObject) {
+      console.error("No eventObject provided for favoriting.");
+      return;
+    }
+    try {
+      const newFavState = await toggleFavorite(eventObject);
+      setIsFavorited(newFavState);
+    } catch (error) {
+      console.error("Error toggling favorite:", error);
+    }
   }
 
   return (

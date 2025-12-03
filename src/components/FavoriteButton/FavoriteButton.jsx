@@ -9,10 +9,14 @@ export default function FavoriteButton({ initial = false, onChange }) {
     setIsFavorited(newValue);
     onChange?.(newValue);
   }
+
   return (
     <button
       className={`favorite-button ${isFavorited ? "is-favorited" : ""}`}
-      onClick={toggleFavorite}
+      onClick={(e) => {
+        e.stopPropagation(); 
+        toggleFavorite();
+      }}
     >
       <span className="material-symbols-outlined">bookmark</span>
     </button>
