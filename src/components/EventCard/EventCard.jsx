@@ -1,10 +1,13 @@
 import "./EventCard.css";
-import { useState } from "react";
 import { TopicTag, Button, FavoriteButton } from "../index";
-import { getUserFavorites, toggleFavorite } from "../../pages/Favorites/FavoriteService";
+import { toggleFavorite } from "../../pages/Favorites/favoriteService";
+import { formatDate, formatTime, isSameDay } from "./dateService";
+import useFavoriteUIState from "../../hooks/useFavoriteUIState";
 
+const MAX_VISIBLE_TAGS = 4;
 
 export default function EventCard({
+  id,
   title,
   organisation,
   img,
@@ -12,30 +15,27 @@ export default function EventCard({
   startTime,
   endTime,
   signupLink,
-  favorited,
   onClick,
   eventObject,
 }) {
-  const [isFavorited, setIsFavorited] = useState(favorited);
+  // const [isFavorited, setIsFavorited] = useState(favorited);
+  const { favorites, setFavorite } = useFavoriteUIState();
+  const isFavorited = favorites[id] ?? false;
 
-  // Date helpers
-  const formatDate = (date) =>
-    new Intl.DateTimeFormat("en-GB", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-    }).format(date);
+  // Backend + UI toggle logic
+  async function handleFavorite() {
+    if (!id) return console.error("Missing event ID");
 
-  const formatTime = (time) =>
-    new Intl.DateTimeFormat("en-GB", {
-      hour: "2-digit",
-      minute: "2-digit",
-    }).format(time);
+    console.log("Favorite clicked for:", id);
 
-  const isSameDay = (d1, d2) =>
-    d1.getFullYear() === d2.getFullYear() &&
-    d1.getMonth() === d2.getMonth() &&
-    d1.getDate() === d2.getDate();
+    try {
+      const newState = await toggleFavorite(id); // only pass ID
+      console.log("toggleFavorite returned:", newState);
+      setFavorite(id, newState); // update global UI
+    } catch (err) {
+      console.error("Favorite error:", err);
+    }
+  }
 
   const start = new Date(startTime);
   const end = endTime ? new Date(endTime) : null; //objects that are null evaluate to "false" when looked at as a boolean
@@ -58,24 +58,8 @@ export default function EventCard({
     displayTime = "";
   }
 
-  const MAX_VISIBLE_TAGS = 4;
   const visibleTags = tags.slice(0, MAX_VISIBLE_TAGS);
   const hiddenCount = tags.length - visibleTags.length;
-
-  async function handleFavorite(e) {
-    e.stopPropagation(); //ensures DetailPage is not opening here
-    console.log("Toggle favorite for", title);
-    if (!eventObject) {
-      console.error("No eventObject provided for favoriting.");
-      return;
-    }
-    try {
-      const newFavState = await toggleFavorite(eventObject);
-      setIsFavorited(newFavState);
-    } catch (error) {
-      console.error("Error toggling favorite:", error);
-    }
-  }
 
   return (
     <article className="card" onClick={onClick}>
@@ -101,7 +85,7 @@ export default function EventCard({
         </div>
 
         <div className="bottom-btn-group">
-          <FavoriteButton onClick={handleFavorite} />
+          <FavoriteButton isFavorited={isFavorited} onClick={handleFavorite} />
 
           {signupLink && (
             <Button

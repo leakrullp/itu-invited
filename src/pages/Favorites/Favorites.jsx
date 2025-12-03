@@ -4,7 +4,7 @@ import Parse from "parse";
 import { FilterSidebar, EventCard } from "../../components";
 import "../../index.css";
 import DetailPage from "../DetailPage/Detailpage";
-import { getUserFavorites } from "./FavoriteService";
+import { getUserFavorites } from "./favoriteService";
 
 export const Favorites = () => {
   const [events, setEvents] = useState([]);
@@ -18,12 +18,21 @@ export const Favorites = () => {
         // Map UserFavorite -> Event -> formattedJSON (same as FrontPage)
         const formattedJSON = await Promise.all(
           favs.map(async (favObj) => {
-            const eventObj = favObj.get("eventID");
+            const eventID = favObj.get("eventID").id;
 
-            // Fetch pointers (orgID, eventPicID)
+            // STEP 2: re-fetch event with includes (IMPORTANT!!)
+            const Event = Parse.Object.extend("Event");
+            const query = new Parse.Query(Event);
+
+            query.equalTo("objectId", eventID);
+            query.include("orgID");
+            query.include("eventPicID");
+
+            const eventObj = await query.first();
+
+            // STEP 3: pointers now properly loaded
             const org = eventObj.get("orgID");
             const pic = eventObj.get("eventPicID");
-
             // Fetch relation tags
             let tags = [];
             const tagRelation = eventObj.relation("eventTag");
@@ -68,6 +77,7 @@ export const Favorites = () => {
         {events.map((event) => (
           <EventCard
             key={event.id}
+            id={event.id}
             {...event}
             onClick={() => setSelectedEvent(event)}
           />
