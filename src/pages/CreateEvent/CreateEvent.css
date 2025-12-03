@@ -18,6 +18,10 @@
   margin-bottom: 1.5rem;
 }
 
+.createevent-title #org-name {
+  color: var(--color-primary-600);
+}
+
 .thumbnail-upload {
   border: 2px dashed var(--color-neutral-200);
   padding: 2rem;

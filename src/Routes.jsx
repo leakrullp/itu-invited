@@ -12,7 +12,10 @@ export const AppRoutes = ({ currentUser, setCurrentUser }) => {
       <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser} />
       <Routes>
         <Route path="/" element={<FrontPage />} />
-        <Route path="/createevent" element={<CreateEvent />} />
+        <Route
+          path="/createevent"
+          element={<CreateEvent currentUser={currentUser} />}
+        />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/myevents" element={<MyEvents />} />
         <Route path="/user" element={<User />} />

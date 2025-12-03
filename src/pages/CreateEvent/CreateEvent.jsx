@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Button,
   DatetimeInput,
@@ -9,8 +9,11 @@ import {
 } from "../../components";
 import "./CreateEvent.css";
 import { SaveEventToDB } from "./SaveEventToDB";
+import returnOrgNameForAdminUser from "./LoadOrganizationData";
 
-export const CreateEvent = () => {
+export const CreateEvent = ({ currentUser }) => {
+  const [orgName, setOrgName] = useState("");
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [thumbnailPicture, setThumbnailPicture] = useState(null);
@@ -51,9 +54,19 @@ export const CreateEvent = () => {
     }
   };
 
+  useEffect(() => {
+    const loadOrg = async () => {
+      const name = await returnOrgNameForAdminUser(currentUser);
+      setOrgName(name || "Unknown organization");
+    };
+    loadOrg();
+  }, [currentUser]);
+
   return (
     <main className="createevent-container">
-      <h2 className="createevent-title">Create an event for ITUnderground</h2>
+      <h2 className="createevent-title">
+        Create an event for <span id="org-name">{orgName}</span>
+      </h2>
 
       <ThumbnailInput onThumbnailSaved={setThumbnailPicture} />
 
