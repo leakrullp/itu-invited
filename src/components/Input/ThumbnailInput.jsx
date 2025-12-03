@@ -5,6 +5,7 @@ import "./Input.css";
 
 export default function ThumbnailInput({ onThumbnailSaved }) {
   const [uploading, setUploading] = useState(false);
+  const [selectedFileName, setSelectedFileName] = useState("");
   const fileInputRef = useRef(null);
   const isMounted = useRef(true);
 
@@ -18,10 +19,11 @@ export default function ThumbnailInput({ onThumbnailSaved }) {
     const file = e.target.files[0];
     if (!file) return;
 
+    setSelectedFileName(file.name);
     setUploading(true);
 
     try {
-      const parseFile = new Parse.File("thumbnail.png", file, "image/png");
+      const parseFile = new Parse.File(file.name, file, "image/png");
       await parseFile.save();
 
       const Picture = Parse.Object.extend("Picture");
@@ -41,23 +43,31 @@ export default function ThumbnailInput({ onThumbnailSaved }) {
 
   return (
     <>
-      <Button
-        variant="tertiary"
-        size="large"
-        icon="image"
-        disabled={uploading}
-        onClick={() => fileInputRef.current.click()}
-      >
-        {uploading ? "Uploading..." : "Upload thumbnail"}
-      </Button>
-
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept="image/*"
-        onChange={handleFileChange}
-        style={{ display: "none" }}
-      />
+      <div className="upload-button-wrapper">
+        <input
+          id="thumbnail-upload"
+          ref={fileInputRef}
+          type="file"
+          accept="image/*"
+          onChange={handleFileChange}
+          style={{ display: "none" }}
+        />
+        <label htmlFor="thumbnail-upload">
+          <Button
+            variant="tertiary"
+            size="large"
+            icon="image"
+            disabled={uploading}
+            onClick={() => fileInputRef.current.click()}
+          >
+            Upload thumbnail
+          </Button>
+        </label>
+        <p>
+          {uploading ? "Uploading..." : selectedFileName || "No file selected"}
+        </p>
+      </div>
+      <p>fhjsjgk</p>
     </>
   );
 }
