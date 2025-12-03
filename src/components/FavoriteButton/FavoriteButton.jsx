@@ -1,18 +1,13 @@
-import { useState } from "react";
 import "./FavoriteButton.css";
 
-export default function FavoriteButton({ initial = false, onChange }) {
-  const [isFavorited, setIsFavorited] = useState(initial);
-
-  function toggleFavorite() {
-    const newValue = !isFavorited;
-    setIsFavorited(newValue);
-    onChange?.(newValue);
-  }
+export default function FavoriteButton({ isFavorited, onClick }) {
   return (
     <button
       className={`favorite-button ${isFavorited ? "is-favorited" : ""}`}
-      onClick={toggleFavorite}
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick?.();
+      }}
     >
       <span className="material-symbols-outlined">bookmark</span>
     </button>

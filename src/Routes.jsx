@@ -7,6 +7,7 @@ import FrontPage from "./FrontPage.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
 
 export const AppRoutes = ({ currentUser, setCurrentUser }) => {
+  console.log("AppRoutes currentUser:", currentUser.id, currentUser.get("username"));
   return (
     <BrowserRouter>
       <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser} />
