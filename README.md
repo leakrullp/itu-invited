@@ -1,17 +1,19 @@
-# React + Vite
+# Intro to ITU Invited
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The platform lets regular students at ITU create an account and check out all events taking place on campus. Administrators of student-driven organizations and ITU officials can get a special admin account, that lets them create events. All users can save their favorites for later and you can filter based on what has your interest.
 
-Currently, two official plugins are available:
+## Versions
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+We are using Node version `22.19.0` and npm version `10.9.3`. We have had to downgrade to React version `17.0.2`.
 
-## React Compiler
+## How to run
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Clone the repository
+2. Enter `npm install` to update `node_modules`
+3. Switch to the main branch and run `npm run dev`
 
-## Expanding the ESLint configuration
+Login credentials to check out the platform can be sent via email.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# itu-invited
+## Our team
+
+This platform is a project for the course Techincal Interaction Design in the autumn semester of 2025 at the IT University of Copenhagen. It was made by [thole@itu.dk](mailto:thole@itu.dk), [clao@itu.dk](mailto:clao@itu.dk), [kdre@itu.dk](mailto:kdre@itu.dk), and [leape@itu.dk](mailto:leape@itu.dk).
