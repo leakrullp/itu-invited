@@ -69,7 +69,6 @@ export default function FrontPage() {
         <div className="event-count">
           <h2>Events ({events.length})</h2>
         </div>
-
         {events.map((event) => (
           <EventCard
             key={event.id}

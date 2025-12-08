@@ -1,6 +1,7 @@
 import Parse from "parse";
 
 export async function SaveEventToDB({
+  orgId,
   title,
   description,
   startTime,
@@ -8,6 +9,8 @@ export async function SaveEventToDB({
   startDate,
   endDate,
   thumbnailPicture,
+  signupLink,
+  tags,
 }) {
   const isPosted = true;
 
@@ -15,7 +18,7 @@ export async function SaveEventToDB({
   const startDateTime = new Date(`${startDate}T${startTime}`);
   const endDateTime = new Date(`${endDate}T${endTime}`);
 
-  const orgID = "5z1KbHqPBC";
+  const orgID = orgId;
   const Organization = Parse.Object.extend("Organization");
   const orgObj = new Organization();
   orgObj.id = orgID;
@@ -37,7 +40,7 @@ export async function SaveEventToDB({
   newEvent.set("isPosted", isPosted);
   newEvent.set("title", title);
   newEvent.set("description", description);
-  newEvent.set("signupLink", "https://erdetfredag.dk/");
+  newEvent.set("signupLink", signupLink);
   newEvent.set("orgID", orgObj);
   newEvent.set("eventPicID", thumbnailPicture);
 

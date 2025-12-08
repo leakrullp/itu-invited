@@ -9,13 +9,18 @@ import {
 } from "../../components";
 import "./CreateEvent.css";
 import { SaveEventToDB } from "./SaveEventToDB";
-import returnOrgNameForAdminUser from "./LoadOrganizationData";
+import {
+  returnOrgNameForAdminUser,
+  returnOrgIdForAdminUser,
+} from "./LoadOrganizationData";
 
 export const CreateEvent = ({ currentUser }) => {
+  const [orgId, setOrgId] = useState("");
   const [orgName, setOrgName] = useState("");
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [signupLink, setSignupLink] = useState("");
   const [thumbnailPicture, setThumbnailPicture] = useState(null);
 
   const [startDate, setStartDate] = useState("");
@@ -37,6 +42,7 @@ export const CreateEvent = ({ currentUser }) => {
   const handlePostNow = async () => {
     try {
       const savedObj = await SaveEventToDB({
+        orgId,
         title,
         description,
         startTime,
@@ -44,6 +50,8 @@ export const CreateEvent = ({ currentUser }) => {
         startDate,
         endDate,
         thumbnailPicture,
+        signupLink,
+        // tags,
       });
 
       console.log("Event saved with ID:", savedObj.id);
@@ -58,6 +66,8 @@ export const CreateEvent = ({ currentUser }) => {
     const loadOrg = async () => {
       const name = await returnOrgNameForAdminUser(currentUser);
       setOrgName(name || "Unknown organization");
+      const id = await returnOrgIdForAdminUser(currentUser);
+      setOrgId(id || null);
     };
     loadOrg();
   }, [currentUser]);
@@ -98,7 +108,12 @@ export const CreateEvent = ({ currentUser }) => {
 
       <TagsInputDropdown />
 
-      <InputField label="Signup link" />
+      <InputField
+        label="Signup link"
+        placeholder="Add any link or method used to collect registrations"
+        value={signupLink}
+        onChange={(e) => setSignupLink(e.target.value)}
+      />
 
       <div className="button-group">
         <Button variant="tertiary" size="large">
