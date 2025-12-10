@@ -29,14 +29,30 @@ export const CreateEvent = ({ currentUser }) => {
   const [endTime, setEndTime] = useState("");
 
   const [popupMessage, setPopupMessage] = useState("");
+  const [popupVariant, setPopupVariant] = useState("success");
 
-  const showPopup = (message) => {
+  const showPopup = (message, variant = "success") => {
     setPopupMessage(message);
+    setPopupVariant(variant);
     setTimeout(() => setPopupMessage(""), 5000);
   };
 
+  const [showCancelPopup, setShowCancelPopup] = useState(false);
+
+  const handleCancel = () => {
+    setShowCancelPopup(true);
+  };
+
+  const confirmCancel = () => {
+    window.location.href = "/";
+  };
+
+  const closeCancelPopup = () => {
+    setShowCancelPopup(false);
+  };
+
   const handleSaveDraft = () => {
-    showPopup("Saved as draft. Go to 'My events'");
+    showPopup("Saved as draft. Find your drafts in 'My events'", "success");
   };
 
   const handlePostNow = async () => {
@@ -51,14 +67,13 @@ export const CreateEvent = ({ currentUser }) => {
         endDate,
         thumbnailPicture,
         signupLink,
-        // tags,
       });
 
       console.log("Event saved with ID:", savedObj.id);
-      showPopup("Event posted!");
+      showPopup("Event posted!", "success");
     } catch (error) {
       console.error("Error saving event:", error);
-      showPopup("An error occurred while posting.");
+      showPopup("An error occurred while posting.", "error");
     }
   };
 
@@ -110,15 +125,16 @@ export const CreateEvent = ({ currentUser }) => {
 
       <InputField
         label="Signup link"
-        placeholder="Add any link or method used to collect registrations"
+        placeholder="Add URL for signup"
         value={signupLink}
         onChange={(e) => setSignupLink(e.target.value)}
       />
 
       <div className="button-group">
-        <Button variant="tertiary" size="large">
+        <Button variant="tertiary" size="large" onClick={handleCancel}>
           Cancel
         </Button>
+
         <Button
           variant="secondary"
           size="large"
@@ -127,9 +143,7 @@ export const CreateEvent = ({ currentUser }) => {
         >
           Save draft
         </Button>
-        <Button variant="secondary" size="large" icon="calendar_month">
-          Schedule post
-        </Button>
+
         <Button
           variant="primary"
           size="large"
@@ -140,7 +154,31 @@ export const CreateEvent = ({ currentUser }) => {
         </Button>
       </div>
 
-      {popupMessage && <div className="draft-popup">{popupMessage}</div>}
+      {popupMessage && (
+        <div className={`draft-popup ${popupVariant}`}>{popupMessage}</div>
+      )}
+
+      {showCancelPopup && (
+        <div className="cancel-popup-overlay">
+          <div className="cancel-popup">
+            <p>
+              Are you sure you want to cancel?
+              <br />
+              All progress will be lost
+            </p>
+
+            <div className="cancel-popup-buttons">
+              <Button variant="tertiary" onClick={closeCancelPopup}>
+                No
+              </Button>
+
+              <Button variant="primary" onClick={confirmCancel}>
+                Yes, cancel
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 };
