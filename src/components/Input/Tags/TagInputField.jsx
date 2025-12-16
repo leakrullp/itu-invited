@@ -1,6 +1,6 @@
 import { useState } from "react";
-import TopicTag from "../TopicTag/TopicTag.jsx";
-import "./Input.css";
+import { TopicTag } from "../../index";
+import "../Input.css";
 
 function TagInputField({
   label,

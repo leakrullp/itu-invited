@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Input.css";
 
-function SelectField({
+export default function SelectField({
   label, //what text to show above the dropdown
   placeholder = "None selected", //text to show before any selected
   options = [], //to hold tags from the database and show in dropdown
@@ -9,7 +9,6 @@ function SelectField({
   onChange, //passes a function
   disabled = false, //makes sure dropdown only works when data is loaded
   invalid = false, //binary to test if dropdown works
-  multiple = false, // enables multi selection
 }) {
   const [open, setOpen] = useState(false);
 
@@ -74,5 +73,3 @@ function SelectField({
     </div>
   );
 }
-
-export default SelectField;

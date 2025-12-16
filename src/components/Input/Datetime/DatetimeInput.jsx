@@ -1,7 +1,4 @@
-import { useState } from "react";
-import TopicTag from "../TopicTag/TopicTag.jsx";
-import Button from "../../components/Button/Button.jsx";
-import "./Input.css";
+import "../Input.css";
 
 export default function DatetimeInput({
   startTime,
@@ -14,9 +11,8 @@ export default function DatetimeInput({
   setEndDate,
 }) {
   return (
-    <div className="date-container">
-      {/*Todo: Add a date-field for end-time/*/}
-      <label className="date-field">
+    <>
+      <label className="input-label">
         <span>Date & Time</span>
       </label>
 
@@ -59,6 +55,6 @@ export default function DatetimeInput({
           />
         </div>
       </div>
-    </div>
+    </>
   );
 }

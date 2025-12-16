@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 import Button from "../Button/Button.jsx";
 =======
 import { Button } from "../index";
 import logo from "../../assets/NEW_LOGO.svg";
 >>>>>>> Stashed changes
+=======
+import { Button } from "../index";
+>>>>>>> leas-branch
 import "./Navbar.css";
 import Parse from "parse";
 
-function Navbar({ currentUser, setCurrentUser }) {
+export default function Navbar({ currentUser, setCurrentUser }) {
   return (
     <nav className="navbar">
       <h1>
@@ -70,5 +74,3 @@ function Navbar({ currentUser, setCurrentUser }) {
     </nav>
   );
 }
-
-export default Navbar;

@@ -1,6 +1,3 @@
-import { useState } from "react";
-import TopicTag from "../TopicTag/TopicTag.jsx";
-import Button from "../../components/Button/Button.jsx";
 import "./Input.css";
 
 export default function DescriptionInputField({ description, setDescription }) {

@@ -1,6 +1,6 @@
 import "./User.css";
 import { Button } from "../../components";
-import UserSettings from "../../assets/Data/UserSettings";
+import UserSettings from "./UserSettings";
 
 const currentUserID = 1; // Hardcoded for now
 

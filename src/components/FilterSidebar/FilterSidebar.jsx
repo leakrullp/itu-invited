@@ -1,7 +1,7 @@
 import "./FilterSidebar.css";
 import { useState } from "react";
 import { SelectField, TagInputField, Button } from "../index";
-import clubs from "../../assets/Data/Clubs.js";
+import clubs from "./Clubs.js";
 
 export default function FilterSidebar() {
   const [selectedClub, setSelectedClub] = useState("");

@@ -17,6 +17,7 @@ export default function FrontPage() {
         const query = new Parse.Query(Event);
 
         //how we fetch the rows of the foreign keys
+        query.ascending("startDate", "startTime");
         query.include("orgID");
         query.include("eventPicID");
 
@@ -68,10 +69,10 @@ export default function FrontPage() {
         <div className="event-count">
           <h2>Events ({events.length})</h2>
         </div>
-
         {events.map((event) => (
           <EventCard
             key={event.id}
+            id={event.id}
             {...event}
             onClick={() => setSelectedEvent(event)}
           />

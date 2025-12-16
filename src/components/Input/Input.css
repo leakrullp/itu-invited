@@ -49,6 +49,17 @@
   background: transparent;
 }
 
+.upload-button-wrapper {
+  border: 1px dotted var(--color-neutral-100);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+.upload-button-wrapper p {
+  margin: 0.5rem;
+}
+
 textarea .input-el {
   min-height: 96px;
   resize: vertical;

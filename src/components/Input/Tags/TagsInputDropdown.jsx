@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import "./Input.css";
+import "../Input.css";
 import Parse from "parse";
-import SelectField from "./SelectField.jsx";
+import { SelectField } from "../../index";
 
 export default function TagsInputDropdown() {
   // To retrieve and show tags from the database
@@ -27,15 +27,13 @@ export default function TagsInputDropdown() {
   }, []);
 
   return (
-    <div className="title-container">
-      <SelectField //create SelectionField for tags allowing for multiselection
-        label="Select Tags"
-        placeholder="None selected"
-        options={tagsList}
-        value={selectedTags}
-        onChange={setSelectedTags}
-        multiple={true}
-      />
-    </div>
+    <SelectField
+      label="Select tags"
+      placeholder="None selected"
+      options={tagsList}
+      value={selectedTags}
+      onChange={setSelectedTags}
+      multiple={true}
+    />
   );
 }

@@ -1,19 +1,27 @@
-import { useState } from "react";
-import Button from "../../components/Button/Button.jsx";
-import ThumbnailInput from "../../components/Input/ThumbnailInput.jsx";
-import TitleInput from "../../components/Input/TitleInput.jsx";
-import DatetimeInput from "../../components/Input/DatetimeInput.jsx";
-import DescriptionInputField from "../../components/Input/DescriptionInputField.jsx";
-import TagsInputDropdown from "../../components/Input/TagsInputDropdown.jsx";
-import SignupLink from "../../components/Input/SignupLink.jsx";
+import { useState, useEffect } from "react";
+import {
+  Button,
+  DatetimeInput,
+  InputField,
+  TagsInputDropdown,
+  TextAreaField,
+  ThumbnailInput,
+} from "../../components";
 import "./CreateEvent.css";
 import { SaveEventToDB } from "./SaveEventToDB";
+import {
+  returnOrgNameForAdminUser,
+  returnOrgIdForAdminUser,
+} from "./LoadOrganizationData";
 
-export const CreateEvent = () => {
+export const CreateEvent = ({ currentUser }) => {
+  const [orgId, setOrgId] = useState("");
+  const [orgName, setOrgName] = useState("");
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  //const [thumbnailPicture, setThumbnailPicture] = useState(null);
-  const [selectedPicture, setSelectedPicture] = useState(null);
+  const [signupLink, setSignupLink] = useState("");
+  const [thumbnailPicture, setThumbnailPicture] = useState(null);
 
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -34,29 +42,51 @@ export const CreateEvent = () => {
   const handlePostNow = async () => {
     try {
       const savedObj = await SaveEventToDB({
+        orgId,
         title,
         description,
         startTime,
         endTime,
         startDate,
         endDate,
-        selectedPicture,
+        thumbnailPicture,
+        signupLink,
+        // tags,
       });
 
       console.log("Event saved with ID:", savedObj.id);
-      showPopup("Event posted for all to see!");
+      showPopup("Event posted!");
     } catch (error) {
       console.error("Error saving event:", error);
+      showPopup("An error occurred while posting.");
     }
   };
 
+  useEffect(() => {
+    const loadOrg = async () => {
+      const name = await returnOrgNameForAdminUser(currentUser);
+      setOrgName(name || "Unknown organization");
+      const id = await returnOrgIdForAdminUser(currentUser);
+      setOrgId(id || null);
+    };
+    loadOrg();
+  }, [currentUser]);
+
   return (
     <main className="createevent-container">
-      <h2 className="createevent-title">Create an event for ITUnderground</h2>
-      {/*<ThumbnailInput onThumbnailSaved={setThumbnailPicture} />*/}
-      <ThumbnailInput onSelect={(pic) => setSelectedPicture(pic)} />
-      {/*<ThumbnailInput />*/}
-      <TitleInput title={title} setTitle={setTitle} />
+      <h2 className="createevent-title">
+        Create an event for <span id="org-name">{orgName}</span>
+      </h2>
+
+      <ThumbnailInput onThumbnailSaved={setThumbnailPicture} />
+
+      <InputField
+        label="Title"
+        placeholder="Title of your event"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
+
       <DatetimeInput
         startTime={startTime}
         setStartTime={setStartTime}
@@ -67,12 +97,24 @@ export const CreateEvent = () => {
         endDate={endDate}
         setEndDate={setEndDate}
       />
-      <DescriptionInputField
-        description={description}
-        setDescription={setDescription}
+
+      <TextAreaField
+        label="Description"
+        placeholder="Add your event description"
+        rows="4"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
       />
+
       <TagsInputDropdown />
-      <SignupLink />
+
+      <InputField
+        label="Signup link"
+        placeholder="Add any link or method used to collect registrations"
+        value={signupLink}
+        onChange={(e) => setSignupLink(e.target.value)}
+      />
+
       <div className="button-group">
         <Button variant="tertiary" size="large">
           Cancel
@@ -97,6 +139,7 @@ export const CreateEvent = () => {
           Post now
         </Button>
       </div>
+
       {popupMessage && <div className="draft-popup">{popupMessage}</div>}
     </main>
   );

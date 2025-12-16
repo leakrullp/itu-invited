@@ -1,27 +1,28 @@
 import Parse from "parse";
 
 export async function SaveEventToDB({
+  orgId,
   title,
   description,
   startTime,
   endTime,
   startDate,
   endDate,
-  selectedPicture,
+  thumbnailPicture,
+  signupLink,
+  tags,
 }) {
   const isPosted = true;
 
-  // Combine date + time into single value
+  // Combine date + time into real JavaScript Date objects
   const startDateTime = new Date(`${startDate}T${startTime}`);
   const endDateTime = new Date(`${endDate}T${endTime}`);
 
-  // to do - Org is still hard coded
-  const orgID = "5z1KbHqPBC";
+  const orgID = orgId;
   const Organization = Parse.Object.extend("Organization");
   const orgObj = new Organization();
   orgObj.id = orgID;
 
-  // to do - tags are still hard coded
   const selectedTags = ["Fun", "Python"];
   const EventTag = Parse.Object.extend("EventTag");
   const tagQuery = new Parse.Query(EventTag);
@@ -39,10 +40,9 @@ export async function SaveEventToDB({
   newEvent.set("isPosted", isPosted);
   newEvent.set("title", title);
   newEvent.set("description", description);
-  newEvent.set("signupLink", "https://erdetfredag.dk/");
+  newEvent.set("signupLink", signupLink);
   newEvent.set("orgID", orgObj);
-  //newEvent.set("eventPicID", thumbnailPicture);
-  newEvent.set("eventPicID", selectedPicture);
+  newEvent.set("eventPicID", thumbnailPicture);
 
   // Set correct dates
   newEvent.set("startTime", startDateTime);

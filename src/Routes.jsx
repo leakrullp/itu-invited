@@ -7,12 +7,16 @@ import FrontPage from "./FrontPage.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
 
 export const AppRoutes = ({ currentUser, setCurrentUser }) => {
+  console.log("AppRoutes currentUser:", currentUser.id, currentUser.get("username"));
   return (
     <BrowserRouter>
       <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser} />
       <Routes>
         <Route path="/" element={<FrontPage />} />
-        <Route path="/createevent" element={<CreateEvent />} />
+        <Route
+          path="/createevent"
+          element={<CreateEvent currentUser={currentUser} />}
+        />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/myevents" element={<MyEvents />} />
         <Route path="/user" element={<User />} />
