@@ -13,6 +13,7 @@ import {
   returnOrgNameForAdminUser,
   returnOrgIdForAdminUser,
 } from "./LoadOrganizationData";
+import { toast } from "react-toastify";
 
 export const CreateEvent = ({ currentUser }) => {
   const [orgId, setOrgId] = useState("");
@@ -55,10 +56,16 @@ export const CreateEvent = ({ currentUser }) => {
       });
 
       console.log("Event saved with ID:", savedObj.id);
-      showPopup("Event posted!");
+      toast.success("Event posted successfully!", {
+        theme: "colored",
+        autoClose: 1500,
+      });
     } catch (error) {
       console.error("Error saving event:", error);
-      showPopup("An error occurred while posting.");
+      toast.error("Failed to post event. Please try again.", {
+        theme: "colored",
+        autoClose: 5000,
+      });
     }
   };
 
