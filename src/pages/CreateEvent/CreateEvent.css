@@ -148,14 +148,62 @@
 
 .draft-popup {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  background-color: white;
-  color: var(--color-neutral-900);
+  width: 600px;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   padding: 1rem 1.5rem;
+  border-radius: 0 0 1px 1px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
   font-weight: 500;
-  animation: fadeInOut 3s ease forwards;
-  z-index: 1000;
+  font-size: 1.25rem;
+  z-index: 2;
   font-family: var(--font-family);
+}
+
+.draft-popup.success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.draft-popup.error {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.cancel-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.cancel-popup {
+  background: white;
+  padding: 2rem;
+  border-radius: 4px;
+  width: 320px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+.cancel-popup .btn--tertiary {
+  color: white !important;
+  background-color: #ff4d4d !important;
+}
+
+.cancel-popup .btn--tertiary:hover {
+  background-color: #e60000 !important;
+}
+
+.cancel-popup .btn--primary {
+  background-color: #2ecc71 !important;
+  color: white !important;
+}
+
+.cancel-popup .btn--primary:hover {
+  background-color: #27ae60 !important;
 }
