@@ -5,6 +5,7 @@ import Parse from "parse";
 export default function ThumbnailGallery({ open, onSelect }) {
   const [pictures, setPictures] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
+  const [page, setPage] = useState(0);
 
   useEffect(() => {
     if (!open) return;
@@ -13,6 +14,11 @@ export default function ThumbnailGallery({ open, onSelect }) {
       try {
         const Picture = Parse.Object.extend("Picture");
         const query = new Parse.Query(Picture);
+
+        // How many thumbnail pictures to fetch from DB
+        query.limit(8);
+        query.skip(page * 8);
+
         const results = await query.find();
 
         const pictureObjects = results
@@ -35,7 +41,7 @@ export default function ThumbnailGallery({ open, onSelect }) {
     }
 
     loadPictures();
-  }, [open]);
+  }, [open, page]); // Re-run when gallery opens or page changes
 
   if (!open) return null;
 
@@ -56,6 +62,28 @@ export default function ThumbnailGallery({ open, onSelect }) {
             }}
           />
         ))}
+      </div>
+
+      {/* Pagination controls for navigating through gallery */}
+      <div style={{ display: "flex", gap: "8px", marginTop: "8px" }}>
+        {/* Go to previous page */}
+        <button
+          type="button"
+          className="btn btn--tertiary"
+          disabled={page === 0}
+          onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
+        >
+          Previous
+        </button>
+
+        {/* Go to next page */}
+        <button
+          type="button"
+          className="btn btn--tertiary"
+          onClick={() => setPage((prev) => prev + 1)}
+        >
+          Next
+        </button>
       </div>
     </div>
   );
