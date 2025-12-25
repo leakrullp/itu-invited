@@ -140,7 +140,7 @@ select.input-el {
 
 /* ThumbnailInput: Container */
 .show-gallery-container {
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 /*ThumbnailInput: Grid layout for where thumbnails are placed */
@@ -148,14 +148,19 @@ select.input-el {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 8px; /* important that matches border-radius for .gallery-image */
+  grid-auto-rows: 150px; /* .show-gallery-container max-height /  .gallery-grid grid-auto-rows gives amount of rows fx. 450/150= 3 rows*/
 }
 
 /*ThumbnailInput: Each thumbnail*/
 .gallery-image {
   width: 100%;
+  height: 100%;
+  object-fit: contain; /* KEY: scales image only when needed */
+  object-position: center;
   border-radius: 8px;
-  cursor: pointer; /* how does cursor look when hovering */
-  border: 3px solid transparent; /* space between thumbnails */
+  cursor: pointer;
+  border: 3px solid transparent;
+  display: block; /* removes inline-img baseline weirdness */
 }
 
 /*ThumbnailInput: Highlighted selected image */
