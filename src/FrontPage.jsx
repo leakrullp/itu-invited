@@ -3,10 +3,15 @@ import { useEffect, useState } from "react";
 import "./index.css";
 import Parse from "parse";
 import DetailPage from "./pages/DetailPage/Detailpage";
+import Loading from "./toasts/Loading";
+
+
 
 export default function FrontPage() {
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
 
   useEffect(() => {
     async function loadEvents() {
@@ -57,8 +62,11 @@ export default function FrontPage() {
         );
       } catch (error) {
         console.error("Error loading events:", error);
+        setIsLoading(false);
       }
-      setEvents(formattedJSON); //adds JSON data to useState([])
+     setIsLoading(false);
+
+     setEvents(formattedJSON); //adds JSON data to useState([])
     }
     loadEvents();
   }, []); //dependency array is empty, but needs connection to FilterSidebar eventually
@@ -67,8 +75,10 @@ export default function FrontPage() {
     <>
       <section className="grid-container">
         <div className="event-count">
-          <h2>Events ({events.length})</h2>
+          <h2>{events.length < 1 ? "" : "Events " + "(" + events.length +")"}</h2>
         </div>
+        {isLoading && <Loading text="Loading events..." />}
+
         {events.map((event) => (
           <EventCard
             key={event.id}
