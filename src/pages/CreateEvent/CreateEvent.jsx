@@ -29,23 +29,34 @@ export const CreateEvent = ({ currentUser }) => {
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
 
-  const [popupMessage, setPopupMessage] = useState("");
-  const [popupVariant, setPopupVariant] = useState("success");
-
-  const showPopup = (message, variant = "success") => {
-    setPopupMessage(message);
-    setPopupVariant(variant);
-    setTimeout(() => setPopupMessage(""), 5000);
-  };
-
   const [showCancelPopup, setShowCancelPopup] = useState(false);
+  const [isPosting, setIsPosting] = useState(false);
+
+  const resetForm = () => {
+    setTitle("");
+    setDescription("");
+    setSignupLink("");
+    setThumbnailPicture(null);
+
+    setStartDate("");
+    setEndDate("");
+    setStartTime("");
+    setEndTime("");
+  };
 
   const handleCancel = () => {
     setShowCancelPopup(true);
   };
 
   const confirmCancel = () => {
-    window.location.href = "/";
+    toast.info("Event creation cancelled", {
+      theme: "colored",
+      autoClose: 2000,
+    });
+
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 2000);
   };
 
   const closeCancelPopup = () => {
@@ -53,11 +64,16 @@ export const CreateEvent = ({ currentUser }) => {
   };
 
   const handleSaveDraft = () => {
-    showPopup("Saved as draft. Find your drafts in 'My events'", "success");
+    toast.success("Saved as draft. Find your drafts in 'My events'", {
+      theme: "colored",
+      autoClose: 5000,
+    });
   };
 
   const handlePostNow = async () => {
     try {
+      setIsPosting(true);
+
       const savedObj = await SaveEventToDB({
         orgId,
         title,
@@ -75,12 +91,16 @@ export const CreateEvent = ({ currentUser }) => {
         theme: "colored",
         autoClose: 1500,
       });
+
+      resetForm(); //clears form
     } catch (error) {
       console.error("Error saving event:", error);
       toast.error("Failed to post event. Please try again.", {
         theme: "colored",
         autoClose: 5000,
       });
+    } finally {
+      setIsPosting(false);
     }
   };
 
@@ -156,14 +176,11 @@ export const CreateEvent = ({ currentUser }) => {
           size="large"
           icon="send"
           onClick={handlePostNow}
+          disabled={isPosting}
         >
-          Post now
+          {isPosting ? "Posting..." : "Post now"}
         </Button>
       </div>
-
-      {popupMessage && (
-        <div className={`draft-popup ${popupVariant}`}>{popupMessage}</div>
-      )}
 
       {showCancelPopup && (
         <div className="cancel-popup-overlay">
