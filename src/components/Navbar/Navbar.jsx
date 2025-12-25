@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "../index";
+import logo from "../../assets/NEW_LOGO.svg";
 import "./Navbar.css";
 import Parse from "parse";
 
@@ -8,7 +9,7 @@ export default function Navbar({ currentUser, setCurrentUser }) {
     <nav className="navbar">
       <h1>
         <Link to="/" className="logo-link">
-          <img src="./src/assets/NEW_LOGO.svg" alt="Logo" className="logo" />
+          <img src={logo} alt="ITU Invited Logo" className="logo" />
         </Link>
       </h1>
 
