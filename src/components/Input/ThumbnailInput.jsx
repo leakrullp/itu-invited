@@ -1,14 +1,16 @@
 import { useRef, useState, useEffect } from "react";
-import { Button } from "../index";
 import Parse from "parse";
 import "./Input.css";
+import ThumbnailGallery from "./ThumbnailGallery.jsx";
 
 export default function ThumbnailInput({ onThumbnailSaved }) {
   const [uploading, setUploading] = useState(false);
   const [selectedFileName, setSelectedFileName] = useState("");
+  const [previewUrl, setPreviewUrl] = useState(null);
+  const [showGallery, setShowGallery] = useState(false);
+
   const fileInputRef = useRef(null);
   const isMounted = useRef(true);
-  const [previewUrl, setPreviewUrl] = useState(null);
 
   useEffect(() => {
     return () => {
@@ -27,7 +29,7 @@ export default function ThumbnailInput({ onThumbnailSaved }) {
     setPreviewUrl(URL.createObjectURL(file));
 
     try {
-      const parseFile = new Parse.File(file.name, file, "image/png");
+      const parseFile = new Parse.File(file.name, file);
       await parseFile.save();
 
       const Picture = Parse.Object.extend("Picture");
@@ -38,11 +40,18 @@ export default function ThumbnailInput({ onThumbnailSaved }) {
       if (isMounted.current) {
         onThumbnailSaved(savedPicture);
         setUploading(false);
+        setShowGallery(false);
       }
     } catch (err) {
       if (isMounted.current) setUploading(false);
       console.error(err);
     }
+  }
+
+  function handleGallerySelect(pic) {
+    setPreviewUrl(pic.url);
+    onThumbnailSaved(pic.fullObj);
+    setShowGallery(false);
   }
 
   return (
@@ -53,7 +62,7 @@ export default function ThumbnailInput({ onThumbnailSaved }) {
         }`}
         style={{ backgroundImage: previewUrl ? `url(${previewUrl})` : "none" }}
       >
-        {/* Define input taken from the button*/}
+        {/* Hidden file input */}
         <input
           id="thumbnail-upload"
           ref={fileInputRef}
@@ -62,22 +71,32 @@ export default function ThumbnailInput({ onThumbnailSaved }) {
           onChange={handleFileChange}
           style={{ display: "none" }}
         />
-        {/* Button to upload picture*/}
-        <label htmlFor="thumbnail-upload">
+
+        {/* Button row */}
+        <div style={{ display: "flex", gap: "8px" }}>
+          {/* Upload button */}
           <button
             type="button"
             disabled={uploading}
             onClick={() => fileInputRef.current.click()}
-            className={`btn btn--large btn--tertiary thumbnail-button ${
-              previewUrl ? "has-preview" : ""
-            }`}
+            className="btn btn--large btn--tertiary thumbnail-button"
+          >
+            <span className="material-symbols-outlined">upload</span>
+            Upload Thumbnail
+          </button>
+
+          {/* Gallery button */}
+          <button
+            type="button"
+            className="btn btn--large btn--tertiary thumbnail-button"
+            onClick={() => setShowGallery((prev) => !prev)}
           >
             <span className="material-symbols-outlined">image</span>
-            {previewUrl ? "Change Thumbnail" : "Upload Thumbnail"}
+            Choose from Gallery
           </button>
-        </label>
+        </div>
 
-        {/* Text under upload button based on if a file is chosen or not*/}
+        {/* Status text */}
         <p>
           {uploading
             ? "Uploading..."
@@ -86,6 +105,9 @@ export default function ThumbnailInput({ onThumbnailSaved }) {
             : "No file selected"}
         </p>
       </div>
+
+      {/* Gallery */}
+      <ThumbnailGallery open={showGallery} onSelect={handleGallerySelect} />
     </>
   );
 }
