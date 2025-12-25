@@ -49,17 +49,6 @@
   background: transparent;
 }
 
-.upload-button-wrapper {
-  border: 1px dotted var(--color-neutral-100);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem;
-}
-.upload-button-wrapper p {
-  margin: 0.5rem;
-}
-
 textarea .input-el {
   min-height: 96px;
   resize: vertical;
@@ -169,8 +158,41 @@ select.input-el {
   border: 3px solid transparent; /* space between thumbnails */
 }
 
-/*ThumbnailInput: Highlight selected image */
+/*ThumbnailInput: Highlighted selected image */
 .gallery-image.selected {
   border: 4px solid #4caf50; /* todo Change to match ITUInvited AESTHETICS */
   box-shadow: 0 0 10px rgba(76, 175, 80, 0.4); /* todo Change to match ITUInvited AESTHETICS */
+}
+
+/*ThumbnailInput: Make ThumbnailInput component smaller when no image is selected */
+.upload-button-wrapper.no-preview {
+  width: 500px; /* smaller width */
+  height: 25px; /* smaller height */
+}
+/*ThumbnailInput: Make background of ThumbnailInput component the selected image */
+.upload-button-wrapper {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 500px;
+  height: 280px;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  margin: 0 auto;
+}
+
+/* Thumbnail upload button when no file is selected */
+.thumbnail-button {
+  display: inline-flex;
+}
+/* Thumbnail upload button when a file is selected should be hidden */
+.thumbnail-button.has-preview {
+  display: none;
+}
+/* Thumbnail upload button when a file is selected and the user hovers over the component should show the Update Thumbnail button */
+.upload-button-wrapper:hover .thumbnail-button.has-preview {
+  display: inline-flex;
 }
