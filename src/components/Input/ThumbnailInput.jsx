@@ -56,12 +56,14 @@ export default function ThumbnailInput({ onThumbnailSaved }) {
 
   return (
     <>
-      <div
-        className={`upload-button-wrapper ${
-          previewUrl ? "has-preview" : "no-preview"
-        }`}
-        style={{ backgroundImage: previewUrl ? `url(${previewUrl})` : "none" }}
-      >
+      <div className="upload-button-wrapper">
+        {/* Preview image shown when a thumbnail is selected */}
+        {previewUrl && (
+          <div
+            className="thumbnail-preview"
+            style={{ backgroundImage: `url(${previewUrl})` }}
+          />
+        )}
         {/* Hidden file input */}
         <input
           id="thumbnail-upload"
@@ -71,9 +73,18 @@ export default function ThumbnailInput({ onThumbnailSaved }) {
           onChange={handleFileChange}
           style={{ display: "none" }}
         />
-
-        {/* Button row */}
-        <div style={{ display: "flex", gap: "8px" }}>
+        {/* Status text */}
+        {!previewUrl && (
+          <p>
+            {uploading
+              ? "Uploading..."
+              : selectedFileName
+              ? ""
+              : "No file selected"}
+          </p>
+        )}
+        {/* Button row placed underneath preview image */}
+        <div className="thumbnail-buttons-row">
           {/* Upload button */}
           <button
             type="button"
@@ -95,15 +106,6 @@ export default function ThumbnailInput({ onThumbnailSaved }) {
             Choose from Gallery
           </button>
         </div>
-
-        {/* Status text */}
-        <p>
-          {uploading
-            ? "Uploading..."
-            : selectedFileName
-            ? ""
-            : "No file selected"}
-        </p>
       </div>
 
       {/* Gallery */}

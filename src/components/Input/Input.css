@@ -169,11 +169,22 @@ select.input-el {
   box-shadow: 0 0 10px rgba(76, 175, 80, 0.4); /* todo Change to match ITUInvited AESTHETICS */
 }
 
-/*ThumbnailInput: Make ThumbnailInput component smaller when no image is selected */
-.upload-button-wrapper.no-preview {
-  width: 500px; /* smaller width */
-  height: 25px; /* smaller height */
+/* ThumbnailInput: Preview image shown when thumbnail is selected */
+.thumbnail-preview {
+  width: 100%;
+  height: 250px; /* controls preview size */
+  background-size: contain; /* ensures long images shrink instead of overflow */
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 8px;
 }
+
+/* ThumbnailInput: Button row placed underneath preview image */
+.thumbnail-buttons-row {
+  display: flex; /* places buttons side by side */
+  gap: 8px; /* spacing between Upload and Gallery buttons */
+}
+
 /*ThumbnailInput: Make background of ThumbnailInput component the selected image */
 .upload-button-wrapper {
   background-position: center;
@@ -186,7 +197,7 @@ select.input-el {
   flex-direction: column;
   align-items: center;
   padding: 1rem;
-  margin: 0 auto;
+  gap: 2px;
 }
 
 /* Thumbnail upload button when no file is selected */
@@ -196,8 +207,4 @@ select.input-el {
 /* Thumbnail upload button when a file is selected should be hidden */
 .thumbnail-button.has-preview {
   display: none;
-}
-/* Thumbnail upload button when a file is selected and the user hovers over the component should show the Update Thumbnail button */
-.upload-button-wrapper:hover .thumbnail-button.has-preview {
-  display: inline-flex;
 }
