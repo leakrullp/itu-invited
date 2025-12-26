@@ -71,6 +71,12 @@ export const CreateEvent = ({ currentUser }) => {
   };
 
   const handlePostNow = async () => {
+    if (!title || !startDate || !startTime || !endDate || !endTime) {
+      toast.error("Please fill in all required fields (*) before posting.", {
+        theme: "colored",
+      });
+      return;
+    }
     try {
       setIsPosting(true);
 
@@ -89,7 +95,7 @@ export const CreateEvent = ({ currentUser }) => {
       console.log("Event saved with ID:", savedObj.id);
       toast.success("Event posted successfully!", {
         theme: "colored",
-        autoClose: 1500,
+        autoClose: 5000,
       });
 
       resetForm(); //clears form
@@ -123,7 +129,11 @@ export const CreateEvent = ({ currentUser }) => {
       <ThumbnailInput onThumbnailSaved={setThumbnailPicture} />
 
       <InputField
-        label="Title"
+        label={
+          <>
+            Title<span className="required-star">*</span>
+          </>
+        }
         placeholder="Title of your event"
         value={title}
         onChange={(e) => setTitle(e.target.value)}

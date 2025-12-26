@@ -60,6 +60,12 @@
   color: var(--color-neutral-400);
 }
 
+.required-star {
+  color: red;
+  margin-left: 0.25rem;
+  font-weight: 600;
+}
+
 .date-container {
   display: flex;
   flex-direction: column;
