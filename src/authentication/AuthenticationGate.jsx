@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Parse from "parse";
 import LoginPage from "./LoginPage.jsx";
 import { AppRoutes } from "../Routes.jsx";
+import Loading from "../toasts/Loading.jsx";
 
 export default function AuthenticationGate() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -15,6 +16,10 @@ export default function AuthenticationGate() {
     }
     checkUser();
   }, []);
+
+  if (loading) {
+    return <Loading text="Checking login..." />;
+  }
 
   if (!currentUser) {
     return <LoginPage setCurrentUser={setCurrentUser} />;
