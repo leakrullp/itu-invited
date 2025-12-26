@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./Input.css";
 
 export default function SelectField({
-  label, //what text to show above the dropdown
+  label, //what text to show above  dropdown
   placeholder = "None selected", //text to show before any selected
   options = [], //to hold tags from the database and show in dropdown
   value = [], //holds selected values

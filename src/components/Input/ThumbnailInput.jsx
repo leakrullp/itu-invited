@@ -2,6 +2,10 @@ import { useRef, useState, useEffect } from "react";
 import Parse from "parse";
 import "./Input.css";
 import ThumbnailGallery from "./ThumbnailGallery.jsx";
+import {
+  returnOrgNameForAdminUser,
+  returnOrgIdForAdminUser,
+} from "../../pages/CreateEvent/LoadOrganizationData";
 
 export default function ThumbnailInput({ onThumbnailSaved }) {
   const [uploading, setUploading] = useState(false);
@@ -35,6 +39,11 @@ export default function ThumbnailInput({ onThumbnailSaved }) {
       const Picture = Parse.Object.extend("Picture");
       const pictureObj = new Picture();
       pictureObj.set("fileName", parseFile);
+      const orgID = await returnOrgIdForAdminUser(Parse.User.current()); //find ID of current user
+      pictureObj.set(
+        "orgID",
+        orgID
+      ); /* send orgID to DB so when it fetches pictures from DB it filters on current org id */
       const savedPicture = await pictureObj.save();
 
       if (isMounted.current) {
