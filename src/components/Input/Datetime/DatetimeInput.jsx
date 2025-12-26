@@ -13,7 +13,7 @@ export default function DatetimeInput({
   return (
     <>
       <label className="input-label">
-        <span>Date & Time</span>
+        Date &amp; Time<span className="required-star">*</span>
       </label>
 
       <div className="datetime-inputs">
