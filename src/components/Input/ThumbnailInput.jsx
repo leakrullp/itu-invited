@@ -2,10 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import Parse from "parse";
 import "./Input.css";
 import ThumbnailGallery from "./ThumbnailGallery.jsx";
-import {
-  returnOrgNameForAdminUser,
-  returnOrgIdForAdminUser,
-} from "../../pages/CreateEvent/LoadOrganizationData";
+import { returnOrgIdForAdminUser } from "../../pages/CreateEvent/LoadOrganizationData";
 
 export default function ThumbnailInput({ onThumbnailSaved }) {
   const [uploading, setUploading] = useState(false);
