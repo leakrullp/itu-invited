@@ -13,7 +13,7 @@ export default function FrontPage() {
 
   useEffect(() => {
     async function loadEvents() {
-      const eventData = await getEvents();
+      const eventData = await getEvents({ onlyFuture: true });
       setEvents(eventData);
       setIsLoading(false);
     }

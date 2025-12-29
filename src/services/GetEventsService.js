@@ -12,10 +12,10 @@ export default async function getEvents(filters = {}) {
 
   //filter on start date greater than or equal to today
   if (filters.onlyFuture) {
-    query.greaterThanOrEqualTo("startDate", new Date());
+    query.greaterThanOrEqualTo("startTime", new Date());
   }
 
-  // filter on orgs with specific orgID
+  // filter on org with specific orgID
   if (filters.organisationId) {
     const Org = Parse.Object.extend("Organisation");
     const orgPointer = Org.createWithoutData(filters.organisationId);
