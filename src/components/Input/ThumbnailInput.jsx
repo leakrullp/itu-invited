@@ -1,8 +1,7 @@
 import { useRef, useState, useEffect } from "react";
-import Parse from "parse";
 import "./Input.css";
 import ThumbnailGallery from "./ThumbnailGallery.jsx";
-import { returnOrgIdForAdminUser } from "../../pages/CreateEvent/LoadOrganizationData";
+import uploadThumbnailFile from "../../services/ThumbnailUploadService";
 
 export default function ThumbnailInput({ onThumbnailSaved }) {
   const [uploading, setUploading] = useState(false);
@@ -24,34 +23,15 @@ export default function ThumbnailInput({ onThumbnailSaved }) {
     if (!file) return;
 
     setSelectedFileName(file.name);
-    setUploading(true);
 
-    // URL for picture uploadet to DB, for previewing thumbnail picture
-    setPreviewUrl(URL.createObjectURL(file));
-
-    try {
-      const parseFile = new Parse.File(file.name, file);
-      await parseFile.save();
-
-      const Picture = Parse.Object.extend("Picture");
-      const pictureObj = new Picture();
-      pictureObj.set("fileName", parseFile);
-      const orgID = await returnOrgIdForAdminUser(Parse.User.current()); //find ID of current user
-      pictureObj.set(
-        "orgID",
-        orgID
-      ); /* send orgID to DB so when it fetches pictures from DB it filters on current org id */
-      const savedPicture = await pictureObj.save();
-
-      if (isMounted.current) {
-        onThumbnailSaved(savedPicture);
-        setUploading(false);
-        setShowGallery(false);
-      }
-    } catch (err) {
-      if (isMounted.current) setUploading(false);
-      console.error(err);
-    }
+    await uploadThumbnailFile({
+      file,
+      isMountedRef: isMounted,
+      onThumbnailSaved,
+      setUploading,
+      setPreviewUrl,
+      setShowGallery,
+    });
   }
 
   function handleGallerySelect(pic) {
@@ -70,6 +50,7 @@ export default function ThumbnailInput({ onThumbnailSaved }) {
             style={{ backgroundImage: `url(${previewUrl})` }}
           />
         )}
+
         {/* Hidden file input */}
         <input
           id="thumbnail-upload"
@@ -79,6 +60,7 @@ export default function ThumbnailInput({ onThumbnailSaved }) {
           onChange={handleFileChange}
           style={{ display: "none" }}
         />
+
         {/* Status text */}
         {!previewUrl && (
           <p>
@@ -89,6 +71,7 @@ export default function ThumbnailInput({ onThumbnailSaved }) {
               : "No file selected"}
           </p>
         )}
+
         {/* Button row placed underneath preview image */}
         <div className="thumbnail-buttons-row">
           {/* Upload button */}
