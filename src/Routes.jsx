@@ -5,9 +5,14 @@ import { MyEvents } from "./pages/MyEvents/MyEvents.jsx";
 import { User } from "./pages/User/User.jsx";
 import FrontPage from "./FrontPage.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
+import AdminRoute from "./authentication/AdminRoute.jsx";
 
 export const AppRoutes = ({ currentUser, setCurrentUser }) => {
-  console.log("AppRoutes currentUser:", currentUser.id, currentUser.get("username"));
+  console.log(
+    "AppRoutes currentUser:",
+    currentUser.id,
+    currentUser.get("username")
+  );
   return (
     <BrowserRouter>
       <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser} />
@@ -15,10 +20,21 @@ export const AppRoutes = ({ currentUser, setCurrentUser }) => {
         <Route path="/" element={<FrontPage />} />
         <Route
           path="/createevent"
-          element={<CreateEvent currentUser={currentUser} />}
+          element={
+            <AdminRoute>
+              <CreateEvent />
+            </AdminRoute>
+          }
         />
         <Route path="/favorites" element={<Favorites />} />
-        <Route path="/myevents" element={<MyEvents />} />
+        <Route
+          path="/myevents"
+          element={
+            <AdminRoute>
+              <MyEvents />
+            </AdminRoute>
+          }
+        />
         <Route path="/user" element={<User />} />
         <Route
           path="*"
