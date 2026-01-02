@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import { Button } from "../index";
+import useIsAdmin from "../../hooks/useIsAdmin";
 import logo from "../../assets/NEW_LOGO.svg";
 import "./Navbar.css";
 import Parse from "parse";
 
 export default function Navbar({ currentUser, setCurrentUser }) {
+  const { loading, isAdmin } = useIsAdmin();
+
   return (
     <nav className="navbar">
       <h1>
@@ -14,19 +17,24 @@ export default function Navbar({ currentUser, setCurrentUser }) {
       </h1>
 
       <ul className="nav-links">
-        <li>
-          <Link to="/myevents">
-            <Button variant="tertiary">My events</Button>
-          </Link>
-        </li>
 
-        <li>
-          <Link to="/createevent">
-            <Button variant="primary" icon="add">
-              Create events
-            </Button>
-          </Link>
-        </li>
+        {!loading && isAdmin && (
+          <>
+            <li>
+              <Link to="/myevents">
+                <Button variant="tertiary">My events</Button>
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/createevent">
+                <Button variant="primary" icon="add">
+                  Create events
+                </Button>
+              </Link>
+            </li>
+          </>
+        )}
 
         <li>
           <Link to="/favorites">
