@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Parse from "parse";
 import {
   Button,
   DatetimeInput,
@@ -31,6 +32,8 @@ export const CreateEvent = ({ currentUser }) => {
 
   const [showCancelPopup, setShowCancelPopup] = useState(false);
   const [isPosting, setIsPosting] = useState(false);
+
+  const [serverErrors, setServerErrors] = useState([]);
 
   const resetForm = () => {
     setTitle("");
@@ -70,6 +73,7 @@ export const CreateEvent = ({ currentUser }) => {
     });
   };
 
+  //Need refactor to individual messages
   const handlePostNow = async () => {
     if (!title || !startDate || !startTime || !endDate || !endTime) {
       toast.error("Please fill in all required fields (*) before posting.", {
@@ -77,10 +81,12 @@ export const CreateEvent = ({ currentUser }) => {
       });
       return;
     }
+
     try {
       setIsPosting(true);
+      setServerErrors([]);
 
-      const savedObj = await SaveEventToDB({
+      const payload = {
         orgId,
         title,
         description,
@@ -88,20 +94,35 @@ export const CreateEvent = ({ currentUser }) => {
         endTime,
         startDate,
         endDate,
+      };
+
+      // Validate first (server-side)
+      const result = await Parse.Cloud.run("validateCreateEvent", payload);
+
+      if (!result.ok) {
+        setServerErrors(result.errors);
+        toast.error("Please fix the highlighted fields.", { theme: "colored" });
+        return; // stop — do NOT save
+      }
+
+      //Save only if valid
+      const savedObj = await SaveEventToDB({
+        ...payload,
         thumbnailPicture,
-        signupLink,
       });
 
       console.log("Event saved with ID:", savedObj.id);
+
       toast.success("Event posted successfully!", {
         theme: "colored",
         autoClose: 5000,
       });
 
-      resetForm(); //clears form
+      resetForm();
     } catch (error) {
       console.error("Error saving event:", error);
-      toast.error("Failed to post event. Please try again.", {
+
+      toast.error(error.message || "Failed to post event. Please try again.", {
         theme: "colored",
         autoClose: 5000,
       });
