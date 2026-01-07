@@ -2,18 +2,18 @@ import { useState } from "react";
 import "./Input.css";
 
 export default function SelectField({
-  label, //what text to show above  dropdown
-  placeholder = "None selected", //text to show before any selected
-  options = [], //to hold tags from the database and show in dropdown
-  value = [], //holds selected values
-  onChange, //passes a function
-  disabled = false, //makes sure dropdown only works when data is loaded
-  invalid = false, //binary to test if dropdown works
+  label,
+  placeholder = "None selected",
+  options = [], //grouped options = [{label, items},{label, items}]
+  value = [],
+  onChange,
+  disabled = false,
+  invalid = false,
 }) {
   const [open, setOpen] = useState(false);
 
   function toggleDropdown() {
-    if (!disabled) setOpen(!open);
+    if (!disabled) setOpen(!open); //setValue(!value) is a toggle pattern
   }
 
   function handleCheckboxChange(option) {
@@ -56,15 +56,24 @@ export default function SelectField({
 
       {open && (
         <div className="dropdown-menu">
-          {options.map((option) => (
-            <label key={option} className="dropdown-item">
-              <input
-                type="checkbox"
-                checked={value.includes(option)}
-                onChange={() => handleCheckboxChange(option)}
-              />
-              {option}
-            </label>
+          {options.map((group) => (
+            <div key="group.label" className="dropdown-group">
+              {/* Group header */}
+              <div className="dropdown-group-title">{group.label}</div>
+
+              {/* Group items */}
+              {group.items.map((item) => (
+                <label key={item} className="dropdown-item">
+                  <input
+                    type="checkbox"
+                    checked={value.includes(item)}
+                    onChange={() => handleCheckboxChange(item)}
+                    onClick={(e) => e.stopPropagation()}
+                  />
+                  {item}
+                </label>
+              ))}
+            </div>
           ))}
         </div>
       )}
