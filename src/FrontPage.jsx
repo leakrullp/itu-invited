@@ -10,15 +10,21 @@ export default function FrontPage() {
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [pastEvents, setPastEvents] = useState(false);
+
+  function handlePastEventsToggle() {
+    setPastEvents((prev) => !prev);
+  }
 
   useEffect(() => {
     async function loadEvents() {
-      const eventData = await getEvents({ onlyFuture: true });
+      setIsLoading(true);
+      const eventData = await getEvents({ onlyFuture: !pastEvents });
       setEvents(eventData);
       setIsLoading(false);
     }
     loadEvents();
-  }, []); //dependency array is empty, but needs connection to FilterSidebar eventually
+  }, [pastEvents]); //dependency array is empty, but needs connection to FilterSidebar eventually
 
   return (
     <>
@@ -40,7 +46,10 @@ export default function FrontPage() {
         ))}
       </section>
       <aside>
-        <FilterSidebar />
+        <FilterSidebar
+          pastEvents={pastEvents}
+          onTogglePastEvents={handlePastEventsToggle}
+        />
       </aside>
 
       {selectedEvent && (
