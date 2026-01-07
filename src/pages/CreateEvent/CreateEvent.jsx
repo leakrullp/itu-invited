@@ -32,6 +32,17 @@ export const CreateEvent = ({ currentUser }) => {
   const [showCancelPopup, setShowCancelPopup] = useState(false);
   const [isPosting, setIsPosting] = useState(false);
 
+  useEffect(() => {
+    const loadOrg = async () => {
+      const name = await returnOrgNameForAdminUser(currentUser);
+      const id = await returnOrgIdForAdminUser(currentUser);
+
+      setOrgName(name || "Unknown organization");
+      setOrgId(id || null);
+    };
+    loadOrg();
+  });
+
   const resetForm = () => {
     setTitle("");
     setDescription("");
@@ -109,16 +120,6 @@ export const CreateEvent = ({ currentUser }) => {
       setIsPosting(false);
     }
   };
-
-  useEffect(() => {
-    const loadOrg = async () => {
-      const name = await returnOrgNameForAdminUser(currentUser);
-      setOrgName(name || "Unknown organization");
-      const id = await returnOrgIdForAdminUser(currentUser);
-      setOrgId(id || null);
-    };
-    loadOrg();
-  }, [currentUser]);
 
   return (
     <main className="createevent-container">
