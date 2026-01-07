@@ -60,3 +60,8 @@ select {
 select:hover {
   border-color: var(--color-neutral-500);
 }
+
+.past-events{
+color : var(--color-neutral-600);
+font-weight: bold;
+}

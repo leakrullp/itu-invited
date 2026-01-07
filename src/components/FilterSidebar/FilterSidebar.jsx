@@ -3,7 +3,8 @@ import { useState } from "react";
 import { SelectField, TagInputField, Button } from "../index";
 import clubs from "./Clubs.js";
 
-export default function FilterSidebar() {
+
+export default function FilterSidebar({ pastEvents, onTogglePastEvents }) {
   const [selectedClub, setSelectedClub] = useState("");
   const [keywords, setKeywords] = useState([]);
 
@@ -73,6 +74,18 @@ export default function FilterSidebar() {
           <Button size="small" icon="add" variant="secondary">
             Career (43)
           </Button>
+        </div>
+      </div>
+      <div className="sidebar-section">
+        <div className="past-events">
+          <input
+            type="checkbox"
+            name="myCheckbox"
+            checked={pastEvents}
+            onChange={onTogglePastEvents}
+          />
+
+          <label>Include past events</label>
         </div>
       </div>
     </aside>
