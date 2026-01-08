@@ -2,7 +2,6 @@ import { toast } from "react-toastify";
 import Parse from "parse";
 import { SaveEventToDB } from "./SaveEventToDB";
 
-
 export async function handlePostNow({
   setIsPosting,
   payload,

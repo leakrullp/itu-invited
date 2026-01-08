@@ -11,7 +11,6 @@ import {
   ThumbnailInput,
 } from "../../components";
 import "./CreateEvent.css";
-import { SaveEventToDB } from "./SaveEventToDB";
 import { handlePostNow } from "./handlePostNow";
 import { toast } from "react-toastify";
 
@@ -152,6 +151,7 @@ export const CreateEvent = ({ currentUser }) => {
                 endTime,
                 startDate,
                 endDate,
+                keyWords,
               },
               thumbnailPicture,
               resetForm,
