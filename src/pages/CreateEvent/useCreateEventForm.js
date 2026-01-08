@@ -10,6 +10,7 @@ export function useCreateEventForm() {
   const [endDate, setEndDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
+  const [keyWords, setKeyWords] = useState([]);
 
   const resetForm = () => {
     setTitle("");
@@ -20,6 +21,7 @@ export function useCreateEventForm() {
     setEndDate("");
     setStartTime("");
     setEndTime("");
+    setKeyWords([]);
   };
 
   return {
@@ -32,6 +34,7 @@ export function useCreateEventForm() {
     endDate,
     startTime,
     endTime,
+    keyWords,
 
     // setters
     setTitle,
@@ -42,6 +45,7 @@ export function useCreateEventForm() {
     setEndDate,
     setStartTime,
     setEndTime,
+    setKeyWords,
 
     resetForm,
   };
