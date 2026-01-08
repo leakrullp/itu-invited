@@ -9,9 +9,9 @@ import "react-toastify/dist/ReactToastify.css";
 initializeAllParse();
 
 ReactDOM.render(
-  <StrictMode>
+  <>
     <AuthenticationGate />
     <ToastContainer />
-  </StrictMode>,
+  </>,
   document.getElementById("root")
 );

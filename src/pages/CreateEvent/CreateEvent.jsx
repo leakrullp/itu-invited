@@ -1,3 +1,4 @@
+import Parse from "parse";
 import { useState } from "react";
 import { useCreateEventForm } from "./useCreateEventForm";
 import { useOrgForAdmin } from "./useOrgForAdmin";
@@ -38,10 +39,8 @@ export const CreateEvent = ({ currentUser }) => {
   const [showCancelPopup, setShowCancelPopup] = useState(false);
   const [isPosting, setIsPosting] = useState(false);
 
-  const [serverErrors, setServerErrors] = useState([]);
-
-  const errorsToString = (serverErrors) =>
-    serverErrors.map((err) => err.message).join("\n");
+  const errorsToString = (errors = []) =>
+    errors.map((err) => err.message).join("\n");
 
   const handleCancel = () => {
     setShowCancelPopup(true);
@@ -71,21 +70,14 @@ export const CreateEvent = ({ currentUser }) => {
 
   //Need refactor to individual messages
   const handlePostNow = async () => {
-    if (!title || !startDate || !startTime || !endDate || !endTime) {
-      toast.error("Please fill in all required fields (*) before posting.", {
-        theme: "colored",
-      });
-      return;
-    }
-
     try {
       setIsPosting(true);
-      setServerErrors([]);
 
       const payload = {
         orgId,
         title,
         description,
+        signupLink,
         startTime,
         endTime,
         startDate,
@@ -96,9 +88,8 @@ export const CreateEvent = ({ currentUser }) => {
       const result = await Parse.Cloud.run("validateCreateEvent", payload);
 
       if (!result.ok) {
-        setServerErrors(result.errors);
-        console.log(errorsToString());
-        toast.error(errorsToString(), { theme: "colored" });
+        const msg = errorsToString(result.errors);
+        toast.error(msg, { theme: "colored" });
         return; // stop — do NOT save
       }
 

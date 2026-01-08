@@ -44,3 +44,7 @@ aside {
   margin: 0.5rem 0;
   color: var(--color-neutral-800);
 }
+
+.Toastify__toast-body {
+  white-space: pre-line;
+}
