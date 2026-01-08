@@ -35,6 +35,9 @@ export const CreateEvent = ({ currentUser }) => {
 
   const [serverErrors, setServerErrors] = useState([]);
 
+  const errorsToString = (serverErrors) =>
+    serverErrors.map((err) => err.message).join("\n");
+
   const resetForm = () => {
     setTitle("");
     setDescription("");
@@ -101,7 +104,8 @@ export const CreateEvent = ({ currentUser }) => {
 
       if (!result.ok) {
         setServerErrors(result.errors);
-        toast.error("Please fix the highlighted fields.", { theme: "colored" });
+        console.log(errorsToString());
+        toast.error(errorsToString(), { theme: "colored" });
         return; // stop — do NOT save
       }
 
