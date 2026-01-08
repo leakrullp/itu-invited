@@ -17,7 +17,7 @@ export default async function getEvents(filters = {}) {
 
   // filter on org with specific orgID
   if (filters.organisationId) {
-    const Org = Parse.Object.extend("Organisation");
+    const Org = Parse.Object.extend("Organization");
     const orgPointer = Org.createWithoutData(filters.organisationId);
     query.equalTo("orgID", orgPointer);
   }

@@ -1,14 +1,34 @@
 import { Button, StatusTag } from "../../components/index.js";
+import getEvents from "../../services/GetEventsService";
+import { useEffect, useState } from "react";
 import "./MyEvents.css";
 
 export const MyEvents = () => {
-  const myEvents = null;
+  const storedOrg = JSON.parse(localStorage.getItem("organisation"));
+  const organisationId = storedOrg?.orgId ?? null;
+  const organisationName = storedOrg?.orgName ?? "My Events";
+
+  const [myEvents, setMyEvents] = useState([]);
   const totalMyEvents = myEvents.length;
 
+  useEffect(() => {
+    async function loadEventsCount() {
+      if (!organisationId) return;
+
+      const events = await getEvents({ organisationId });
+      setMyEvents(events);
+    }
+
+    loadEventsCount();
+  }, [organisationId]);
+
+  console.log("organisationId:", organisationId);
+
+  console.log({ MyEvents });
   return (
     <main className="myevents-container">
       <h2 className="myevents-title">
-        ITU Underground Events ({totalMyEvents})
+        {organisationName} events ({totalMyEvents})
       </h2>
 
       <div className="myevents-list">
