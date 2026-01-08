@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Parse from "parse";
 
+const cacheKey = (userId) => `userIsAdmin:${userId}`;
+
 export default function useIsAdmin() {
   const [state, setState] = useState({ loading: true, isAdmin: false });
 
@@ -17,14 +19,28 @@ export default function useIsAdmin() {
         return;
       }
 
-      const Admin = Parse.Object.extend("Admin");
-      const q = new Parse.Query(Admin);
-      q.equalTo("userID", user);
+      // read cache before querying db
+      const cached = sessionStorage.getItem(cacheKey(user.id));
+      if (cached !== null) {
+        if (!cancelled)
+          setState({ loading: false, isAdmin: cached === "true" });
+        return;
+      }
 
-      const adminRecord = await q.first();
+      // query if admin status is unknown
+      try {
+        const query = new Parse.Query("Admin");
+        query.equalTo("userID", user);
+        query.select([]);
+        const adminRecord = await query.first();
 
-      if (!cancelled) {
-        setState({ loading: false, isAdmin: Boolean(adminRecord) });
+        const isAdmin = Boolean(adminRecord);
+        sessionStorage.setItem(cacheKey(user.id), String(isAdmin));
+
+        if (!cancelled) setState({ loading: false, isAdmin });
+      } catch (e) {
+        console.log(e.message);
+        if (!cancelled) setState({ loading: false, isAdmin: false });
       }
     })();
 
