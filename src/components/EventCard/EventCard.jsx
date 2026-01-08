@@ -3,6 +3,7 @@ import { TopicTag, Button, FavoriteButton } from "../index";
 import { toggleFavorite } from "../../pages/Favorites/favoriteService";
 import { formatDate, formatTime, isSameDay } from "./dateService";
 import useFavoriteUIState from "../../hooks/useFavoriteUIState";
+import toTitleCase from "./tagService";
 
 const MAX_VISIBLE_TAGS = 4;
 
@@ -80,7 +81,7 @@ export default function EventCard({
 
         <div className="event-tags">
           {visibleTags.map((tags, i) => (
-            <TopicTag key={i} text={tags} variant="read" />
+            <TopicTag key={i} text={toTitleCase(tags)} variant="read" />
           ))}
           {hiddenCount > 0 && (
             <TopicTag text={`+${hiddenCount}`} variant="read" />

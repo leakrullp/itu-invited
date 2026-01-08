@@ -6,7 +6,7 @@ import {
   Button,
   DatetimeInput,
   InputField,
-  TagsInputDropdown,
+  TagInputField,
   TextAreaField,
   ThumbnailInput,
 } from "../../components";
@@ -33,6 +33,8 @@ export const CreateEvent = ({ currentUser }) => {
     setStartTime,
     endTime,
     setEndTime,
+    keyWords,
+    setKeyWords,
     resetForm,
   } = useCreateEventForm();
 
@@ -82,6 +84,7 @@ export const CreateEvent = ({ currentUser }) => {
         endTime,
         startDate,
         endDate,
+        keyWords,
       };
 
       // Validate first (server-side)
@@ -157,7 +160,11 @@ export const CreateEvent = ({ currentUser }) => {
         onChange={(e) => setDescription(e.target.value)}
       />
 
-      <TagsInputDropdown />
+      <TagInputField
+        label="Tags to describe your event"
+        value={keyWords}
+        onChange={setKeyWords}
+      />
 
       <InputField
         label="Signup link"

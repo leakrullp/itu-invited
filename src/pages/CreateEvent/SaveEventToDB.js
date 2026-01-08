@@ -10,7 +10,7 @@ export async function SaveEventToDB({
   endDate,
   thumbnailPicture,
   signupLink,
-  tags,
+  keyWords,
 }) {
   const isPosted = true;
 
@@ -23,28 +23,49 @@ export async function SaveEventToDB({
   const orgObj = new Organization();
   orgObj.id = orgID;
 
-  const selectedTags = ["Fun", "Python"];
-  const EventTag = Parse.Object.extend("EventTag");
-  const tagQuery = new Parse.Query(EventTag);
-  tagQuery.containedIn("term", selectedTags);
-  const tagObjects = await tagQuery.find();
+  const rawTags = keyWords ?? [];
+  const normalizedKeys = [
+    ...new Set(
+      rawTags
+        .map((t) => String(t).trim())
+        .filter(Boolean)
+        .map((t) => t.toLowerCase())
+    ),
+  ];
 
-  //const Picture = Parse.Object.extend("Picture");
-  //const picObj = new Picture();
-  //picObj.id = "sQrZAOqBFz";
+  const EventTag = Parse.Object.extend("EventTag");
+
+  const tagQuery = new Parse.Query(EventTag);
+  tagQuery.containedIn("term", normalizedKeys);
+  tagQuery.limit(1000);
+  const existingTagObjects = await tagQuery.find();
+
+  const existingKeys = new Set(existingTagObjects.map((o) => o.get("term")));
+
+  const missingKeys = normalizedKeys.filter((k) => !existingKeys.has(k));
+
+  const newTagObjects = missingKeys.map((key) => {
+    const t = new EventTag();
+    t.set("term", key);
+
+    return t;
+  });
+
+  const savedNewTags =
+    newTagObjects.length > 0 ? await Parse.Object.saveAll(newTagObjects) : [];
+
+  const tagObjects = [...existingTagObjects, ...savedNewTags];
 
   const Event = Parse.Object.extend("Event");
   const newEvent = new Event();
 
-  // Set simple fields
+  // Set all fields
   newEvent.set("isPosted", isPosted);
   newEvent.set("title", title);
   newEvent.set("description", description);
   newEvent.set("signupLink", signupLink);
   newEvent.set("orgID", orgObj);
   newEvent.set("eventPicID", thumbnailPicture);
-
-  // Set correct dates
   newEvent.set("startTime", startDateTime);
   newEvent.set("endTime", endDateTime);
   newEvent.set("startDate", startDate);
