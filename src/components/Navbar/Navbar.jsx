@@ -17,7 +17,6 @@ export default function Navbar({ currentUser, setCurrentUser }) {
       </h1>
 
       <ul className="nav-links">
-
         {!loading && isAdmin && (
           <>
             <li>
