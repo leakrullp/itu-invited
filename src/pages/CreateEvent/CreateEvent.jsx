@@ -12,6 +12,7 @@ import {
 } from "../../components";
 import "./CreateEvent.css";
 import { SaveEventToDB } from "./SaveEventToDB";
+import { handlePostNow } from "./handlePostNow";
 import { toast } from "react-toastify";
 
 export const CreateEvent = ({ currentUser }) => {
@@ -66,57 +67,6 @@ export const CreateEvent = ({ currentUser }) => {
       theme: "colored",
       autoClose: 5000,
     });
-  };
-
-  //Need refactor to individual messages
-  const handlePostNow = async () => {
-    try {
-      setIsPosting(true);
-
-      const payload = {
-        orgId,
-        title,
-        description,
-        signupLink,
-        startTime,
-        endTime,
-        startDate,
-        endDate,
-      };
-
-      // Validate first (server-side)
-      const result = await Parse.Cloud.run("validateCreateEvent", payload);
-
-      if (!result.ok) {
-        const msg = errorsToString(result.errors);
-        toast.error(msg, { theme: "colored" });
-        return; // stop — do NOT save
-      }
-
-      //Save only if valid
-      const savedObj = await SaveEventToDB({
-        ...payload,
-        thumbnailPicture,
-      });
-
-      console.log("Event saved with ID:", savedObj.id);
-
-      toast.success("Event posted successfully!", {
-        theme: "colored",
-        autoClose: 5000,
-      });
-
-      resetForm();
-    } catch (error) {
-      console.error("Error saving event:", error);
-
-      toast.error(error.message || "Failed to post event. Please try again.", {
-        theme: "colored",
-        autoClose: 5000,
-      });
-    } finally {
-      setIsPosting(false);
-    }
   };
 
   return (
@@ -181,14 +131,32 @@ export const CreateEvent = ({ currentUser }) => {
         </Button>
 
         <Button
-          variant="primary"
-          size="large"
-          icon="send"
-          onClick={handlePostNow}
-          disabled={isPosting}
-        >
-          {isPosting ? "Posting..." : "Post now"}
-        </Button>
+  variant="primary"
+  size="large"
+  icon="send"
+  onClick={() =>
+    handlePostNow({
+      setIsPosting,
+      payload: {
+        orgId,
+        title,
+        description,
+        signupLink,
+        startTime,
+        endTime,
+        startDate,
+        endDate,
+      },
+      thumbnailPicture,
+      resetForm,
+      errorsToString,
+    })
+  }
+  disabled={isPosting}
+>
+  {isPosting ? "Posting..." : "Post now"}
+</Button>
+
       </div>
 
       {showCancelPopup && (
