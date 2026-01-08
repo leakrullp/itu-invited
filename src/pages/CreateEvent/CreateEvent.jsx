@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
-import Parse from "parse";
+import { useState } from "react";
+import { useCreateEventForm } from "./useCreateEventForm";
+import { useOrgForAdmin } from "./useOrgForAdmin";
 import {
   Button,
   DatetimeInput,
@@ -10,25 +11,29 @@ import {
 } from "../../components";
 import "./CreateEvent.css";
 import { SaveEventToDB } from "./SaveEventToDB";
-import {
-  returnOrgNameForAdminUser,
-  returnOrgIdForAdminUser,
-} from "./LoadOrganizationData";
 import { toast } from "react-toastify";
 
 export const CreateEvent = ({ currentUser }) => {
-  const [orgId, setOrgId] = useState("");
-  const [orgName, setOrgName] = useState("");
-
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [signupLink, setSignupLink] = useState("");
-  const [thumbnailPicture, setThumbnailPicture] = useState(null);
-
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [startTime, setStartTime] = useState("");
-  const [endTime, setEndTime] = useState("");
+  const { orgId, orgName } = useOrgForAdmin(currentUser);
+  const {
+    title,
+    setTitle,
+    description,
+    setDescription,
+    signupLink,
+    setSignupLink,
+    thumbnailPicture,
+    setThumbnailPicture,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+    startTime,
+    setStartTime,
+    endTime,
+    setEndTime,
+    resetForm,
+  } = useCreateEventForm();
 
   const [showCancelPopup, setShowCancelPopup] = useState(false);
   const [isPosting, setIsPosting] = useState(false);
@@ -37,18 +42,6 @@ export const CreateEvent = ({ currentUser }) => {
 
   const errorsToString = (serverErrors) =>
     serverErrors.map((err) => err.message).join("\n");
-
-  const resetForm = () => {
-    setTitle("");
-    setDescription("");
-    setSignupLink("");
-    setThumbnailPicture(null);
-
-    setStartDate("");
-    setEndDate("");
-    setStartTime("");
-    setEndTime("");
-  };
 
   const handleCancel = () => {
     setShowCancelPopup(true);
@@ -134,16 +127,6 @@ export const CreateEvent = ({ currentUser }) => {
       setIsPosting(false);
     }
   };
-
-  useEffect(() => {
-    const loadOrg = async () => {
-      const name = await returnOrgNameForAdminUser(currentUser);
-      setOrgName(name || "Unknown organization");
-      const id = await returnOrgIdForAdminUser(currentUser);
-      setOrgId(id || null);
-    };
-    loadOrg();
-  }, [currentUser]);
 
   return (
     <main className="createevent-container">

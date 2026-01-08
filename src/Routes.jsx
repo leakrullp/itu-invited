@@ -22,7 +22,7 @@ export const AppRoutes = ({ currentUser, setCurrentUser }) => {
           path="/createevent"
           element={
             <AdminRoute>
-              <CreateEvent />
+              <CreateEvent currentUser={currentUser} />
             </AdminRoute>
           }
         />
@@ -31,7 +31,7 @@ export const AppRoutes = ({ currentUser, setCurrentUser }) => {
           path="/myevents"
           element={
             <AdminRoute>
-              <MyEvents />
+              <MyEvents currentUser={currentUser} />
             </AdminRoute>
           }
         />

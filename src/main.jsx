@@ -8,11 +8,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 initializeAllParse();
 
-function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
-  return <AppRoutes loggedIn={loggedIn} setLoggedIn={setLoggedIn} />;
-}
-
 ReactDOM.render(
   <StrictMode>
     <AuthenticationGate />

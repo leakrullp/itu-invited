@@ -32,7 +32,6 @@ export default function FilterSidebar({ pastEvents, onTogglePastEvents }) {
         <br />
         <SelectField
           label="Select club"
-          placeholder="None selected"
           options={clubs}
           value={selectedClub}
           onChange={(e) => setSelectedClub(e.target.value)}

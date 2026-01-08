@@ -1,5 +1,5 @@
 import Parse from "parse";
-import { returnOrgIdForAdminUser } from "../pages/CreateEvent/LoadOrganizationData";
+import { returnOrgForAdminUser } from "../pages/CreateEvent/LoadOrganizationData";
 
 /**
  * Handles thumbnail upload logic and DB persistence.
@@ -28,7 +28,7 @@ export default async function uploadThumbnailFile({
     const pictureObj = new Picture();
     pictureObj.set("fileName", parseFile);
 
-    const orgID = await returnOrgIdForAdminUser(Parse.User.current()); //find ID of current user
+    const { orgId: orgID } = await returnOrgForAdminUser(Parse.User.current()); //find ID of current user
     pictureObj.set(
       "orgID",
       orgID

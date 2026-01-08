@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Parse from "parse";
-import { returnOrgIdForAdminUser } from "../../pages/CreateEvent/LoadOrganizationData";
+import { returnOrgForAdminUser } from "../../pages/CreateEvent/LoadOrganizationData";
 
 // Component for showing and selecting already uploaded thumbnail pictures
 export default function ThumbnailGallery({ open, onSelect }) {
@@ -15,7 +15,9 @@ export default function ThumbnailGallery({ open, onSelect }) {
       try {
         const Picture = Parse.Object.extend("Picture");
         const query = new Parse.Query(Picture);
-        const orgID = await returnOrgIdForAdminUser(Parse.User.current()); //find ID of current user
+        const { orgId: orgID } = await returnOrgForAdminUser(
+          Parse.User.current()
+        ); //find ID of current user
 
         // How many thumbnail pictures to fetch from DB
         query.limit(8);

@@ -7,7 +7,7 @@ export default function useFavoriteUIState() {
   useEffect(() => {
     async function loadFavorites() {
       try {
-        const favs = await getUserFavorites(); // fetch from Parse
+        const favs = await getUserFavorites();
         const favMap = {};
         favs.forEach((f) => {
           favMap[f.get("eventID").id] = true;
