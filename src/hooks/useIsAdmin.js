@@ -23,7 +23,7 @@ export default function useIsAdmin() {
       const cached = sessionStorage.getItem(cacheKey(user.id));
       if (cached !== null) {
         if (!cancelled)
-          setState({ loading: false, isAdmin: cached === "true" });
+          setState({ loading: false, isAdmin: Boolean(cached === "true") });
         return;
       }
 

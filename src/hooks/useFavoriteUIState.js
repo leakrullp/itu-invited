@@ -13,7 +13,6 @@ export default function useFavoriteUIState() {
           favMap[f.get("eventID").id] = true;
         });
         setFavorites(favMap);
-        localStorage.setItem("ui-favorites", JSON.stringify(favMap));
       } catch (err) {
         console.error("Failed to load favorites:", err);
       }
