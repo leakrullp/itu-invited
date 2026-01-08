@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Parse from "parse";
 
-import { FilterSidebar, EventCard } from "../../components";
+import { EventCard } from "../../components";
 import "../../index.css";
 import DetailPage from "../DetailPage/Detailpage";
 import { getUserFavorites } from "./favoriteService";
@@ -86,10 +86,6 @@ export const Favorites = () => {
           />
         ))}
       </section>
-
-      <aside>
-        <FilterSidebar />
-      </aside>
 
       {selectedEvent && (
         <DetailPage
