@@ -24,8 +24,12 @@ export const UserLogin = ({ setCurrentUser }) => {
 
       const { orgId, orgName } = await returnOrgForAdminUser(user);
 
-      localStorage.setItem("organisation", JSON.stringify({ orgId, orgName }));
-
+      if (orgName !== "Unknown organization") {
+        localStorage.setItem(
+          "organisation",
+          JSON.stringify({ orgId, orgName })
+        );
+      }
       alert(`Welcome ${user.get("username")}`);
       setCurrentUser(user);
       setUsername("");
