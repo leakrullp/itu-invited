@@ -12,6 +12,7 @@ import {
 import "./CreateEvent.css";
 import { handlePostNow } from "./handlePostNow";
 import { toast } from "react-toastify";
+import { handleDraft } from "./handleDraft";
 
 export const CreateEvent = ({ currentUser }) => {
   const { orgId, orgName } = useOrgForAdmin(currentUser);
@@ -39,6 +40,7 @@ export const CreateEvent = ({ currentUser }) => {
 
   const [showCancelPopup, setShowCancelPopup] = useState(false);
   const [isPosting, setIsPosting] = useState(false);
+  const [isDrafting, setIsDrafting] = useState(false);
 
   const errorsToString = (errors = []) =>
     errors.map((err) => err.message).join("\n");
@@ -60,13 +62,6 @@ export const CreateEvent = ({ currentUser }) => {
 
   const closeCancelPopup = () => {
     setShowCancelPopup(false);
-  };
-
-  const handleSaveDraft = () => {
-    toast.success("Saved as draft. Find your drafts in 'My events'", {
-      theme: "colored",
-      autoClose: 5000,
-    });
   };
 
   return (
@@ -129,9 +124,27 @@ export const CreateEvent = ({ currentUser }) => {
           variant="secondary"
           size="large"
           icon="draft"
-          onClick={handleSaveDraft}
+          onClick={() =>
+            handleDraft({
+              setIsDrafting,
+              payload: {
+                orgId,
+                title,
+                description,
+                signupLink,
+                startTime,
+                endTime,
+                startDate,
+                endDate,
+                keyWords,
+              },
+              thumbnailPicture,
+              resetForm,
+            })
+          }
+          disabled={isDrafting}
         >
-          Save draft
+          {isDrafting ? "Saving draft..." : "Save draft"}
         </Button>
 
         <Button

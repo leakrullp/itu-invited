@@ -11,9 +11,8 @@ export async function SaveEventToDB({
   thumbnailPicture,
   signupLink,
   keyWords,
+  isPosted,
 }) {
-  const isPosted = true;
-
   // Combine date + time into real JavaScript Date objects
   const startDateTime = new Date(`${startDate}T${startTime}`);
   const endDateTime = new Date(`${endDate}T${endTime}`);

@@ -25,6 +25,7 @@ export async function handlePostNow({
     const savedObj = await SaveEventToDB({
       ...payload,
       thumbnailPicture,
+      isPosted: true,
     });
 
     console.log("Event saved with ID:", savedObj.id);
