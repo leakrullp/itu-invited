@@ -81,6 +81,7 @@ export const Favorites = () => {
             {...event}
             onClick={() => setSelectedEvent(event)}
             onRemove={(id) =>
+              // Instantly removes clicked event from favorites page
               setEvents((prev) => prev.filter((e) => e.id !== id))
             }
           />
