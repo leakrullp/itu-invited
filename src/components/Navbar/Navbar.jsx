@@ -7,6 +7,8 @@ import Parse from "parse";
 
 export default function Navbar({ currentUser, setCurrentUser }) {
   const { loading, isAdmin } = useIsAdmin();
+  const storedOrg = JSON.parse(localStorage.getItem("organisation"));
+  const organisationName = storedOrg?.orgName ?? "My Events";
 
   return (
     <nav className="navbar">
@@ -21,7 +23,7 @@ export default function Navbar({ currentUser, setCurrentUser }) {
           <>
             <li>
               <Link to="/myevents">
-                <Button variant="tertiary">My events</Button>
+                <Button variant="tertiary">{organisationName} events</Button>
               </Link>
             </li>
 

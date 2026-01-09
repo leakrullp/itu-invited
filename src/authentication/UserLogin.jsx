@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import Parse from "parse";
 import "./Login.css";
 import * as C from "../components";
+import { returnOrgForAdminUser } from "../pages/CreateEvent/LoadOrganizationData";
 
 export const UserLogin = ({ setCurrentUser }) => {
   const [username, setUsername] = useState("");
@@ -21,6 +22,14 @@ export const UserLogin = ({ setCurrentUser }) => {
 
       if (!isMounted.current) return;
 
+      const { orgId, orgName } = await returnOrgForAdminUser(user);
+
+      if (orgName !== "Unknown organization") {
+        localStorage.setItem(
+          "organisation",
+          JSON.stringify({ orgId, orgName })
+        );
+      }
       alert(`Welcome ${user.get("username")}`);
       setCurrentUser(user);
       setUsername("");
