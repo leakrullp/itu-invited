@@ -17,9 +17,23 @@ export default async function getEvents(filters = {}) {
 
   // filter on org with specific orgID
   if (filters.organisationId) {
+    // const Org = Parse.Object.extend("Organisation");
+    // const orgPointer = Org.createWithoutData(filters.organisationId);
+    // query.equalTo("orgID", orgPointer);
     const Org = Parse.Object.extend("Organisation");
-    const orgPointer = Org.createWithoutData(filters.organisationId);
-    query.equalTo("orgID", orgPointer);
+    const orgQuery = new Parse.Query(Org);
+
+    // Only allow the two valid categories (defensive)
+    const allowed = ["ITU", "Student-driven"];
+    const requested = filters.orgCategories.filter((c) => allowed.includes(c));
+
+    // If user passed only invalid categories, return no events
+    if (requested.length === 0) return [];
+
+    orgQuery.containedIn("orgCategory", requested);
+
+    // Constrain Event.orgID to organisations matching orgQuery
+    query.matchesQuery("orgID", orgQuery);
   }
 
   //filter on events with specific tags

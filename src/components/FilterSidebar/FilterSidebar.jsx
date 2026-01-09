@@ -1,12 +1,18 @@
 import "./FilterSidebar.css";
 import { useState } from "react";
-import { SelectField, TagInputField, Button } from "../index";
+import {
+  SelectField,
+  TagInputField,
+  TagsInputDropdown,
+  Button,
+} from "../index";
 import clubs from "./Clubs.js";
-
 
 export default function FilterSidebar({ pastEvents, onTogglePastEvents }) {
   const [selectedClub, setSelectedClub] = useState("");
   const [keywords, setKeywords] = useState([]);
+  const [ituChecked, setItuChecked] = useState(true);
+  const [studentChecked, setStudentChecked] = useState(true);
 
   return (
     <aside className="filters">
@@ -24,9 +30,19 @@ export default function FilterSidebar({ pastEvents, onTogglePastEvents }) {
         <h4>Organizers</h4>
         <br />
         <div className="title-section">
-          <input type="checkbox" name="myCheckbox" />
+          <input
+            type="checkbox"
+            name="itu-checkbox"
+            checked={ituChecked}
+            onChange={(e) => setItuChecked(e.target.checked)}
+          />
           <label>ITU-driven</label>
-          <input type="checkbox" name="myCheckbox" />
+          <input
+            type="checkbox"
+            name="student-checkbox"
+            checked={studentChecked}
+            onChange={(e) => setStudentChecked(e.target.checked)}
+          />
           <label>Student-driven</label>
         </div>
         <br />
@@ -41,14 +57,15 @@ export default function FilterSidebar({ pastEvents, onTogglePastEvents }) {
       <div className="sidebar-section">
         <h4>Keywords</h4>
         <br />
-        <TagInputField
+        <TagsInputDropdown />
+        {/* <TagInputField
           label="Enter topics"
           value={keywords}
           onChange={setKeywords}
-        />
-        <br />
-        <h4>Add from most popular</h4>
-        <div className="button-group">
+        /> */}
+        {/* <br /> */}
+        {/* <h4>Add from most popular</h4> */}
+        {/* <div className="button-group">
           <Button size="small" icon="add" variant="secondary">
             Free (170)
           </Button>
@@ -73,7 +90,7 @@ export default function FilterSidebar({ pastEvents, onTogglePastEvents }) {
           <Button size="small" icon="add" variant="secondary">
             Career (43)
           </Button>
-        </div>
+        </div> */}
       </div>
       <div className="sidebar-section">
         <div className="past-events">
