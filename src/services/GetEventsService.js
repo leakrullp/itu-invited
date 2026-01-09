@@ -46,6 +46,7 @@ export default async function getEvents(filters = {}) {
         description: eventObj.get("description"),
         startTime: eventObj.get("startTime"),
         endTime: eventObj.get("endTime"),
+        isPosted: eventObj.get("isPosted"),
         signupLink: eventObj.get("signupLink"),
         organisation: org?.get("orgName") ?? "unknown organisation",
         img: pic?.get("fileName")?.url() ?? "src/assets/thumbnail-default.png",
