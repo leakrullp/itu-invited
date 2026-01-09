@@ -27,9 +27,45 @@ export default async function getEvents(filters = {}) {
     query.equalTo("orgID", orgPointer);
   }
 
+  if (filters.clubs?.length) {
+    const Org = Parse.Object.extend("Organization");
+    const orgQuery = new Parse.Query(Org);
+    orgQuery.containedIn("orgName", filters.clubs);
+
+    // Filter events where orgID matches the organizations returned by orgQuery
+    query.matchesQuery("orgID", orgQuery);
+  }
+
   //filter on events with specific tags
   if (filters.tags?.length) {
-    query.containedIn("eventTag", filters.tags);
+    const EventTag = Parse.Object.extend("EventTag");
+    const tagQuery = new Parse.Query(EventTag);
+    tagQuery.containedIn("term", filters.tags);
+
+    // Relation query: eventTag relation contains at least one tag matching tagQuery
+    query.matchesQuery("eventTag", tagQuery);
+  }
+
+  if (filters.ituDriven || filters.studentDriven) {
+    const Org = Parse.Object.extend("Organization");
+    const orgQueries = [];
+
+    if (filters.ituDriven) {
+      const q1 = new Parse.Query(Org);
+      q1.equalTo("orgCategory", "ITU");
+      orgQueries.push(q1);
+    }
+
+    if (filters.studentDriven) {
+      const q2 = new Parse.Query(Org);
+      q2.equalTo("orgCategory", "Student-driven");
+      orgQueries.push(q2);
+    }
+
+    const combinedOrgQuery =
+      orgQueries.length === 1 ? orgQueries[0] : Parse.Query.or(...orgQueries);
+
+    query.matchesQuery("orgID", combinedOrgQuery);
   }
 
   const results = await query.find();
