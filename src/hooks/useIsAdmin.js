@@ -12,6 +12,7 @@ export default function useIsAdmin() {
     (async () => {
       const user = Parse.User.current();
 
+      //not logged in
       if (!user) {
         if (!cancelled) {
           setState({ loading: false, isAdmin: false });
@@ -21,9 +22,9 @@ export default function useIsAdmin() {
 
       // read cache before querying db
       const cached = sessionStorage.getItem(cacheKey(user.id));
-      if (cached !== null) {
+      if (cached !== null) { //is current users userID cached?
         if (!cancelled)
-          setState({ loading: false, isAdmin: cached === "true" });
+          setState({ loading: false, isAdmin: Boolean(cached === "true") });
         return;
       }
 
