@@ -9,8 +9,9 @@ export default function useFavoriteUIState() {
       try {
         const favs = await getUserFavorites();
         const favMap = {};
-        favs.forEach((f) => {
-          favMap[f.get("eventID").id] = true;
+        favs.forEach((item) => {
+          //if i have favorites an event it is saved as an object: {"TLiGUdoBPK" : true}
+          favMap[item.get("eventID").id] = true;
         });
         setFavorites(favMap);
       } catch (err) {
