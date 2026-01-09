@@ -11,7 +11,9 @@ export default function AuthenticationGate() {
   useEffect(() => {
     async function checkUser() {
       const user = await Parse.User.current();
-      setCurrentUser(user);
+      if (user) {
+        setCurrentUser(user);
+      }
       setLoading(false);
     }
     checkUser();
