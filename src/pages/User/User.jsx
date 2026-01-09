@@ -1,6 +1,5 @@
 import "./User.css";
 import { Button, InputField } from "../../components";
-import UserSettings from "./UserSettings";
 import { useOrgForAdmin } from "../CreateEvent/useOrgForAdmin";
 import Parse from "parse";
 import { useEffect, useState } from "react";
@@ -10,9 +9,6 @@ export const User = ({ currentUser }) => {
   const username = currentUser.get("username");
   const email = currentUser.get("email");
   const { orgId, orgName } = useOrgForAdmin(currentUser);
-  console.log("username", username);
-  console.log("email", email);
-  console.log("orgName", useOrgForAdmin(currentUser));
 
   const [newOrgName, setNewOrgName] = useState("");
 
@@ -28,7 +24,6 @@ export const User = ({ currentUser }) => {
 
       const Organization = Parse.Object.extend("Organization");
 
-      // Super nem måde at opdatere eksisterende objekt på:
       const org = Organization.createWithoutData(orgId);
       org.set("orgName", name);
 
