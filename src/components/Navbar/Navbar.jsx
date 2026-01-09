@@ -17,6 +17,7 @@ export default function Navbar({ currentUser, setCurrentUser }) {
       </h1>
 
       <ul className="nav-links">
+        {/*if loading is false and if user is admin, show the admin links*/}
         {!loading && isAdmin && (
           <>
             <li>
@@ -44,15 +45,15 @@ export default function Navbar({ currentUser, setCurrentUser }) {
         </li>
 
         <li>
-          <Link to="/user">
-            <div className="account-pic">
-              <img
-                src={"src/assets/Data/profile_pic_JD_Vance.png"}
-                alt="Profile"
-                className="profile-pic"
-              />
-            </div>
-          </Link>
+          {!loading && isAdmin && (
+            <Link to="/user">
+              <div className="account-pic">
+                <div className="inner-circle">
+                  <h5>{currentUser.get("username").substring(0,2).toUpperCase()}</h5>
+                </div>
+              </div>
+            </Link>
+          )}
         </li>
 
         <li>
