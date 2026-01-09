@@ -28,8 +28,19 @@ export default function SelectField({
     onChange(newValues);
   }
 
-  // Display inside input
-  const displayValue = value.length === 0 ? placeholder : value.join(", ");
+  //handles the case of options being ["term","term","term"] and not grouped
+  const normalizedOptions =
+    Array.isArray(options) &&
+    options.length > 0 &&
+    typeof options[0] === "string"
+      ? [{ label: label ?? "Options", items: options }]
+      : Array.isArray(options)
+      ? options
+      : [];
+
+  // Display inside input after things are selected
+  const displayValue =
+    value.length === 0 ? placeholder : `${value.length} things selected`;
 
   return (
     <div className={`input-field ${disabled ? "is-disabled" : ""}`}>
@@ -44,25 +55,27 @@ export default function SelectField({
         onClick={toggleDropdown}
         style={{ cursor: "pointer" }}
       >
-        <div className="input-el fake-input">{displayValue}</div>
+        <div className="input-el">{displayValue}</div>
 
         <span
           className="material-symbols-outlined icon right"
           aria-hidden="true"
         >
-          arrow_drop_down
+          {open ? "arrow_drop_up" : "arrow_drop_down"}
         </span>
       </div>
 
       {open && (
         <div className="dropdown-menu">
-          {options.map((group) => (
-            <div key="group.label" className="dropdown-group">
+          {normalizedOptions.map((group, idx) => (
+            <div key={group.label ?? idx} className="dropdown-group">
               {/* Group header */}
-              <div className="dropdown-group-title">{group.label}</div>
+              {group.label && (
+                <div className="dropdown-group-title">{group.label}</div>
+              )}
 
               {/* Group items */}
-              {group.items.map((item) => (
+              {(group.items ?? []).map((item) => (
                 <label key={item} className="dropdown-item">
                   <input
                     type="checkbox"

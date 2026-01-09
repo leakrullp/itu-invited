@@ -9,25 +9,32 @@ import {
 import clubs from "./Clubs.js";
 
 export default function FilterSidebar({ pastEvents, onTogglePastEvents }) {
-  const [selectedClub, setSelectedClub] = useState("");
-  const [keywords, setKeywords] = useState([]);
+  const [selectedClubs, setSelectedClubs] = useState([]);
+  const [selectedKeywords, setSelectedKeywords] = useState([]);
   const [ituChecked, setItuChecked] = useState(true);
   const [studentChecked, setStudentChecked] = useState(true);
+
+  const resetFilters = () => {
+    setSelectedClubs([]);
+    setSelectedKeywords([]);
+    setItuChecked(true);
+    setStudentChecked(true);
+  };
 
   return (
     <aside className="filters">
       <div className="sidebar-section">
         <div className="title-section">
-          <h3>Filters</h3>
+          <h3>Filter</h3>
           <br />
-          <Button size="small" variant="secondary">
-            Reset filters
+          <Button size="small" variant="secondary" onClick={resetFilters}>
+            Reset all
           </Button>
         </div>
       </div>
 
       <div className="sidebar-section">
-        <h4>Organizers</h4>
+        <h4>By organizers</h4>
         <br />
         <div className="title-section">
           <input
@@ -49,48 +56,18 @@ export default function FilterSidebar({ pastEvents, onTogglePastEvents }) {
         <SelectField
           label="Select club"
           options={clubs}
-          value={selectedClub}
-          onChange={(e) => setSelectedClub(e.target.value)}
+          value={selectedClubs}
+          onChange={setSelectedClubs}
         />
       </div>
 
       <div className="sidebar-section">
-        <h4>Keywords</h4>
+        <h4>By tag words</h4>
         <br />
-        <TagsInputDropdown />
-        {/* <TagInputField
-          label="Enter topics"
-          value={keywords}
-          onChange={setKeywords}
-        /> */}
-        {/* <br /> */}
-        {/* <h4>Add from most popular</h4> */}
-        {/* <div className="button-group">
-          <Button size="small" icon="add" variant="secondary">
-            Free (170)
-          </Button>
-          <Button size="small" icon="add" variant="secondary">
-            ITU (97)
-          </Button>
-          <Button size="small" icon="add" variant="secondary">
-            Research project (45)
-          </Button>
-          <Button size="small" icon="add" variant="secondary">
-            Career (150)
-          </Button>
-          <Button size="small" icon="add" variant="secondary">
-            Awesome (168)
-          </Button>
-          <Button size="small" icon="add" variant="secondary">
-            Social (70)
-          </Button>
-          <Button size="small" icon="add" variant="secondary">
-            Sports (68)
-          </Button>
-          <Button size="small" icon="add" variant="secondary">
-            Career (43)
-          </Button>
-        </div> */}
+        <TagsInputDropdown
+          value={selectedKeywords}
+          onChange={setSelectedKeywords}
+        />
       </div>
       <div className="sidebar-section">
         <div className="past-events">

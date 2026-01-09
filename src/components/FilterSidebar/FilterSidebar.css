@@ -61,7 +61,10 @@ select:hover {
   border-color: var(--color-neutral-500);
 }
 
-.past-events{
-color : var(--color-neutral-600);
-font-weight: bold;
+.past-events {
+  color: var(--color-neutral-600);
+  font-weight: bold;
+}
+.past-events input {
+  transform: scale(1.2);
 }
