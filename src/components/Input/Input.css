@@ -207,3 +207,20 @@ select.input-el {
 .thumbnail-button.has-preview {
   display: none;
 }
+
+.dropdown-group {
+  padding: 1rem 1rem;
+  background-color: var(--color-neutral-50);
+  border-radius: 2px;
+}
+
+.dropdown-group-title {
+  font-weight: 600;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+}

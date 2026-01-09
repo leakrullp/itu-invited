@@ -19,7 +19,10 @@ export default function FrontPage() {
   useEffect(() => {
     async function loadEvents() {
       setIsLoading(true);
-      const eventData = await getEvents({ onlyFuture: !pastEvents });
+      const eventData = await getEvents({
+        onlyFuture: !pastEvents,
+        isPosted: true,
+      });
       setEvents(eventData);
       setIsLoading(false);
     }

@@ -10,6 +10,11 @@ export default async function getEvents(filters = {}) {
 
   // Filters to use when querying DB for events
 
+  //posted events only
+  if (filters.isPosted) {
+    query.equalTo("isPosted", true);
+  }
+
   //filter on start date greater than or equal to today
   if (filters.onlyFuture) {
     query.greaterThanOrEqualTo("startTime", new Date());

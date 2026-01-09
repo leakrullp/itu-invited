@@ -27,6 +27,7 @@ export const Favorites = () => {
             query.equalTo("objectId", eventID);
             query.include("orgID");
             query.include("eventPicID");
+            query.equalTo("isPosted", true);
 
             const eventObj = await query.first();
 
