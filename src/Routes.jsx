@@ -35,7 +35,14 @@ export const AppRoutes = ({ currentUser, setCurrentUser }) => {
             </AdminRoute>
           }
         />
-        <Route path="/user" element={<User />} />
+        <Route
+          path="/user"
+          element={
+            <AdminRoute>
+              <User currentUser={currentUser}/>
+            </AdminRoute>
+          }
+        />
         <Route
           path="*"
           element={<h1>Page Not Found, try to reload the page</h1>}
