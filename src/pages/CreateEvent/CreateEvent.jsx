@@ -1,109 +1,190 @@
 import { useState } from "react";
-import Button from "../../components/Button/Button.jsx";
+import { useCreateEventForm } from "./useCreateEventForm";
+import { useOrgForAdmin } from "./useOrgForAdmin";
+import {
+  Button,
+  DatetimeInput,
+  InputField,
+  TagInputField,
+  TextAreaField,
+  ThumbnailInput,
+} from "../../components";
 import "./CreateEvent.css";
+import { handlePostNow } from "./handlePostNow";
+import { toast } from "react-toastify";
 
-export const CreateEvent = () => {
-  const [popupMessage, setPopupMessage] = useState("");
+export const CreateEvent = ({ currentUser }) => {
+  const { orgId, orgName } = useOrgForAdmin(currentUser);
+  const {
+    title,
+    setTitle,
+    description,
+    setDescription,
+    signupLink,
+    setSignupLink,
+    thumbnailPicture,
+    setThumbnailPicture,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+    startTime,
+    setStartTime,
+    endTime,
+    setEndTime,
+    keyWords,
+    setKeyWords,
+    resetForm,
+  } = useCreateEventForm();
 
-  const showPopup = (message) => {
-    setPopupMessage(message);
-    setTimeout(() => setPopupMessage(""), 5000);
+  const [showCancelPopup, setShowCancelPopup] = useState(false);
+  const [isPosting, setIsPosting] = useState(false);
+
+  const errorsToString = (errors = []) =>
+    errors.map((err) => err.message).join("\n");
+
+  const handleCancel = () => {
+    setShowCancelPopup(true);
+  };
+
+  const confirmCancel = () => {
+    toast.info("Event creation cancelled", {
+      theme: "colored",
+      autoClose: 2000,
+    });
+
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 2000);
+  };
+
+  const closeCancelPopup = () => {
+    setShowCancelPopup(false);
   };
 
   const handleSaveDraft = () => {
-    showPopup("Saved as draft. Go to 'My events'");
-  };
-
-  const handlePostNow = () => {
-    showPopup("Event posted!");
+    toast.success("Saved as draft. Find your drafts in 'My events'", {
+      theme: "colored",
+      autoClose: 5000,
+    });
   };
 
   return (
-    <>
-      <main className="createevent-container">
-        <h2 className="createevent-title">Create an event for ITUnderground</h2>
+    <main className="createevent-container">
+      <h2 className="createevent-title">
+        Create an event for <span id="org-name">{orgName}</span>
+      </h2>
 
-        <div className="thumbnail-upload">
-          <Button variant="tertiary" size="large" icon="image">
-            Upload thumbnail
-          </Button>
-        </div>
+      <ThumbnailInput onThumbnailSaved={setThumbnailPicture} />
 
-        <div className="title-container">
-          <label className="title-field">
-            <span>Title</span>
-          </label>
-          <input
-            id="title"
-            type="text"
-            placeholder="Title of your event"
-            className="title-input"
-          />
-        </div>
+      <InputField
+        label={
+          <>
+            Title<span className="required-star">*</span>
+          </>
+        }
+        placeholder="Title of your event"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
 
-        <div className="date-container">
-          <label className="date-field">
-            <span>Date & Time</span>
-          </label>
+      <DatetimeInput
+        startTime={startTime}
+        setStartTime={setStartTime}
+        endTime={endTime}
+        setEndTime={setEndTime}
+        startDate={startDate}
+        setStartDate={setStartDate}
+        endDate={endDate}
+        setEndDate={setEndDate}
+      />
 
-          <div className="datetime-inputs">
-            <input id="date" type="date" className="date-input" />
+      <TextAreaField
+        label="Description"
+        placeholder="Add your event description"
+        rows="4"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />
 
-            <div className="time-range">
-              <input id="start-time" type="time" className="date-input" />
-              <span className="time-separator">–</span>
-              <input id="end-time" type="time" className="date-input" />
+      <TagInputField
+        label="Tags to describe your event"
+        value={keyWords}
+        onChange={setKeyWords}
+      />
+
+      <InputField
+        label="Signup link"
+        placeholder="Add URL for signup"
+        value={signupLink}
+        onChange={(e) => setSignupLink(e.target.value)}
+      />
+
+      <div className="button-group">
+        <Button variant="tertiary" size="large" onClick={handleCancel}>
+          Cancel
+        </Button>
+
+        <Button
+          variant="secondary"
+          size="large"
+          icon="draft"
+          onClick={handleSaveDraft}
+        >
+          Save draft
+        </Button>
+
+        <Button
+          variant="primary"
+          size="large"
+          icon="send"
+          onClick={() =>
+            handlePostNow({
+              setIsPosting,
+              payload: {
+                orgId,
+                title,
+                description,
+                signupLink,
+                startTime,
+                endTime,
+                startDate,
+                endDate,
+                keyWords,
+              },
+              thumbnailPicture,
+              resetForm,
+              errorsToString,
+            })
+          }
+          disabled={isPosting}
+        >
+          {isPosting ? "Posting..." : "Post now"}
+        </Button>
+      </div>
+
+      {showCancelPopup && (
+        <div className="cancel-popup-overlay">
+          <div className="cancel-popup">
+            <p>
+              Are you sure you want to cancel?
+              <br />
+              All progress will be lost
+            </p>
+
+            <div className="cancel-popup-buttons">
+              <Button variant="tertiary" onClick={closeCancelPopup}>
+                No
+              </Button>
+
+              <Button variant="primary" onClick={confirmCancel}>
+                Yes, cancel
+              </Button>
             </div>
           </div>
         </div>
-
-        <div className="description-container">
-          <label className="description-field">
-            <span>Description</span>
-          </label>
-          <textarea
-            id="description"
-            placeholder="Add your event description..."
-            className="description-input"
-            rows="4"
-          ></textarea>
-        </div>
-
-        <div className="attachfiles-container">
-          <Button variant="secondary" size="small" icon="attach_file">
-            Attach files
-          </Button>
-          <p className="file-count">0 files attached so far</p>
-        </div>
-
-        <div className="button-group">
-          <Button variant="tertiary" size="large">
-            Cancel
-          </Button>
-          <Button
-            variant="secondary"
-            size="large"
-            icon="draft"
-            onClick={handleSaveDraft}
-          >
-            Save draft
-          </Button>
-          <Button variant="secondary" size="large" icon="calendar_month">
-            Schedule post
-          </Button>
-          <Button
-            variant="primary"
-            size="large"
-            icon="send"
-            onClick={handlePostNow}
-          >
-            Post now
-          </Button>
-        </div>
-
-        {popupMessage && <div className="draft-popup">{popupMessage}</div>}
-      </main>
-    </>
+      )}
+    </main>
   );
 };
 

@@ -20,6 +20,7 @@
   background: var(--color-neutral-0);
   padding: 12px 14px;
   transition: box-shadow 120ms ease, border-color 120ms ease;
+  border-radius: 2px;
 }
 
 .input-wrapper:focus-within {
@@ -48,7 +49,7 @@
   background: transparent;
 }
 
-textarea.input-el {
+textarea .input-el {
   min-height: 96px;
   resize: vertical;
 }
@@ -98,10 +99,14 @@ select.input-el {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.5rem;
+  /* gap: 0.5rem; */
   padding: 0.5rem;
   min-height: 3rem;
   cursor: text;
+}
+
+.tag-input-wrapper {
+  min-height: auto;
 }
 
 .tag-list {
@@ -112,7 +117,7 @@ select.input-el {
 }
 
 .tag-input {
-  flex: 1;
+  flex: 1 0 100%;
   min-width: 100px;
   border: none;
   outline: none;
@@ -125,4 +130,97 @@ select.input-el {
 
 .tag-input::-webkit-resizer {
   display: none;
+}
+
+.timestamp-label {
+  /* font for Date & Time sub headers when creating event */
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+/* ThumbnailInput: Container */
+.show-gallery-container {
+  margin-top: 5px;
+}
+
+/*ThumbnailInput: Grid layout for where thumbnails are placed */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 8px; /* important that matches border-radius for .gallery-image */
+  grid-auto-rows: 150px; /* .show-gallery-container max-height /  .gallery-grid grid-auto-rows gives amount of rows fx. 450/150= 3 rows*/
+}
+
+/*ThumbnailInput: Each thumbnail*/
+.gallery-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* KEY: scales image only when needed */
+  object-position: center;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 3px solid transparent;
+  display: block; /* removes inline-img baseline weirdness */
+}
+
+/*ThumbnailInput: Highlighted selected image */
+.gallery-image.selected {
+  border: 4px solid #4caf50; /* todo Change to match ITUInvited AESTHETICS */
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.4); /* todo Change to match ITUInvited AESTHETICS */
+}
+
+/* ThumbnailInput: Preview image shown when thumbnail is selected */
+.thumbnail-preview {
+  width: 100%;
+  height: 250px; /* controls preview size */
+  background-size: contain; /* ensures long images shrink instead of overflow */
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 8px;
+}
+
+/* ThumbnailInput: Button row placed underneath preview image */
+.thumbnail-buttons-row {
+  display: flex; /* places buttons side by side */
+  gap: 8px; /* spacing between Upload and Gallery buttons */
+}
+
+/*ThumbnailInput: Make background of ThumbnailInput component the selected image */
+.upload-button-wrapper {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 280px;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  gap: 2px;
+}
+
+/* Thumbnail upload button when no file is selected */
+.thumbnail-button {
+  display: inline-flex;
+}
+/* Thumbnail upload button when a file is selected should be hidden */
+.thumbnail-button.has-preview {
+  display: none;
+}
+
+.dropdown-group {
+  padding: 1rem 1rem;
+  background-color: var(--color-neutral-50);
+  border-radius: 2px;
+}
+
+.dropdown-group-title {
+  font-weight: 600;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
 }

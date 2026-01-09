@@ -28,6 +28,12 @@
   min-height: 80vh;
   text-align: center;
   line-height: 1.8;
+  background-color: white;
+    height: 50px;
+    margin-left: 300px;
+    margin-right: 300px;
+    margin-top: 70px;
+    margin-bottom: 70px;
 }
 
 .user-profile-pic {
@@ -36,3 +42,13 @@
   border-radius: 55%;
   object-fit: cover;
 }
+
+.orgName{
+  display: flex;
+  gap: 16px;
+  align-items:center;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+}
+

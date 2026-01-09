@@ -1,6 +1,4 @@
-import React from "react";
-
-export const LogIn = ({ loggedIn, setLoggedIn }) => {
+export const UserProfile = ({ loggedIn, setLoggedIn, currentUser }) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 

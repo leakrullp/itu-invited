@@ -1,10 +1,9 @@
-import { useState } from "react";
-import TopicTag from "../TopicTag/TopicTag.jsx";
 import "./Input.css";
 
 function TextAreaField({
   label,
   placeholder = "",
+  rows,
   value,
   onChange,
   disabled = false,
@@ -22,6 +21,7 @@ function TextAreaField({
         <textarea
           className="input-el"
           placeholder={placeholder}
+          rows={rows}
           value={value}
           onChange={onChange}
           disabled={disabled}

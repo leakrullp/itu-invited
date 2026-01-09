@@ -1,8 +1,7 @@
-import { useState } from "react";
-import TopicTag from "../TopicTag/TopicTag.jsx";
 import "./Input.css";
 
 function InputField({
+  type = "text",
   label,
   placeholder = "",
   value,
@@ -34,7 +33,7 @@ function InputField({
         )}
 
         <input
-          type="text"
+          type={type}
           className="input-el"
           placeholder={placeholder}
           value={value}

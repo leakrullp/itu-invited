@@ -3,25 +3,45 @@ import { CreateEvent } from "./pages/CreateEvent/CreateEvent.jsx";
 import { Favorites } from "./pages/Favorites/Favorites.jsx";
 import { MyEvents } from "./pages/MyEvents/MyEvents.jsx";
 import { User } from "./pages/User/User.jsx";
-import App from "./App.jsx";
+import FrontPage from "./FrontPage.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
-import { useState } from "react";
-import { LogIn } from "./pages/Login/Login.jsx";
+import AdminRoute from "./authentication/AdminRoute.jsx";
 
-export const AppRoutes = () => {
-  const [loggedIn, setLoggedIn] = useState(true);
+export const AppRoutes = ({ currentUser, setCurrentUser }) => {
+  console.log(
+    "AppRoutes currentUser:",
+    currentUser.id,
+    currentUser.get("username")
+  );
   return (
     <BrowserRouter>
-      <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+      <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser} />
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/createevent" element={<CreateEvent />} />
-        <Route path="/favorites" element={<Favorites />} />
-        <Route path="/myevents" element={<MyEvents />} />
-        <Route path="/user" element={<User />} />
+        <Route path="/" element={<FrontPage />} />
         <Route
-          path="/login"
-          element={<LogIn loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
+          path="/createevent"
+          element={
+            <AdminRoute>
+              <CreateEvent currentUser={currentUser} />
+            </AdminRoute>
+          }
+        />
+        <Route path="/favorites" element={<Favorites />} />
+        <Route
+          path="/myevents"
+          element={
+            <AdminRoute>
+              <MyEvents currentUser={currentUser} />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/user"
+          element={
+            <AdminRoute>
+              <User currentUser={currentUser}/>
+            </AdminRoute>
+          }
         />
         <Route
           path="*"
