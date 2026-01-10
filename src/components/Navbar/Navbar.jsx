@@ -51,7 +51,9 @@ export default function Navbar({ currentUser, setCurrentUser }) {
             <Link to="/user">
               <div className="account-pic">
                 <div className="inner-circle">
-                  <h5>{currentUser.get("username").substring(0,2).toUpperCase()}</h5>
+                  <h5>
+                    {currentUser.get("username").substring(0, 2).toUpperCase()}
+                  </h5>
                 </div>
               </div>
             </Link>
