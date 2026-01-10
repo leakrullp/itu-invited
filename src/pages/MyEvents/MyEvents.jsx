@@ -55,6 +55,11 @@ export const MyEvents = () => {
     setEventToDelete(null);
   };
 
+  const handleEditClick = (event) => {
+    localStorage.setItem("editingEventId", event.id);
+    window.location.href = "/createevent";
+  };
+
   const confirmDelete = async () => {
     if (!eventToDelete) return;
     try {
@@ -129,7 +134,12 @@ export const MyEvents = () => {
                     >
                       Delete
                     </Button>
-                    <Button variant="secondary" size="small" icon="edit">
+                    <Button
+                      variant="secondary"
+                      size="small"
+                      icon="edit"
+                      onClick={() => handleEditClick(event)}
+                    >
                       Edit
                     </Button>
                   </div>

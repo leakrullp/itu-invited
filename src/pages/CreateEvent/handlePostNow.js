@@ -2,6 +2,8 @@ import { toast } from "react-toastify";
 import Parse from "parse";
 import { SaveEventToDB } from "./SaveEventToDB";
 
+//helper function to build
+
 export async function handlePostNow({
   setIsPosting,
   payload,
@@ -21,6 +23,17 @@ export async function handlePostNow({
       return; // stop — do NOT save
     }
 
+    // convert time and date to DateTime formart
+    const startTimeDate =
+      payload.startDate && payload.startTime
+        ? new Date(`${payload.startDate}T${payload.startTime}`)
+        : null;
+
+    const endTimeDate =
+      payload.endDate && payload.endTime
+        ? new Date(`${payload.endDate}T${payload.endTime}`)
+        : null;
+
     //Save only if valid
     const savedObj = await SaveEventToDB({
       ...payload,
@@ -29,6 +42,8 @@ export async function handlePostNow({
     });
 
     console.log("Event saved with ID:", savedObj.id);
+    //remove eventID from localStorage
+    localStorage.removeItem("editingEventId");
 
     toast.success("Event posted successfully!", {
       theme: "colored",
