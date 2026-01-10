@@ -10,11 +10,25 @@ export async function handleDraft({
   try {
     setIsDrafting(true);
 
+    //transform start and end time to DateTime format
+    const startTimeDate =
+      payload.startDate && payload.startTime
+        ? new Date(`${payload.startDate}T${payload.startTime}`)
+        : null;
+
+    const endTimeDate =
+      payload.endDate && payload.endTime
+        ? new Date(`${payload.endDate}T${payload.endTime}`)
+        : null;
+
     await SaveEventToDB({
       ...payload,
       thumbnailPicture,
       isPosted: false,
     });
+
+    //remove eventID from localStorage
+    localStorage.removeItem("editingEventId");
 
     toast.success("Saved as draft", {
       theme: "colored",

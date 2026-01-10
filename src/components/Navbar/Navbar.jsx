@@ -29,11 +29,16 @@ export default function Navbar({ currentUser, setCurrentUser }) {
             </li>
 
             <li>
-              <Link to="/createevent">
-                <Button variant="primary" icon="add">
-                  Create events
-                </Button>
-              </Link>
+              <Button
+                variant="primary"
+                icon="add"
+                onClick={() => {
+                  localStorage.removeItem("editingEventId");
+                  window.location.href = "/createevent";
+                }}
+              >
+                Create events
+              </Button>
             </li>
           </>
         )}
