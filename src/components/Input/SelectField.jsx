@@ -4,7 +4,7 @@ import "./Input.css";
 export default function SelectField({
   label,
   placeholder = "None selected",
-  options = [], //grouped options = [{label, items},{label, items}]
+  options = [], //grouped options = [{"label", ["item", "item"]},{"label", ["item", "item"]}]
   value = [],
   onChange,
   disabled = false,

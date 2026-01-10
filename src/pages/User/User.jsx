@@ -1,6 +1,5 @@
 import "./User.css";
 import { Button, InputField } from "../../components";
-import UserSettings from "./UserSettings";
 import { useOrgForAdmin } from "../CreateEvent/useOrgForAdmin";
 import Parse from "parse";
 import { useEffect, useState } from "react";
