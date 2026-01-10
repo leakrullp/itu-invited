@@ -2,38 +2,60 @@ import Parse from "parse";
 
 export default async function getEvents(filters = {}) {
   const Event = Parse.Object.extend("Event");
-  const query = new Parse.Query(Event);
+  const eventQuery = new Parse.Query(Event);
 
-  query.ascending("startDate", "startTime");
-  query.include("orgID");
-  query.include("eventPicID");
+  const hasClubFilter = filters.clubs.length > 0;
+  const categories = [];
+  if (filters.ituDriven) categories.push("ITU");
+  if (filters.studentDriven) categories.push("Student-driven");
+  const hasCategoryFilter = categories.length > 0;
+
+  eventQuery.ascending("startDate", "startTime");
+  eventQuery.include("orgID");
+  eventQuery.include("eventPicID");
 
   // Filters to use when querying DB for events
 
+  //one function to manage how club and category checkboxes to co-exist
+  if (hasCategoryFilter || hasClubFilter) {
+    const Org = Parse.Object.extend("Organization");
+    const orgQueries = [];
+
+    if (hasCategoryFilter) {
+      // Build OR across chosen categories, but each query also includes the club constraint (AND)
+      for (const cat of categories) {
+        const q = new Parse.Query(Org);
+        q.equalTo("orgCategory", cat);
+        if (hasClubFilter) q.containedIn("orgName", filters.clubs);
+        orgQueries.push(q);
+      }
+
+      const finalOrgQuery =
+        orgQueries.length === 1 ? orgQueries[0] : Parse.Query.or(...orgQueries);
+
+      eventQuery.matchesQuery("orgID", finalOrgQuery);
+    } else {
+      // No category constraint, only clubs
+      const q = new Parse.Query(Org);
+      q.containedIn("orgName", filters.clubs);
+      eventQuery.matchesQuery("orgID", q);
+    }
+  }
+
   //posted events only
   if (filters.isPosted) {
-    query.equalTo("isPosted", true);
+    eventQuery.equalTo("isPosted", true);
   }
 
   //filter on start date greater than or equal to today
   if (filters.onlyFuture) {
-    query.greaterThanOrEqualTo("startTime", new Date());
+    eventQuery.greaterThanOrEqualTo("startTime", new Date());
   }
 
   // filter on org with specific orgID
   if (filters.organisationId) {
-    const Org = Parse.Object.extend("Organization");
     const orgPointer = Org.createWithoutData(filters.organisationId);
-    query.equalTo("orgID", orgPointer);
-  }
-
-  if (filters.clubs?.length) {
-    const Org = Parse.Object.extend("Organization");
-    const orgQuery = new Parse.Query(Org);
-    orgQuery.containedIn("orgName", filters.clubs);
-
-    // Filter events where orgID matches the organizations returned by orgQuery
-    query.matchesQuery("orgID", orgQuery);
+    eventQuery.equalTo("orgID", orgPointer);
   }
 
   //filter on events with specific tags
@@ -43,32 +65,10 @@ export default async function getEvents(filters = {}) {
     tagQuery.containedIn("term", filters.tags);
 
     // Relation query: eventTag relation contains at least one tag matching tagQuery
-    query.matchesQuery("eventTag", tagQuery);
+    eventQuery.matchesQuery("eventTag", tagQuery);
   }
 
-  if (filters.ituDriven || filters.studentDriven) {
-    const Org = Parse.Object.extend("Organization");
-    const orgQueries = [];
-
-    if (filters.ituDriven) {
-      const q1 = new Parse.Query(Org);
-      q1.equalTo("orgCategory", "ITU");
-      orgQueries.push(q1);
-    }
-
-    if (filters.studentDriven) {
-      const q2 = new Parse.Query(Org);
-      q2.equalTo("orgCategory", "Student-driven");
-      orgQueries.push(q2);
-    }
-
-    const combinedOrgQuery =
-      orgQueries.length === 1 ? orgQueries[0] : Parse.Query.or(...orgQueries);
-
-    query.matchesQuery("orgID", combinedOrgQuery);
-  }
-
-  const results = await query.find();
+  const results = await eventQuery.find();
 
   return Promise.all(
     results.map(async (eventObj) => {
