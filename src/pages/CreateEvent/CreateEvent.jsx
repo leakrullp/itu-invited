@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCreateEventForm } from "./useCreateEventForm";
 import { useOrgForAdmin } from "./useOrgForAdmin";
 import {
@@ -12,6 +12,11 @@ import {
 import "./CreateEvent.css";
 import { handlePostNow } from "./handlePostNow";
 import { toast } from "react-toastify";
+import { handleDraft } from "./handleDraft";
+//edit existing event
+import Parse from "parse";
+import { parseToDate } from "../../components/EventCard/dateService";
+//^^
 
 export const CreateEvent = ({ currentUser }) => {
   const { orgId, orgName } = useOrgForAdmin(currentUser);
@@ -39,6 +44,10 @@ export const CreateEvent = ({ currentUser }) => {
 
   const [showCancelPopup, setShowCancelPopup] = useState(false);
   const [isPosting, setIsPosting] = useState(false);
+  const [isDrafting, setIsDrafting] = useState(false);
+  //edit event
+  const editingEventId = localStorage.getItem("editingEventId");
+  const isEditMode = Boolean(editingEventId);
 
   const errorsToString = (errors = []) =>
     errors.map((err) => err.message).join("\n");
@@ -62,12 +71,43 @@ export const CreateEvent = ({ currentUser }) => {
     setShowCancelPopup(false);
   };
 
-  const handleSaveDraft = () => {
-    toast.success("Saved as draft. Find your drafts in 'My events'", {
-      theme: "colored",
-      autoClose: 5000,
-    });
-  };
+  //Edit excisting event
+  useEffect(() => {
+    if (!isEditMode) return;
+
+    async function loadEvent() {
+      try {
+        const Event = Parse.Object.extend("Event");
+        const query = new Parse.Query(Event);
+        const event = await query.get(editingEventId);
+
+        setTitle(event.get("title") ?? "");
+        setDescription(event.get("description") ?? "");
+        setSignupLink(event.get("signupLink") ?? "");
+        setKeyWords(event.get("keyWords") ?? []);
+        setThumbnailPicture(event.get("img") ?? null);
+
+        const start = parseToDate(event.get("startTime"));
+        const end = parseToDate(event.get("endTime"));
+
+        if (start) {
+          setStartDate(start.toISOString().slice(0, 10)); // YYYY-MM-DD
+          setStartTime(start.toISOString().slice(11, 16)); // HH:mm
+        }
+
+        if (end) {
+          setEndDate(end.toISOString().slice(0, 10));
+          setEndTime(end.toISOString().slice(11, 16));
+        }
+      } catch (err) {
+        toast.error("Failed to load event for editing", {
+          theme: "colored",
+        });
+      }
+    }
+
+    loadEvent();
+  }, [isEditMode]);
 
   return (
     <main className="createevent-container">
@@ -129,9 +169,28 @@ export const CreateEvent = ({ currentUser }) => {
           variant="secondary"
           size="large"
           icon="draft"
-          onClick={handleSaveDraft}
+          onClick={() =>
+            handleDraft({
+              setIsDrafting,
+              payload: {
+                orgId,
+                title,
+                description,
+                signupLink,
+                startTime,
+                endTime,
+                startDate,
+                endDate,
+                keyWords,
+              },
+              thumbnailPicture,
+              resetForm,
+              eventId: editingEventId,
+            })
+          }
+          disabled={isDrafting}
         >
-          Save draft
+          {isDrafting ? "Saving draft..." : "Save draft"}
         </Button>
 
         <Button
@@ -155,6 +214,7 @@ export const CreateEvent = ({ currentUser }) => {
               thumbnailPicture,
               resetForm,
               errorsToString,
+              eventId: editingEventId,
             })
           }
           disabled={isPosting}

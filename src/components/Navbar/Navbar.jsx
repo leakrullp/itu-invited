@@ -29,11 +29,16 @@ export default function Navbar({ currentUser, setCurrentUser }) {
             </li>
 
             <li>
-              <Link to="/createevent">
-                <Button variant="primary" icon="add">
-                  Create events
-                </Button>
-              </Link>
+              <Button
+                variant="primary"
+                icon="add"
+                onClick={() => {
+                  localStorage.removeItem("editingEventId");
+                  window.location.href = "/createevent";
+                }}
+              >
+                Create events
+              </Button>
             </li>
           </>
         )}
@@ -51,7 +56,9 @@ export default function Navbar({ currentUser, setCurrentUser }) {
             <Link to="/user">
               <div className="account-pic">
                 <div className="inner-circle">
-                  <h5>{currentUser.get("username").substring(0,2).toUpperCase()}</h5>
+                  <h5>
+                    {currentUser.get("username").substring(0, 2).toUpperCase()}
+                  </h5>
                 </div>
               </div>
             </Link>

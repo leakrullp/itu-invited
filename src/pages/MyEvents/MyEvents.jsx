@@ -1,5 +1,5 @@
 import { Button, StatusTag } from "../../components/index.js";
-import getEvents from "../../services/GetEventsService";
+import getMyEvents from "../../services/GetMyEventsService";
 import { deleteEvent } from "../../services/deleteEventService";
 import {
   formatDate,
@@ -55,6 +55,11 @@ export const MyEvents = () => {
     setEventToDelete(null);
   };
 
+  const handleEditClick = (event) => {
+    localStorage.setItem("editingEventId", event.id);
+    window.location.href = "/createevent";
+  };
+
   const confirmDelete = async () => {
     if (!eventToDelete) return;
     try {
@@ -80,7 +85,7 @@ export const MyEvents = () => {
       setIsLoading(true); //use loading from toast
 
       try {
-        const events = await getEvents({ organisationId }); //use function from GetEventsService that stores all filters.
+        const events = await getMyEvents({ organisationId }); //use function from GetEventsService that stores all filters.
         setMyEvents(events); //save the setMyEvents in the useState
       } finally {
         setIsLoading(false);
@@ -129,7 +134,12 @@ export const MyEvents = () => {
                     >
                       Delete
                     </Button>
-                    <Button variant="secondary" size="small" icon="edit">
+                    <Button
+                      variant="secondary"
+                      size="small"
+                      icon="edit"
+                      onClick={() => handleEditClick(event)}
+                    >
                       Edit
                     </Button>
                   </div>

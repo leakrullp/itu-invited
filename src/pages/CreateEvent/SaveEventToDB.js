@@ -11,9 +11,9 @@ export async function SaveEventToDB({
   thumbnailPicture,
   signupLink,
   keyWords,
+  isPosted,
+  eventId,
 }) {
-  const isPosted = true;
-
   // Combine date + time into real JavaScript Date objects
   const startDateTime = new Date(`${startDate}T${startTime}`);
   const endDateTime = new Date(`${endDate}T${endTime}`);
@@ -57,7 +57,8 @@ export async function SaveEventToDB({
   const tagObjects = [...existingTagObjects, ...savedNewTags];
 
   const Event = Parse.Object.extend("Event");
-  const newEvent = new Event();
+
+  const newEvent = eventId ? Event.createWithoutData(eventId) : new Event();
 
   // Set all fields
   newEvent.set("isPosted", isPosted);

@@ -1,4 +1,4 @@
-import { StrictMode, useState } from "react";
+import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import initializeAllParse from "./services/parseConfig.js";
@@ -9,9 +9,9 @@ import "react-toastify/dist/ReactToastify.css";
 initializeAllParse();
 
 ReactDOM.render(
-  <>
+  <StrictMode>
     <AuthenticationGate />
     <ToastContainer />
-  </>,
+  </StrictMode>,
   document.getElementById("root")
 );
