@@ -185,6 +185,7 @@ export const CreateEvent = ({ currentUser }) => {
               },
               thumbnailPicture,
               resetForm,
+              eventId: editingEventId,
             })
           }
           disabled={isDrafting}
@@ -213,6 +214,7 @@ export const CreateEvent = ({ currentUser }) => {
               thumbnailPicture,
               resetForm,
               errorsToString,
+              eventId: editingEventId,
             })
           }
           disabled={isPosting}

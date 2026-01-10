@@ -10,6 +10,7 @@ export async function handlePostNow({
   thumbnailPicture,
   resetForm,
   errorsToString,
+  eventId,
 }) {
   try {
     setIsPosting(true);
@@ -39,6 +40,7 @@ export async function handlePostNow({
       ...payload,
       thumbnailPicture,
       isPosted: true,
+      eventId,
     });
 
     console.log("Event saved with ID:", savedObj.id);

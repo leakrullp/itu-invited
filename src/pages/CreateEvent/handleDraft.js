@@ -6,6 +6,7 @@ export async function handleDraft({
   payload,
   thumbnailPicture,
   resetForm,
+  eventId,
 }) {
   try {
     setIsDrafting(true);
@@ -25,6 +26,7 @@ export async function handleDraft({
       ...payload,
       thumbnailPicture,
       isPosted: false,
+      eventId,
     });
 
     //remove eventID from localStorage
