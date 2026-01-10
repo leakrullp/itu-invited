@@ -1,5 +1,5 @@
 import { Button, StatusTag } from "../../components/index.js";
-import getEvents from "../../services/GetEventsService";
+import getMyEvents from "../../services/GetMyEventsService";
 import { deleteEvent } from "../../services/deleteEventService";
 import {
   formatDate,
@@ -80,7 +80,7 @@ export const MyEvents = () => {
       setIsLoading(true); //use loading from toast
 
       try {
-        const events = await getEvents({ organisationId }); //use function from GetEventsService that stores all filters.
+        const events = await getMyEvents({ organisationId }); //use function from GetEventsService that stores all filters.
         setMyEvents(events); //save the setMyEvents in the useState
       } finally {
         setIsLoading(false);
