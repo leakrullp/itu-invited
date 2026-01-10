@@ -46,26 +46,32 @@ export default async function getEvents(filters = {}) {
     query.matchesQuery("eventTag", tagQuery);
   }
 
+  // if ituDriven or studentDriven is checked in UI
   if (filters.ituDriven || filters.studentDriven) {
     const Org = Parse.Object.extend("Organization");
     const orgQueries = [];
 
+    // subquery if ituDriven is checked
     if (filters.ituDriven) {
       const q1 = new Parse.Query(Org);
       q1.equalTo("orgCategory", "ITU");
       orgQueries.push(q1);
     }
 
+    // subquery if studentDriven is checked
     if (filters.studentDriven) {
       const q2 = new Parse.Query(Org);
       q2.equalTo("orgCategory", "Student-driven");
       orgQueries.push(q2);
     }
 
+    // create final query based on subquery 1 and 2
     const combinedOrgQuery =
       orgQueries.length === 1 ? orgQueries[0] : Parse.Query.or(...orgQueries);
 
     query.matchesQuery("orgID", combinedOrgQuery);
+  } else {
+    query.limit(0);
   }
 
   const results = await query.find();

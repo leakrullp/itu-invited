@@ -28,7 +28,6 @@ export const User = ({ currentUser }) => {
 
       const Organization = Parse.Object.extend("Organization");
 
-      // Super nem måde at opdatere eksisterende objekt på:
       const org = Organization.createWithoutData(orgId);
       org.set("orgName", name);
 

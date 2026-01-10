@@ -33,6 +33,6 @@ export async function handleDraft({
       autoClose: 5000,
     });
   } finally {
-    setIsPosting(false);
+    setIsDrafting(false);
   }
 }

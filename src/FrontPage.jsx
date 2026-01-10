@@ -52,9 +52,7 @@ export default function FrontPage() {
     <>
       <section className="grid-container">
         <div className="event-count">
-          <h2>
-            {events.length < 1 ? "" : "Events " + "(" + events.length + ")"}
-          </h2>
+          <h2>{"Events " + "(" + events.length + ")"}</h2>
         </div>
 
         {isLoading && <Loading text="Loading events..." />}
